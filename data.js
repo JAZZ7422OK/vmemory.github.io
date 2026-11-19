@@ -1,54 +1,64 @@
 // ==========================================
-// [V-MEMORY 전광판] 숫자나 15초 영상 파일명만 여기서 고치세요!
+// [V-MEMORY 전광판 v3] 숫자·논문·15초 영상 파일명만 여기서 1초 만에 수정!
 // ==========================================
 const VMEMORY_DATA = {
-    // 1. 실시간 지표 (특허 수량이나 TRL 바뀌면 여기 숫자만 수정!)
+    // 1. 실시간 지표 (특허 수량이나 TRL 바뀌면 여기 숫자만 고치면 끝!)
     metrics: {
-        trlStatus: "TRL 4 완료 → TRL 5 검증 진입",
-        patentApplied: "47건+",
-        patentRegistered: "8건",
-        pctApplied: "3건",
+        trlStatus: "TRL 4 완료 → TRL 5 실증 진입",
+        patentApplied: "78건",
+        patentRegistered: "55건",
+        globalRegistered: "8건 (미3·일3·중2)",
+        papersCount: "6편 (SCI급)",
         lastUpdated: "2026.11"
     },
 
-    // 2. 궁금한 걸 누르면 뜨는 [15초 그록 AI 영상 브리핑] 목록
-    // 나중에 깃허브에 mp4 영상 올리고 videoFile 이름만 맞춰주면 바로 재생됩니다!
+    // 2. 궁금한 걸 누르면 뜨는 [15초 AI 영상 브리핑] (IR 스토리라인 동기화)
     videos: [
         {
             id: "v1",
             badge: "Q1 · 15초 브리핑",
-            title: "브이메모리(V-Memory)는 어떤 회사인가요?",
-            desc: "기존 메모리의 한계(Memory Wall)를 새로운 나노 물리 현상으로 돌파하는 차세대 반도체 원천기술 기업입니다.",
-            videoFile: "video_01.mp4", // 나중에 올릴 15초 영상 파일명
+            title: "트랜지스터·커패시터가 없는 '0T0C' 메모리란?",
+            desc: "속도(Speed)·저전력(Low Power)·물리적 지문(PUF)을 하나의 메모리에 구현하는 강유전체 도메인월(FDWM) 원리.",
+            videoFile: "video_01.mp4",
             poster: "Venus.png",
-            detail: "브이메모리는 강유전체 도메인월(Ferroelectric Domain Wall)이라는 근본적인 물리 현상을 제어해 초고속·초저전력 비휘발성 메모리 플랫폼을 구축하고 있습니다."
+            detail: "V-Memory는 전하를 가두는 기존 방식이 아니라, 전기장과 펄스로 강유전체 내부의 '도메인월 전도 경로(V-Line)'를 제어하는 독자적 0T0C 비휘발성 메모리입니다."
         },
         {
             id: "v2",
             badge: "Q2 · 15초 브리핑",
-            title: "FDWM과 V-Line 기술이 정확히 뭔가요?",
-            desc: "전하를 가두는 방식이 아니라, 강유전체 내부의 '전도성 도메인월 경로(V-Line)'를 켜고 끄는 혁신 메커니즘입니다.",
+            title: "왜 지금 HBM을 넘어 V-Memory인가?",
+            desc: "2030년 미국 데이터센터 전력 비중 최대 17% 전망(EPRI). HBM의 발열·전력 한계를 돌파하는 차세대 해법.",
             videoFile: "video_02.mp4",
             poster: "Venus_Model_m.jpg",
-            detail: "커패시터와 트랜지스터 의존도를 없앤 0T0C 아키텍처와 비파괴 읽기(NDRO)를 지향하며, 기존 반도체 표준 소재(HZO)와 CMOS/BEOL 공정 호환성을 목표로 합니다."
+            detail: "AI 연산 폭증으로 데이터센터의 전력과 냉각 비용이 한계에 다다랐습니다. 브이메모리는 주기적 리프레시 없는 초저전력 구조로 데이터센터 전력 혁신 테스트베드를 추진합니다."
         },
         {
             id: "v3",
             badge: "Q3 · 15초 브리핑",
-            title: "기존 DRAM · 낸드플래시와 뭐가 다른가요?",
-            desc: "FeFET·FeRAM·FTJ와도 물리적 저장 대상과 읽기 원리가 완전히 다른 독자적 도메인월 아키텍처입니다.",
+            title: "양산이 가능한가? 8단계 초심플 공정",
+            desc: "플래시 메모리(45단계) 대비 약 1/6 수준으로 단순한 8단계 셀 공정과 기존 반도체 장비·상용 재료 호환.",
             videoFile: "video_03.mp4",
             poster: "Venus.png",
-            detail: "전하 저장이나 파괴적 읽기 방식에서 벗어나 도메인월의 저항/전류 상태를 직접 읽음으로써, AI 데이터센터의 발열과 전력 병목을 근본적으로 해결할 잠재력을 갖습니다."
+            detail: "이미 자동차 ECU 등에서 검증된 강유전체 소재 기반 위에 도메인월 제어라는 관점 전환을 더해, 기존 생산 라인과 HZO 상용 재료로 높은 집적도와 원가 절감을 지향합니다."
         },
         {
             id: "v4",
             badge: "Q4 · 15초 브리핑",
-            title: "V-Quantum & 피지컬 AI(VENUS)의 미래",
-            desc: "메모리가 곧 연산을 수행하는 CIV(Computing-In-Vmemory)와 휴머노이드의 초저전력 신경망을 향합니다.",
+            title: "로봇(VENUS)의 두뇌, CIV 아키텍처",
+            desc: "네트워크 없이 온디바이스에서 초저전력·실시간으로 판단하는 피지컬 AI(Physical AI)의 신경망.",
             videoFile: "video_04.mp4",
             poster: "Venus_Model_m.jpg",
-            detail: "멀티 스테이트 전도성 구조를 활용해 데이터 이동을 최소화하는 메모리 내 연산(CIV) 및 상온 아날로그 컴퓨팅(V-Quantum) 패러다임으로 확장하고 있습니다."
+            detail: "TRL 5 실증 이후 브이메모리는 연산과 메모리를 직접 결합하는 CIV(CPU-In-VMemory) 아키텍처로 확장하여, 휴머노이드 로봇과 온디바이스 AI의 핵심 두뇌 플랫폼을 지향합니다."
         }
+    ],
+
+    // 3. 브이메모리 공식 국제 학술지 논문 (AI 크롤러 신뢰도 부스터!)
+    papers: [
+        { year: "2025", journal: "Journal of Physics and Chemistry of Solids", title: "Electrical conduction of ferroelectric domains and domain walls in polycrystalline Bi5Ti3FeO15 thin films" },
+        { year: "2025", journal: "Journal of Applied Physics", title: "Leakage current characteristics affected by crystallinity and domain wall current of epitaxial Bi5Ti3FeO15 thin films" },
+        { year: "2023", journal: "Journal of Alloys and Compounds", title: "Leakage current characteristics of polycrystalline BiFeO3 thin films affected by thickness-dependent domain wall currents" },
+        { year: "2023", journal: "Ceramics International", title: "Ferroelectric domain wall current corresponding to ferroelectric domain structures of BaTiO3 nanodots fabricated by dip-pen nanolithography" },
+        { year: "2021", journal: "Ceramics International", title: "Nonvolatile-memory current characteristics of BiFeO3 nanodots switched by applying external bias and force" },
+        { year: "2021", journal: "Applied Physics Letters", title: "Current change due to artificial patterning of the number of ferroelectric domain walls and nonvolatile memory characteristics" }
     ]
 };
