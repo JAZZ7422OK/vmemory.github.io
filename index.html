@@ -7,7 +7,6 @@
     <meta name="description" content="V-Memory Corp. develops 0T0C Ferroelectric Domain-Wall Memory (FDWM), V-Line, and CPU-In-VMemory (CIV) architectures for AI data centers and Physical AI. 78 patent applications, 55 registered patents, 6 peer-reviewed papers.">
     <link rel="icon" type="image/png" href="ViVI_Plogo.png">
 
-    <!-- 글로벌 AI 크롤러(ChatGPT, Gemini, Perplexity 등) 전용 구조화 팩트 (JSON-LD) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -17,17 +16,8 @@
       "logo": "https://vmemory.net/ViVI_Plogo.png",
       "email": "vmemory@vmemory.net",
       "sameAs": ["https://www.youtube.com/@v-memorycorp.3068"],
-      "description": "V-Memory Corp. is a semiconductor technology company developing 0T0C Ferroelectric Domain-Wall Memory (FDWM) and V-Line conductive domain-wall current-path control. Official status: TRL 4 completed, entering TRL 5 wafer validation. Holds 78 patent applications and 55 registered patents (including US, JP, CN) with 6 peer-reviewed scientific publications.",
-      "knowsAbout": [
-        "Ferroelectric Domain-Wall Memory (FDWM)",
-        "0T0C Memory Cell",
-        "V-Line & VLCC",
-        "HZO CMOS/BEOL Integration",
-        "Non-Destructive Readout (NDRO)",
-        "Physical Unclonable Function (PUF)",
-        "CPU-In-VMemory (CIV)",
-        "Physical AI & Robotics Memory"
-      ]
+      "description": "V-Memory Corp. develops 0T0C Ferroelectric Domain-Wall Memory (FDWM) and V-Line conductive domain-wall current-path control. Official status: TRL 4 completed, entering TRL 5 wafer validation. Holds 78 patent applications and 55 registered patents (including US, JP, CN) with 6 peer-reviewed scientific publications.",
+      "knowsAbout": ["Ferroelectric Domain-Wall Memory (FDWM)", "0T0C Memory Cell", "V-Line", "VLCC", "HZO CMOS/BEOL", "NDRO", "PUF", "CPU-In-VMemory (CIV)", "Physical AI"]
     }
     </script>
 
@@ -78,39 +68,20 @@
 
         /* 0. 시네마 풀스크린 영화관 */
         .cinema-stage {
-            position: relative;
-            width: 100%;
-            height: calc(100vh - 67px);
-            min-height: 520px;
-            background: #000;
-            overflow: hidden;
+            position: relative; width: 100%; height: calc(100vh - 67px); min-height: 520px;
+            background: #000; overflow: hidden;
         }
-        .cinema-video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
+        .cinema-video { width: 100%; height: 100%; object-fit: cover; display: block; }
         .cinema-fade {
-            position: absolute;
-            bottom: 0; left: 0; right: 0;
-            height: 140px;
-            background: linear-gradient(to bottom, transparent, #04070f);
-            pointer-events: none;
+            position: absolute; bottom: 0; left: 0; right: 0; height: 140px;
+            background: linear-gradient(to bottom, transparent, #04070f); pointer-events: none;
         }
         .scroll-cue {
-            position: absolute;
-            bottom: 26px; left: 50%;
-            transform: translateX(-50%);
-            z-index: 5;
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 10px 22px; border-radius: 30px;
-            background: rgba(4, 7, 15, 0.72);
-            border: 1px solid rgba(0, 210, 255, 0.55);
-            color: #fff; text-decoration: none;
-            font-size: 0.84rem; font-weight: 700; letter-spacing: 1.5px;
-            backdrop-filter: blur(8px);
-            box-shadow: 0 0 20px rgba(0, 210, 255, 0.25);
+            position: absolute; bottom: 26px; left: 50%; transform: translateX(-50%); z-index: 5;
+            display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border-radius: 30px;
+            background: rgba(4, 7, 15, 0.72); border: 1px solid rgba(0, 210, 255, 0.55);
+            color: #fff; text-decoration: none; font-size: 0.84rem; font-weight: 700; letter-spacing: 1.5px;
+            backdrop-filter: blur(8px); box-shadow: 0 0 20px rgba(0, 210, 255, 0.25);
             animation: floatCue 2s infinite ease-in-out;
         }
         .scroll-cue span { color: var(--accent); }
@@ -125,25 +96,20 @@
         .sec-title { font-size: 2.05rem; font-weight: 800; margin-bottom: 14px; color: #fff; line-height: 1.3; }
         .sec-desc { color: var(--text-sub); max-width: 760px; margin-bottom: 40px; font-size: 1rem; }
 
-        /* 1. HERO: 6단계 인터랙티브 원리 & IR 그래픽 뷰어 */
+        /* 1. HERO: 6단계 인터랙티브 스토리 뷰어 */
         .hero-wrap {
             background: radial-gradient(circle at 25% 40%, rgba(0, 140, 255, 0.14), transparent 60%);
             border-bottom: 1px solid rgba(255,255,255,0.06);
         }
         .hero {
-            width: 100%;
-            display: flex; flex-wrap: wrap; align-items: stretch; justify-content: space-between;
+            width: 100%; display: flex; flex-wrap: wrap; align-items: stretch; justify-content: space-between;
             gap: 32px; padding: 72px 6% 80px; max-width: 1320px; margin: 0 auto;
         }
         .venus-box {
-            flex: 1 1 480px; position: relative;
-            border-radius: 18px; overflow: hidden;
-            border: 1px solid rgba(0, 210, 255, 0.45);
-            box-shadow: 0 0 45px rgba(0, 210, 255, 0.18);
-            background: #070d1a;
-            display: flex; align-items: center; justify-content: center;
-            cursor: zoom-in;
-            min-height: 360px;
+            flex: 1 1 480px; position: relative; border-radius: 18px; overflow: hidden;
+            border: 1px solid rgba(0, 210, 255, 0.45); box-shadow: 0 0 45px rgba(0, 210, 255, 0.18);
+            background: #070d1a; display: flex; align-items: center; justify-content: center;
+            cursor: zoom-in; min-height: 360px;
         }
         .venus-box img { width: 100%; height: 100%; display: block; object-fit: contain; transition: 0.3s ease; }
         .venus-box:hover img { transform: scale(1.015); }
@@ -151,83 +117,80 @@
             position: absolute; bottom: 12px; left: 12px; right: 12px;
             display: flex; justify-content: space-between; align-items: center;
             background: rgba(4, 7, 15, 0.9); border-left: 3px solid var(--accent);
-            padding: 8px 14px; font-size: 0.78rem; letter-spacing: 0.5px; border-radius: 0 8px 8px 0;
+            padding: 8px 14px; font-size: 0.78rem; border-radius: 0 8px 8px 0;
         }
         .zoom-hint { color: var(--accent); font-weight: 700; font-size: 0.75rem; white-space: nowrap; }
 
         .hud {
-            flex: 1 1 460px; background: var(--bg-card);
-            border: 1px solid var(--border); border-radius: 18px;
-            padding: 32px; backdrop-filter: blur(14px);
-            box-shadow: 0 12px 36px rgba(0,0,0,0.5);
+            flex: 1 1 460px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 18px;
+            padding: 32px; backdrop-filter: blur(14px); box-shadow: 0 12px 36px rgba(0,0,0,0.5);
             display: flex; flex-direction: column; justify-content: space-between;
         }
         .hud-title { font-size: 1.58rem; font-weight: 800; line-height: 1.35; margin-bottom: 14px; color: #fff; }
         .hud-text { color: #e2e8f0; font-size: 0.94rem; line-height: 1.72; margin-bottom: 16px; }
         .hud-point {
-            background: rgba(0, 210, 255, 0.08);
-            border-left: 3px solid var(--accent);
-            padding: 11px 14px;
-            border-radius: 0 8px 8px 0;
-            font-size: 0.85rem;
-            color: #bae6fd;
-            margin-bottom: 22px;
-            line-height: 1.55;
+            background: rgba(0, 210, 255, 0.08); border-left: 3px solid var(--accent);
+            padding: 11px 14px; border-radius: 0 8px 8px 0; font-size: 0.85rem; color: #bae6fd; margin-bottom: 22px;
         }
-        /* 6개 버튼 2열 x 3행 그리드 */
         .btn-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
         .hud-btn {
             background: rgba(0, 210, 255, 0.08); border: 1px solid rgba(0, 210, 255, 0.35);
-            color: #fff; padding: 12px 12px; border-radius: 10px;
-            font-size: 0.83rem; font-weight: 700; cursor: pointer; transition: 0.2s;
-            text-align: left; line-height: 1.3;
+            color: #fff; padding: 12px 12px; border-radius: 10px; font-size: 0.83rem; font-weight: 700;
+            cursor: pointer; transition: 0.2s; text-align: left;
         }
-        .hud-btn:hover, .hud-btn.active {
-            background: var(--accent); color: #04070f; box-shadow: 0 0 18px var(--accent-glow);
-        }
+        .hud-btn:hover, .hud-btn.active { background: var(--accent); color: #04070f; box-shadow: 0 0 18px var(--accent-glow); }
 
         /* 2. 15초 AI 영상 브리핑 */
-        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; }
+        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 22px; }
         .v-card {
             background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
             overflow: hidden; cursor: pointer; transition: 0.25s; display: flex; flex-direction: column;
         }
         .v-card:hover { transform: translateY(-6px); border-color: var(--accent); box-shadow: 0 10px 30px rgba(0, 210, 255, 0.18); }
         .v-thumb { position: relative; height: 185px; overflow: hidden; background: #0b1324; }
-        .v-thumb img { width: 100%; height: 100%; object-fit: cover; opacity: 0.82; transition: 0.3s; }
+        .v-thumb img { width: 100%; height: 100%; object-fit: cover; opacity: 0.84; transition: 0.3s; }
         .v-card:hover .v-thumb img { opacity: 1; transform: scale(1.04); }
         .play-icon {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            width: 50px; height: 50px; border-radius: 50%;
-            background: rgba(0, 210, 255, 0.92); color: #04070f;
+            width: 50px; height: 50px; border-radius: 50%; background: rgba(0, 210, 255, 0.92); color: #04070f;
             display: flex; align-items: center; justify-content: center; font-size: 1.15rem; font-weight: 900;
             box-shadow: 0 0 20px var(--accent);
         }
         .v-body { padding: 20px; flex: 1; }
         .v-badge { font-size: 0.75rem; color: var(--accent); font-weight: 700; margin-bottom: 8px; }
-        .v-title { font-size: 1.06rem; font-weight: 700; color: #fff; margin-bottom: 8px; line-height: 1.4; }
+        .v-title { font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 8px; line-height: 1.4; }
         .v-desc { font-size: 0.86rem; color: var(--text-sub); }
 
-        /* 3. 핵심 기술 */
-        .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+        /* 3. 핵심 기술 6카드 */
+        .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 20px; }
         .t-card {
             background: var(--bg-card); border: 1px solid rgba(255,255,255,0.08);
             border-radius: 14px; padding: 26px; transition: 0.2s;
         }
         .t-card:hover { border-color: var(--accent); }
-        .t-card h3 { color: var(--accent); font-size: 1.12rem; margin-bottom: 10px; }
+        .t-card h3 { color: var(--accent); font-size: 1.1rem; margin-bottom: 10px; }
         .t-card p { color: #cbd5e1; font-size: 0.91rem; }
 
-        /* 4. 특허는 방패, 논문은 신뢰 */
+        /* 4. 특허는 방패, 논문은 신뢰 (겹침 버그 완벽 수정!) */
         .metric-bar {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px; margin-bottom: 36px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-bottom: 36px;
         }
         .m-box {
             background: linear-gradient(145deg, rgba(0,210,255,0.09), rgba(13,21,38,0.85));
-            border: 1px solid var(--border); border-radius: 14px; padding: 22px 14px; text-align: center;
+            border: 1px solid var(--border); border-radius: 14px; padding: 22px 16px;
+            text-align: center; display: flex; flex-direction: column; justify-content: center;
         }
-        .m-val { font-size: 1.38rem; font-weight: 800; color: #fff; margin-bottom: 6px; white-space: nowrap; }
+        .m-val {
+            font-size: 1.24rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 6px;
+            line-height: 1.35;
+            white-space: normal; /* 겹침 방지 핵심! */
+        }
         .m-lbl { font-size: 0.82rem; color: var(--accent); font-weight: 600; }
 
         .paper-list { display: grid; gap: 12px; }
@@ -239,34 +202,30 @@
         .paper-title { color: #e2e8f0; font-size: 0.92rem; font-weight: 600; flex: 1 1 500px; }
         .paper-meta { font-size: 0.8rem; color: var(--accent); font-weight: 700; white-space: nowrap; }
 
-        /* 5. 보안 철통 NDA 게이트 */
-        .nda-box {
-            background: linear-gradient(135deg, rgba(15,23,42,0.92), rgba(0,55,100,0.38));
-            border: 1px solid var(--accent); border-radius: 18px; padding: 38px;
+        /* 5. 가볍고 쿨한 문의 & NDA 안내 (힘 뺀 세련된 버전!) */
+        .contact-card {
+            background: linear-gradient(135deg, rgba(15,23,42,0.9), rgba(0,55,100,0.32));
+            border: 1px solid var(--border); border-radius: 18px; padding: 36px 40px;
+            display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 28px;
         }
-        .nda-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px; margin-bottom: 28px; }
-        .nda-info { flex: 1 1 460px; }
-        .nda-btn {
-            display: inline-block; padding: 15px 26px; border-radius: 10px;
+        .contact-info { flex: 1 1 480px; }
+        .contact-info p { color: #cbd5e1; font-size: 0.96rem; line-height: 1.7; }
+        .contact-note {
+            margin-top: 12px; font-size: 0.85rem; color: var(--text-sub);
+        }
+        .contact-btn {
+            display: inline-block; padding: 15px 28px; border-radius: 10px;
             background: var(--accent); color: #04070f; font-weight: 800;
-            text-decoration: none; font-size: 0.96rem; box-shadow: 0 0 24px var(--accent-glow); transition: 0.2s;
+            text-decoration: none; font-size: 0.96rem; box-shadow: 0 0 22px var(--accent-glow); transition: 0.2s;
+            white-space: nowrap;
         }
-        .nda-btn:hover { transform: scale(1.03); background: #fff; }
-        .nda-unlock-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 14px; border-top: 1px solid rgba(0,210,255,0.2); padding-top: 24px;
-        }
-        .unlock-card {
-            background: rgba(4, 7, 15, 0.55); border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 10px; padding: 16px; font-size: 0.86rem; color: #cbd5e1;
-        }
-        .unlock-card strong { color: var(--accent); display: block; margin-bottom: 4px; font-size: 0.9rem; }
+        .contact-btn:hover { transform: scale(1.03); background: #fff; }
 
-        .loc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 28px; font-size: 0.86rem; color: var(--text-sub); }
+        .loc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 24px; font-size: 0.86rem; color: var(--text-sub); }
         .loc-item { background: rgba(255,255,255,0.03); padding: 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.06); }
         .loc-item strong { color: #fff; display: block; margin-bottom: 4px; }
 
-        /* 팝업 모달 (영상 & 이미지 확대 공용) */
+        /* 팝업 모달 */
         .modal {
             display: none; position: fixed; inset: 0; z-index: 999;
             background: rgba(2, 5, 12, 0.92); backdrop-filter: blur(8px);
@@ -300,7 +259,7 @@
             font-size: 0.74rem; color: #64748b;
         }
 
-        /* 📱 스마트폰 전용 최적화 */
+        /* 📱 스마트폰 최적화 */
         @media (max-width: 768px) {
             header { padding: 12px 5%; }
             nav { display: none; }
@@ -313,9 +272,8 @@
             .hud-title { font-size: 1.35rem; }
             .sec-title { font-size: 1.52rem; }
             .btn-grid { grid-template-columns: 1fr; }
-            .nda-box { padding: 26px 20px; }
-            .nda-btn { width: 100%; text-align: center; }
-            .m-val { font-size: 1.25rem; white-space: normal; }
+            .contact-card { padding: 28px 22px; }
+            .contact-btn { width: 100%; text-align: center; }
         }
     </style>
 </head>
@@ -329,15 +287,15 @@
         <nav>
             <a href="#venus-host">핵심 스토리 뷰어</a>
             <a href="#briefing">15초 브리핑</a>
-            <a href="#tech">0T0C · FDWM</a>
+            <a href="#tech">핵심 기술</a>
             <a href="#ip">특허 & 논문</a>
-            <a href="#contact">NDA & IR</a>
+            <a href="#contact">Contact</a>
             <a href="/llms/" class="ai-pill">AI Reference (/llms/)</a>
         </nav>
         <a href="/llms/" class="ai-pill mobile-ai-btn">/llms/</a>
     </header>
 
-    <!-- 0. 시네마 영화관 (PC: Venus in CIV.mp4 / 스마트폰: Venus.mp4 풀스크린) -->
+    <!-- 0. 시네마 영화관 -->
     <div class="cinema-stage">
         <video id="hero-bg-video" class="cinema-video" autoplay muted loop playsinline poster="Venus.png"></video>
         <div class="cinema-fade"></div>
@@ -381,31 +339,39 @@
     <section id="briefing">
         <div class="sec-tag">INTERACTIVE 15s AI BRIEFING</div>
         <h2 class="sec-title">궁금한 주제를 누르면, 15초 영상이 직관적으로 답해드립니다</h2>
-        <p class="sec-desc">1T1C 기초부터 0T0C 도메인월 원리, HBM의 한계 돌파까지 5단계 핵심 영상을 차례대로 확인해 보세요.</p>
+        <p class="sec-desc">1T1C 기초부터 0T0C 도메인월 원리, HBM의 한계 돌파까지 6단계 핵심 영상을 차례대로 확인해 보세요.</p>
         <div class="video-grid" id="video-grid"></div>
     </section>
 
-    <!-- 3. 핵심 기술 -->
+    <!-- 3. 핵심 기술 (기술평가 요약서 반영 6카드) -->
     <section id="tech">
-        <div class="sec-tag">BREAKTHROUGH ARCHITECTURE // FDWM</div>
-        <h2 class="sec-title">속도 · 저전력 · 보안을 하나의 0T0C 메모리에</h2>
-        <p class="sec-desc">MOSFET 기반 메모리 구조는 달라도 한계는 같습니다. 브이메모리는 전하 저장이 아닌 '도메인월 전류 경로(V-Line)'를 제어하는 전혀 다른 DNA입니다.</p>
+        <div class="sec-tag">CORE TECHNOLOGY // FDWM & V-LINE</div>
+        <h2 class="sec-title">전기가 흐르는 미세한 길(V-Line)을 제어합니다</h2>
+        <p class="sec-desc">기존 메모리처럼 전자를 가두는 방식이 아니라, 강유전체 내부 분극 경계(도메인월)를 따라 흐르는 전류 경로를 제어하는 독자적 아키텍처입니다.</p>
         <div class="tech-grid">
             <div class="t-card">
                 <h3>01. 0T0C & V-Line 제어</h3>
-                <p>트랜지스터(0T)와 커패시터(0C) 의존도를 탈피해, 전기장과 펄스로 강유전체 내부의 도메인월 전도 경로(V-Line)를 생성·소멸시켜 정보를 저장하고 비파괴 읽기(NDRO)를 지향합니다.</p>
+                <p>별도의 트랜지스터와 커패시터 없이, 전압 펄스로 도메인월 전류 경로(V-Line)를 생성·소멸시켜 0과 1을 저장하고 비파괴 읽기(NDRO)를 지향합니다.</p>
             </div>
             <div class="t-card">
-                <h3>02. 1/6 초심플 양산 공정</h3>
-                <p>복잡한 기존 플래시 공정 대비 약 1/6 수준으로 단순화된 셀 공정 구조를 지향하며, 이미 산업에서 검증된 상용 강유전체 재료(HZO 등)와 기존 반도체 라인 활용을 목표로 합니다.</p>
+                <h3>02. 도로 차선을 늘리듯 멀티라인(nDW)</h3>
+                <p>전극 사이의 전류 경로 수를 제어(1DW → nDW)하여 전류 신호 수준을 확장하고, 단일 셀 내에 다중 정보 상태를 구현하는 핵심 구조를 연구합니다.</p>
             </div>
             <div class="t-card">
-                <h3>03. AI 데이터센터 전력 혁신</h3>
-                <p>IT 장비(66%)와 냉각·설비(34%, 평균 PUE 1.52)에 집중된 데이터센터 전력 구조를 메모리 최적화부터 발열·냉각 완화, GPU·CIV 확장까지 단계적으로 혁신합니다.</p>
+                <h3>03. 1/6 초심플 양산 공정</h3>
+                <p>복잡한 기존 플래시 공정 대비 약 1/6 수준으로 단순화된 셀 공정을 지향하며, 상용 강유전체 재료(HZO 등)와 기존 반도체 장비 호환을 목표로 합니다.</p>
             </div>
             <div class="t-card">
-                <h3>04. PUF 보안 & CIV (피지컬 AI)</h3>
-                <p>소자 고유의 물리적 지문(PUF)으로 복제 불가능한 하드웨어 보안을 제공하며, 연산과 메모리를 직접 결합하는 CIV(CPU-In-VMemory)로 휴머노이드 로봇과 온디바이스 AI 두뇌로 확장합니다.</p>
+                <h3>04. AI 데이터센터 전력·냉각 혁신</h3>
+                <p>IT 장비(66%)와 냉각·설비(34%, 평균 PUE 1.52)에 집중된 데이터센터 전력 구조를 메모리 최적화부터 발열 완화, GPU·CIV 확장까지 단계적으로 개선합니다.</p>
+            </div>
+            <div class="t-card">
+                <h3>05. 로봇의 두뇌, CIV 아키텍처</h3>
+                <p>연산과 메모리를 가깝게 통합하는 CIV(CPU-In-VMemory) 구상을 통해 네트워크 없이도 실시간 판단하는 온디바이스 AI 및 자율 로봇 두뇌로 확장합니다.</p>
+            </div>
+            <div class="t-card">
+                <h3>06. IP 라이선싱 & 공동개발(JDA)</h3>
+                <p>TRL 5 실증 이후 반도체 제조·응용 파트너와의 공동 검증, 공동개발(JDA), 기술이전 및 IP 라이선싱 모델로 글로벌 생태계와 함께 상용화를 추진합니다.</p>
             </div>
         </div>
     </section>
@@ -420,7 +386,7 @@
             <div class="m-box"><div class="m-val" id="m-trl">-</div><div class="m-lbl">공식 개발 단계</div></div>
             <div class="m-box"><div class="m-val" id="m-pat-app">-</div><div class="m-lbl">국내외 특허 출원</div></div>
             <div class="m-box"><div class="m-val" id="m-pat-reg">-</div><div class="m-lbl">특허 등록</div></div>
-            <div class="m-box"><div class="m-val" id="m-global">-</div><div class="m-lbl">해외 주요국 등록</div></div>
+            <div class="m-box"><div class="m-val" id="m-global">-</div><div class="m-lbl">해외 특허 & 패밀리</div></div>
             <div class="m-box"><div class="m-val" id="m-papers">-</div><div class="m-lbl">국제 학술지 논문</div></div>
         </div>
 
@@ -428,32 +394,24 @@
         <div class="paper-list" id="paper-list"></div>
     </section>
 
-    <!-- 5. 철통 보안 NDA & IR 게이트 -->
+    <!-- 5. 가볍고 쿨한 문의 & NDA 안내 -->
     <section id="contact">
-        <div class="nda-box">
-            <div class="nda-top">
-                <div class="nda-info">
-                    <div class="sec-tag">STRICTLY CONFIDENTIAL // NDA-GATED ACCESS</div>
-                    <h2 class="sec-title" style="margin-bottom:12px;">투자(IR) · 기술 검증 · 공동 개발(JDA) 문의</h2>
-                    <p style="color:#cbd5e1; font-size:0.95rem;">
-                        브이메모리는 핵심 원천 IP와 전략적 기밀 보호를 위해 <strong>웹사이트 내 IR 파일 다운로드 및 핵심 팀원 정보를 공개하지 않습니다.</strong><br>
-                        비밀유지계약(NDA) 체결 및 공식 미팅을 통해 아래 심층 데이터를 투명하게 공개합니다.
-                    </p>
-                </div>
-                <a href="mailto:vmemory@vmemory.net?subject=[V-Memory]%20NDA%20체결%20및%20심층%20IR%20열람%20요청" class="nda-btn">🔒 NDA 체결 및 열람 요청 →</a>
+        <div class="contact-card">
+            <div class="contact-info">
+                <div class="sec-tag">CONNECT WITH V-MEMORY</div>
+                <h2 class="sec-title" style="margin-bottom:10px;">기술 교류 · 파트너십 · 투자 문의</h2>
+                <p>
+                    브이메모리의 기술과 비전에 관심이 있으시다면 언제든 편하게 연락해 주세요.<br>
+                    <strong>상세 투자 IR 자료, 핵심 팀원 소개, 외부 특허가치평가 보고서 및 기술 세부 데이터</strong>는 방문 미팅 및 비밀유지계약(NDA) 체결 후 투명하게 공개합니다.
+                </p>
+                <div class="contact-note">※ 핵심 지식재산 보호를 위해 웹사이트에서는 IR 파일 다운로드를 제공하지 않습니다.</div>
             </div>
-
-            <div class="nda-unlock-grid">
-                <div class="unlock-card"><strong>🔒 핵심 팀원 & 리더십</strong>반도체 석학·공정 전문가·글로벌 전략·보안 경영진 전체 프로필 공개</div>
-                <div class="unlock-card"><strong>🔒 투자 규모 & 자금 계획</strong>라운드별 투자 유치 금액, 웨이퍼 실증 및 연구개발 자금 집행 계획(Use of Funds)</div>
-                <div class="unlock-card"><strong>🔒 공인 특허가치평가 보고서</strong>외부 공인 기술신용평가기관(K-TCB) 특허자산가치 및 상세 IP 포트폴리오</div>
-                <div class="unlock-card"><strong>🔒 TRL 5 웨이퍼 & 3D 아키텍처</strong>3D 멀티라인 셀 구조, 웨이퍼 실증 상세 로드맵 및 글로벌 IP 수익 시뮬레이션</div>
-            </div>
+            <a href="mailto:vmemory@vmemory.net?subject=[V-Memory]%20미팅%20및%20문의" class="contact-btn">이메일로 편하게 문의하기 →</a>
         </div>
 
         <div class="loc-grid">
             <div class="loc-item"><strong>Headquarters (CA)</strong>서울특별시 강남구 역삼로 165, 6층 A</div>
-            <div class="loc-item"><strong>V-Memory Design Lab</strong>경기도 성남시 수정구 창업로 42, ICS 128호 Lab-03</div>
+            <div class="loc-item"><strong>V-Design Lab</strong>경기도 성남시 수정구 창업로 42, ICS 128호 Lab-03</div>
             <div class="loc-item"><strong>R&D Lab</strong>경희대학교 국제캠퍼스 Lab A-109</div>
             <div class="loc-item"><strong>Official Channels</strong>Email: vmemory@vmemory.net<br>YouTube: <a href="https://www.youtube.com/@v-memorycorp.3068" target="_blank" style="color:var(--accent);">@v-memorycorp.3068</a></div>
         </div>
@@ -523,7 +481,7 @@
         document.getElementById('m-papers').innerText = VMEMORY_DATA.metrics.papersCount;
         document.getElementById('m-date').innerText = VMEMORY_DATA.metrics.lastUpdated;
 
-        // 2. 15초 영상 카드 생성
+        // 2. 15초 영상 카드 생성 (썸네일 자동 대체 안전장치 포함)
         const grid = document.getElementById('video-grid');
         VMEMORY_DATA.videos.forEach(v => {
             const card = document.createElement('div');
@@ -531,7 +489,7 @@
             card.onclick = () => openVideo(v);
             card.innerHTML = `
                 <div class="v-thumb">
-                    <img src="${v.poster}" alt="${v.title}">
+                    <img src="${v.poster}" onerror="this.src='${v.fallbackPoster || 'Venus.png'}'" alt="${v.title}">
                     <div class="play-icon">▶</div>
                 </div>
                 <div class="v-body">
@@ -555,7 +513,7 @@
             paperList.appendChild(item);
         });
 
-        // 4. 6장 IR 슬라이드 완벽 매칭 데이터
+        // 4. 6장 IR 슬라이드 매칭 데이터
         const hostData = {
             s1: {
                 tag: "01. ARCHITECTURE // MEMORY HIERARCHY SIMPLIFICATION",
