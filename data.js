@@ -1,76 +1,75 @@
 // ==========================================
-// [V-MEMORY 전광판 v5] 6대 핵심 15초 브리핑 & 실시간 지표
+// [V-MEMORY 전광판 v6] 기술평가 요약서 기반 보강 버전
+// (K-TCB 평가금액 등 대외비 수치는 제외하고 공개 팩트만 반영)
 // ==========================================
 const VMEMORY_DATA = {
-    // 1. 실시간 지표 (특허 수량이나 TRL 바뀌면 여기 숫자만 고치면 끝!)
+    // 1. 실시간 지표 (숫자 바뀔 때 여기만 수정!)
     metrics: {
         trlStatus: "TRL 4 완료 → TRL 5 실증 진입",
         patentApplied: "78건",
         patentRegistered: "55건",
-        globalRegistered: "8건 (미3·일3·중2)",
+        globalRegistered: "8건 (약 20개 패밀리 구축)",
         papersCount: "6편 (SCI급)",
         lastUpdated: "2026.11"
     },
 
-    // 2. 6단계 완성 [15초 AI 영상 브리핑]
-    // 영상에서 캡처한 이미지를 thumb_01.jpg ~ thumb_06.jpg로 올리면 카드 썸네일로 자동 적용!
-    // (미업로드 시 fallbackPoster로 안전하게 대체)
+    // 2. 6단계 [15초 AI 영상 브리핑]
     videos: [
         {
             id: "v1",
             badge: "Q1 · 15초 기초 입문",
             title: "0T0C를 이해하기 위한 첫걸음: 기존 DRAM의 '1T1C' 구조란?",
-            desc: "현재 메모리의 표준인 트랜지스터(1T)와 커패시터(1C)의 작동 원리와 구조적 한계를 먼저 짚어봅니다.",
+            desc: "트랜지스터(1T)와 커패시터(1C) 기반 기존 메모리 구조와 미세화·전력 한계를 먼저 짚어봅니다.",
             videoFile: "video_01.mp4",
             poster: "thumb_01.jpg",
             fallbackPoster: "Venus.png",
-            detail: "기존 DRAM은 1개의 트랜지스터(스위치)와 1개의 커패시터(전하 저장소)로 1비트를 저장합니다. 이 구조적 한계를 이해하면 트랜지스터와 커패시터를 모두 없앤 V-Memory(0T0C)의 혁신이 명확해집니다."
+            detail: "기존 DRAM은 스위치(1T)와 전하 저장통(1C)으로 1비트를 다룹니다. 트랜지스터와 커패시터 구조의 한계를 알면 도메인월 전류 경로를 제어하는 0T0C V-Memory의 차별점이 분명해집니다."
         },
         {
             id: "v2",
             badge: "Q2 · 15초 핵심 원리 ①",
-            title: "트랜지스터 없이, 커패시터 없이: 강유전체 도메인월(FDWM)의 탄생",
-            desc: "기존 FeRAM의 커패시터 한계를 넘어, 강유전체 내부의 분극 경계(도메인월) 전류 경로를 직접 제어합니다.",
+            title: "전하 대신 '도메인월 전류 경로'를 제어하는 FDWM",
+            desc: "강유전체 내부 분극 경계(도메인월)를 따라 흐르는 전류 경로를 전압으로 제어하는 원리.",
             videoFile: "video_02.mp4",
             poster: "thumb_02.jpg",
             fallbackPoster: "Venus_Model_m.jpg",
-            detail: "검증된 강유전체 소재 기반 위에, 분극 상태 판독이 아닌 '도메인월 전도 경로(V-Line) 제어'라는 관점 전환으로 커패시터 없는 0T0C 셀을 지향합니다."
+            detail: "전압 펄스로 전기의 길(도메인월 경로)을 생성·소멸시키고, 흐르는 전류 차이를 읽어 비휘발성 저장과 비파괴 읽기(NDRO)를 지향합니다."
         },
         {
             id: "v3",
             badge: "Q3 · 15초 핵심 원리 ②",
-            title: "'면'이 아닌 전류가 흐르는 '선(V-Line)'을 제어하다",
-            desc: "기존 1T1C 셀의 신호 여유 한계를 돌파하는 V-Line 아키텍처와 데이터 마진 혁신의 핵심.",
+            title: "도로 차선을 늘리듯 멀티라인(nDW) & V-Line 확장",
+            desc: "단일 선을 넘어 멀티라인(1DW→nDW) 전류 경로 제어로 다중 상태와 신호 여유를 넓히는 구조.",
             videoFile: "video_03.mp4",
             poster: "thumb_03.jpg",
             fallbackPoster: "Venus.png",
-            detail: "V-Memory의 'V'는 가변 선(Variable Line)을 의미합니다. 전하를 가두는 면적 대신 나노 단위의 전도성 도메인월 경로(V-Line)를 생성·소멸시켜 고속·초저전력·고집적을 추구합니다."
+            detail: "전극 사이 전류 경로 수(nDW)를 제어하면 전류 신호 수준을 확장할 수 있습니다. 이는 고집적·고신뢰 메모리 및 다중 상태 구현의 핵심 기반입니다."
         },
         {
             id: "v4",
             badge: "Q4 · 15초 시장 돌파",
             title: "적층의 한계에 부딪힌 HBM, 그 다음 도약을 위한 해법은?",
-            desc: "DRAM 수직 적층 기반 HBM의 전력·발열·패키징 한계를 넘어설 차세대 3D 메모리 비전.",
+            desc: "DRAM 적층 기반 HBM의 전력·발열·패키징 부담을 줄일 차세대 비휘발성 메모리 비전.",
             videoFile: "video_04.mp4",
             poster: "thumb_04.jpg",
             fallbackPoster: "Venus_Model_m.jpg",
-            detail: "AI 데이터센터의 폭발적인 전력 소모와 발열을 줄이기 위해서는 기존 MOSFET 기반의 연장이 아닌, 비휘발성과 초저전력을 갖춘 새로운 저장·판독 원리가 필요합니다."
+            detail: "AI 데이터센터의 전력과 냉각 부담을 완화하기 위해, 주기적 리프레시가 필요 없는 비휘발성·저전력 도메인월 아키텍처로의 전환을 모색합니다."
         },
         {
             id: "v5",
             badge: "Q5 · 15초 계층 통합",
             title: "메모리가 CPU의 속도로 움직이면, 컴퓨터의 구조가 달라집니다",
-            desc: "레지스터·캐시·DRAM·SSD로 쪼개진 메모리 계층을 단순화하고 데이터 이동 병목을 줄입니다.",
+            desc: "레지스터·캐시·DRAM·SSD 계층 간 데이터 이동 병목을 줄이는 메모리 통합 구상.",
             videoFile: "video_05.mp4",
             poster: "thumb_05.jpg",
             fallbackPoster: "Venus.png",
-            detail: "여러 메모리 계층을 오가며 발생하는 데이터 이동 병목과 접근 지연을 단축하여, 고속·저전력·비휘발성을 동시에 지향하는 통합 메모리 구조를 모색합니다."
+            detail: "다단계 메모리 계층을 오가며 생기는 병목과 지연을 줄여, TRL 5 이후 파트너십 기반 공동개발 및 IP 라이선싱 모델로 확장합니다."
         },
         {
             id: "v6",
             badge: "Q6 · 15초 CIV & Physical AI (EN)",
             title: "로봇의 두뇌, 연산과 기억을 직접 결합하는 CIV 아키텍처",
-            desc: "가상 지능(Virtual AI)에서 감지하고 행동하는 피지컬 AI(Physical AI)로! CIV가 여는 새로운 두뇌 비전.",
+            desc: "가상 AI에서 물리적 행동 AI(Physical AI)로! CIV가 여는 온디바이스 두뇌 아키텍처.",
             videoFile: "video_06.mp4",
             poster: "thumb_06.jpg",
             fallbackPoster: "Venus_Model_m.jpg",
@@ -78,7 +77,7 @@ const VMEMORY_DATA = {
         }
     ],
 
-    // 3. 브이메모리 공식 국제 학술지 논문 (AI 크롤러 신뢰도 부스터!)
+    // 3. 브이메모리 공식 국제 학술지 논문 (2021–2025)
     papers: [
         { year: "2025", journal: "Journal of Physics and Chemistry of Solids", title: "Electrical conduction of ferroelectric domains and domain walls in polycrystalline Bi5Ti3FeO15 thin films" },
         { year: "2025", journal: "Journal of Applied Physics", title: "Leakage current characteristics affected by crystallinity and domain wall current of epitaxial Bi5Ti3FeO15 thin films" },
