@@ -76,7 +76,7 @@
         .ai-pill:hover { background: var(--accent); color: #04070f !important; }
         .mobile-ai-btn { display: none; }
 
-        /* 0. 시네마 풀스크린 영화관 (가리는 거 0%!) */
+        /* 0. 시네마 풀스크린 영화관 */
         .cinema-stage {
             position: relative;
             width: 100%;
@@ -121,73 +121,92 @@
 
         /* 공통 섹션 */
         section { padding: 76px 6%; max-width: 1280px; margin: 0 auto; }
-        .sec-tag { color: var(--accent); font-size: 0.8rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 10px; }
+        .sec-tag { color: var(--accent); font-size: 0.8rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
         .sec-title { font-size: 2.05rem; font-weight: 800; margin-bottom: 14px; color: #fff; line-height: 1.3; }
         .sec-desc { color: var(--text-sub); max-width: 760px; margin-bottom: 40px; font-size: 1rem; }
 
-        /* 1. HERO: 비너스 AI 호스트 (영화관 바로 아래!) */
+        /* 1. HERO: 6단계 인터랙티브 원리 & IR 그래픽 뷰어 */
         .hero-wrap {
             background: radial-gradient(circle at 25% 40%, rgba(0, 140, 255, 0.14), transparent 60%);
             border-bottom: 1px solid rgba(255,255,255,0.06);
         }
         .hero {
             width: 100%;
-            display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
-            gap: 40px; padding: 72px 6% 80px; max-width: 1280px; margin: 0 auto;
+            display: flex; flex-wrap: wrap; align-items: stretch; justify-content: space-between;
+            gap: 32px; padding: 72px 6% 80px; max-width: 1320px; margin: 0 auto;
         }
         .venus-box {
-            flex: 1 1 360px; max-width: 500px; position: relative;
+            flex: 1 1 480px; position: relative;
             border-radius: 18px; overflow: hidden;
             border: 1px solid rgba(0, 210, 255, 0.45);
             box-shadow: 0 0 45px rgba(0, 210, 255, 0.18);
-            background: rgba(4, 7, 15, 0.5);
+            background: #070d1a;
+            display: flex; align-items: center; justify-content: center;
+            cursor: zoom-in;
+            min-height: 360px;
         }
-        .venus-box img { width: 100%; display: block; object-fit: cover; transition: 0.35s ease; }
+        .venus-box img { width: 100%; height: 100%; display: block; object-fit: contain; transition: 0.3s ease; }
+        .venus-box:hover img { transform: scale(1.015); }
         .venus-badge {
-            position: absolute; bottom: 14px; left: 14px;
-            background: rgba(4, 7, 15, 0.88); border-left: 3px solid var(--accent);
-            padding: 7px 12px; font-size: 0.78rem; letter-spacing: 1px;
+            position: absolute; bottom: 12px; left: 12px; right: 12px;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(4, 7, 15, 0.9); border-left: 3px solid var(--accent);
+            padding: 8px 14px; font-size: 0.78rem; letter-spacing: 0.5px; border-radius: 0 8px 8px 0;
         }
+        .zoom-hint { color: var(--accent); font-weight: 700; font-size: 0.75rem; white-space: nowrap; }
+
         .hud {
-            flex: 1 1 420px; background: var(--bg-card);
+            flex: 1 1 460px; background: var(--bg-card);
             border: 1px solid var(--border); border-radius: 18px;
-            padding: 34px; backdrop-filter: blur(14px);
+            padding: 32px; backdrop-filter: blur(14px);
             box-shadow: 0 12px 36px rgba(0,0,0,0.5);
+            display: flex; flex-direction: column; justify-content: space-between;
         }
-        .hud-title { font-size: 1.75rem; font-weight: 800; line-height: 1.35; margin-bottom: 14px; color: #fff; }
-        .hud-text { color: #e2e8f0; font-size: 0.96rem; min-height: 88px; margin-bottom: 24px; }
-        .btn-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        .hud-title { font-size: 1.58rem; font-weight: 800; line-height: 1.35; margin-bottom: 14px; color: #fff; }
+        .hud-text { color: #e2e8f0; font-size: 0.94rem; line-height: 1.72; margin-bottom: 16px; }
+        .hud-point {
+            background: rgba(0, 210, 255, 0.08);
+            border-left: 3px solid var(--accent);
+            padding: 11px 14px;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.85rem;
+            color: #bae6fd;
+            margin-bottom: 22px;
+            line-height: 1.55;
+        }
+        /* 6개 버튼 2열 x 3행 그리드 */
+        .btn-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
         .hud-btn {
-            background: rgba(0, 210, 255, 0.08); border: 1px solid rgba(0, 210, 255, 0.38);
-            color: #fff; padding: 13px 14px; border-radius: 10px;
-            font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: 0.2s;
-            text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+            background: rgba(0, 210, 255, 0.08); border: 1px solid rgba(0, 210, 255, 0.35);
+            color: #fff; padding: 12px 12px; border-radius: 10px;
+            font-size: 0.83rem; font-weight: 700; cursor: pointer; transition: 0.2s;
+            text-align: left; line-height: 1.3;
         }
         .hud-btn:hover, .hud-btn.active {
             background: var(--accent); color: #04070f; box-shadow: 0 0 18px var(--accent-glow);
         }
 
-        /* 2. 15초 AI 영상 브리핑 (PC 2x2 완벽 정렬!) */
-        .video-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+        /* 2. 15초 AI 영상 브리핑 */
+        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; }
         .v-card {
             background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
             overflow: hidden; cursor: pointer; transition: 0.25s; display: flex; flex-direction: column;
         }
         .v-card:hover { transform: translateY(-6px); border-color: var(--accent); box-shadow: 0 10px 30px rgba(0, 210, 255, 0.18); }
-        .v-thumb { position: relative; height: 200px; overflow: hidden; background: #0b1324; }
+        .v-thumb { position: relative; height: 185px; overflow: hidden; background: #0b1324; }
         .v-thumb img { width: 100%; height: 100%; object-fit: cover; opacity: 0.82; transition: 0.3s; }
         .v-card:hover .v-thumb img { opacity: 1; transform: scale(1.04); }
         .play-icon {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            width: 52px; height: 52px; border-radius: 50%;
+            width: 50px; height: 50px; border-radius: 50%;
             background: rgba(0, 210, 255, 0.92); color: #04070f;
-            display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 900;
+            display: flex; align-items: center; justify-content: center; font-size: 1.15rem; font-weight: 900;
             box-shadow: 0 0 20px var(--accent);
         }
-        .v-body { padding: 22px; flex: 1; }
-        .v-badge { font-size: 0.76rem; color: var(--accent); font-weight: 700; margin-bottom: 8px; }
-        .v-title { font-size: 1.12rem; font-weight: 700; color: #fff; margin-bottom: 8px; line-height: 1.4; }
-        .v-desc { font-size: 0.88rem; color: var(--text-sub); }
+        .v-body { padding: 20px; flex: 1; }
+        .v-badge { font-size: 0.75rem; color: var(--accent); font-weight: 700; margin-bottom: 8px; }
+        .v-title { font-size: 1.06rem; font-weight: 700; color: #fff; margin-bottom: 8px; line-height: 1.4; }
+        .v-desc { font-size: 0.86rem; color: var(--text-sub); }
 
         /* 3. 핵심 기술 */
         .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
@@ -247,16 +266,16 @@
         .loc-item { background: rgba(255,255,255,0.03); padding: 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.06); }
         .loc-item strong { color: #fff; display: block; margin-bottom: 4px; }
 
-        /* 비디오 팝업 모달 */
+        /* 팝업 모달 (영상 & 이미지 확대 공용) */
         .modal {
             display: none; position: fixed; inset: 0; z-index: 999;
-            background: rgba(2, 5, 12, 0.9); backdrop-filter: blur(8px);
+            background: rgba(2, 5, 12, 0.92); backdrop-filter: blur(8px);
             align-items: center; justify-content: center; padding: 16px;
         }
         .modal.open { display: flex; }
         .modal-content {
             background: #0b1222; border: 1px solid var(--accent); border-radius: 18px;
-            max-width: 720px; width: 100%; overflow: hidden; box-shadow: 0 0 50px rgba(0,210,255,0.25);
+            max-width: 820px; width: 100%; overflow: hidden; box-shadow: 0 0 50px rgba(0,210,255,0.25);
         }
         .modal-head { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; border-bottom: 1px solid var(--border); }
         .close-btn { background: none; border: none; color: #fff; font-size: 1.6rem; cursor: pointer; }
@@ -267,6 +286,8 @@
             flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px;
         }
         .modal-body { padding: 20px; color: #cbd5e1; font-size: 0.92rem; }
+        .zoom-img-stage { width: 100%; max-height: 82vh; background: #04070f; display: flex; align-items: center; justify-content: center; padding: 12px; }
+        .zoom-img-stage img { max-width: 100%; max-height: 78vh; object-fit: contain; border-radius: 8px; }
 
         /* 바닥글 */
         footer {
@@ -287,11 +308,11 @@
             .cinema-stage { height: calc(100svh - 62px); min-height: 480px; }
             section { padding: 54px 5%; }
             .hero { padding: 44px 5% 56px; gap: 24px; }
+            .venus-box { min-height: 230px; }
             .hud { padding: 24px 20px; }
-            .hud-title { font-size: 1.42rem; }
+            .hud-title { font-size: 1.35rem; }
             .sec-title { font-size: 1.52rem; }
             .btn-grid { grid-template-columns: 1fr; }
-            .video-grid { grid-template-columns: 1fr; }
             .nda-box { padding: 26px 20px; }
             .nda-btn { width: 100%; text-align: center; }
             .m-val { font-size: 1.25rem; white-space: normal; }
@@ -306,7 +327,7 @@
             <div class="brand-text"><span>V</span>-MEMORY</div>
         </a>
         <nav>
-            <a href="#venus-host">VENUS 호스트</a>
+            <a href="#venus-host">핵심 스토리 뷰어</a>
             <a href="#briefing">15초 브리핑</a>
             <a href="#tech">0T0C · FDWM</a>
             <a href="#ip">특허 & 논문</a>
@@ -323,25 +344,34 @@
         <a href="#venus-host" class="scroll-cue"><span>▼</span> V-MEMORY 탐색하기</a>
     </div>
 
-    <!-- 1. HERO: 비너스 AI 호스트 (영화관 바로 아래, 깔끔하게 분리!) -->
+    <!-- 1. HERO: 6단계 IR 스토리라인 & 매칭 그래픽 뷰어 -->
     <div class="hero-wrap" id="venus-host">
         <div class="hero">
-            <div class="venus-box">
-                <img id="venus-img" src="Venus.png" alt="VENUS AI Host">
-                <div class="venus-badge">HOST: <strong>VENUS</strong> // INSPIRED BY 0T0C FDWM</div>
+            <div class="venus-box" onclick="openImgZoom()" title="클릭하면 도표를 크게 볼 수 있습니다">
+                <img id="venus-img" src="slide_01.png" onerror="this.src='Venus.png'" alt="V-Memory Architecture Diagram">
+                <div class="venus-badge">
+                    <span id="img-caption">FIG 01 // 기존 메모리 계층 vs V-Memory 통합 구상</span>
+                    <span class="zoom-hint">🔍 클릭 확대</span>
+                </div>
             </div>
             <div class="hud">
-                <div class="sec-tag" id="hud-tag">0T0C MEMORY CELL // NO TRANSISTOR. NO CAPACITOR.</div>
-                <h1 class="hud-title" id="hud-title">트랜지스터 없이. 커패시터 없이. 새로운 물리로 메모리를 재정의합니다.</h1>
-                <p class="hud-text" id="hud-text">
-                    반갑습니다. 브이메모리의 AI 아바타 호스트 <strong>비너스(VENUS)</strong>입니다.
-                    속도·저전력·물리적 보안(PUF)을 하나의 셀에 담는 강유전체 도메인월 메모리(FDWM)와 피지컬 AI의 미래를 안내합니다.
-                </p>
+                <div>
+                    <div class="sec-tag" id="hud-tag">01. ARCHITECTURE // MEMORY HIERARCHY SIMPLIFICATION</div>
+                    <h1 class="hud-title" id="hud-title">메모리가 CPU의 속도로 움직이면, 컴퓨터의 구조가 달라집니다.</h1>
+                    <p class="hud-text" id="hud-text">
+                        기존 컴퓨팅은 CPU(레지스터)부터 캐시 SRAM, DRAM, Flash·SSD까지 복잡한 계층을 오가며 심각한 데이터 이동 병목과 지연 시간을 겪습니다. V-Memory는 비휘발성·고속·저전력 특성을 동시에 추구하여 메모리와 저장 계층을 단순화하는 통합 아키텍처를 제시합니다.
+                    </p>
+                    <div class="hud-point" id="hud-point">
+                        💡 <strong>핵심 원리:</strong> 계층 간 불필요한 데이터 왕복을 줄여 폰 노이만 병목을 완화하고, 단일 메모리 계층으로 컴퓨팅 효율을 극대화합니다.
+                    </div>
+                </div>
                 <div class="btn-grid">
-                    <button class="hud-btn active" onclick="selectHost('fdwm', this)">01. 0T0C & FDWM 원리</button>
-                    <button class="hud-btn" onclick="selectHost('civ', this)">02. 데이터센터 & CIV 로봇</button>
-                    <button class="hud-btn" onclick="selectHost('ip', this)">03. 특허 78건 · 논문 6편</button>
-                    <button class="hud-btn" onclick="selectHost('nda', this)">04. 철통 보안 NDA 안내</button>
+                    <button class="hud-btn active" onclick="selectHost('s1', this)">01. 메모리 계층 통합</button>
+                    <button class="hud-btn" onclick="selectHost('s2', this)">02. 0T0C 도메인월 원리</button>
+                    <button class="hud-btn" onclick="selectHost('s3', this)">03. 1/6 초심플 양산 공정</button>
+                    <button class="hud-btn" onclick="selectHost('s4', this)">04. AI 데이터센터 전력 혁신</button>
+                    <button class="hud-btn" onclick="selectHost('s5', this)">05. 로봇의 두뇌, CIV 아키텍처</button>
+                    <button class="hud-btn" onclick="selectHost('s6', this)">06. SOM→SAM→TAM 시장 확장</button>
                 </div>
             </div>
         </div>
@@ -351,7 +381,7 @@
     <section id="briefing">
         <div class="sec-tag">INTERACTIVE 15s AI BRIEFING</div>
         <h2 class="sec-title">궁금한 주제를 누르면, 15초 영상이 직관적으로 답해드립니다</h2>
-        <p class="sec-desc">어려운 반도체 용어 대신, 브이메모리가 왜 AI 시대의 메모리 병목과 전력 위기를 바꿀 게임체인저인지 15초 브리핑으로 확인하세요.</p>
+        <p class="sec-desc">1T1C 기초부터 0T0C 도메인월 원리, HBM의 한계 돌파까지 5단계 핵심 영상을 차례대로 확인해 보세요.</p>
         <div class="video-grid" id="video-grid"></div>
     </section>
 
@@ -366,12 +396,12 @@
                 <p>트랜지스터(0T)와 커패시터(0C) 의존도를 탈피해, 전기장과 펄스로 강유전체 내부의 도메인월 전도 경로(V-Line)를 생성·소멸시켜 정보를 저장하고 비파괴 읽기(NDRO)를 지향합니다.</p>
             </div>
             <div class="t-card">
-                <h3>02. 8단계 초심플 양산 공정</h3>
-                <p>기존 플래시 메모리(45단계) 대비 약 1/6 수준인 8단계의 단순한 셀 공정 구조를 지향하며, 이미 산업에서 검증된 상용 강유전체 재료(HZO 등)와 기존 반도체 라인 활용을 목표로 합니다.</p>
+                <h3>02. 1/6 초심플 양산 공정</h3>
+                <p>복잡한 기존 플래시 공정 대비 약 1/6 수준으로 단순화된 셀 공정 구조를 지향하며, 이미 산업에서 검증된 상용 강유전체 재료(HZO 등)와 기존 반도체 라인 활용을 목표로 합니다.</p>
             </div>
             <div class="t-card">
                 <h3>03. AI 데이터센터 전력 혁신</h3>
-                <p>2030년 미국 데이터센터 전력 비중 최대 17% 전망(EPRI 2026). 주기적 리프레시가 필요 없는 비휘발성 저전력 구조로 DRAM/HBM의 발열·냉각 병목을 완화하는 테스트베드를 추진합니다.</p>
+                <p>IT 장비(66%)와 냉각·설비(34%, 평균 PUE 1.52)에 집중된 데이터센터 전력 구조를 메모리 최적화부터 발열·냉각 완화, GPU·CIV 확장까지 단계적으로 혁신합니다.</p>
             </div>
             <div class="t-card">
                 <h3>04. PUF 보안 & CIV (피지컬 AI)</h3>
@@ -452,6 +482,19 @@
         </div>
     </div>
 
+    <!-- 이미지 크게 보기 모달 -->
+    <div class="modal" id="img-modal" onclick="if(event.target===this) closeImgZoom()">
+        <div class="modal-content" style="max-width: 1020px;">
+            <div class="modal-head">
+                <strong id="zoom-title" style="color:#fff;">상세 도표 보기</strong>
+                <button class="close-btn" onclick="closeImgZoom()">&times;</button>
+            </div>
+            <div class="zoom-img-stage">
+                <img id="zoom-img" src="" alt="Expanded Diagram">
+            </div>
+        </div>
+    </div>
+
     <script src="data.js"></script>
     <script>
         // 0. PC(와이드) vs 스마트폰(세로) 자동 감지 시네마 영상 로더
@@ -512,23 +555,92 @@
             paperList.appendChild(item);
         });
 
-        // 4. 비너스 호스트 HUD 전환
+        // 4. 6장 IR 슬라이드 완벽 매칭 데이터
         const hostData = {
-            fdwm: { tag: "0T0C MEMORY CELL // NO TRANSISTOR. NO CAPACITOR.", title: "트랜지스터 없이. 커패시터 없이. 새로운 물리로 메모리를 재정의합니다.", text: "반갑습니다. 브이메모리의 AI 아바타 호스트 비너스(VENUS)입니다. 속도·저전력·물리적 보안(PUF)을 하나의 셀에 담는 강유전체 도메인월 메모리(FDWM)의 세계로 안내합니다.", img: "Venus.png" },
-            civ: { tag: "DATA CENTER & PHYSICAL AI // CIV ARCHITECTURE", title: "AI 데이터센터 전력 혁신에서 휴머노이드의 두뇌까지", text: "메모리가 CPU 속도로 움직이면 컴퓨터의 구조가 달라집니다. 브이메모리는 데이터센터 전력 테스트베드를 넘어, 연산과 기억을 결합한 CIV 아키텍처로 피지컬 AI 시대를 엽니다.", img: "Venus_Model_m.jpg" },
-            ip: { tag: "VALIDATED SCIENCE // 78 PATENTS & 6 PAPERS", title: "특허 78건 출원 · 55건 등록, 국제 학술지 논문 6편", text: "단순한 개념이 아닙니다. 한국·미국·일본·중국에 등록된 탄탄한 원천 특허 방패와 SCI급 국제 논문 6편을 바탕으로 TRL 4를 완료하고 TRL 5 웨이퍼 실증에 진입했습니다.", img: "Venus.png" },
-            nda: { tag: "STRICTLY CONFIDENTIAL // NDA-GATED ACCESS", title: "핵심 팀원 · 투자 계획 · 특허가치평가는 NDA를 통해 공개됩니다", text: "핵심 IP 보호를 위해 웹사이트에서는 IR 파일 다운로드를 제공하지 않습니다. 공식 이메일로 NDA를 체결하시면 팀원 프로필, 자금 집행 계획, K-TCB 평가 보고서를 열람하실 수 있습니다.", img: "Venus_Model_m.jpg" }
+            s1: {
+                tag: "01. ARCHITECTURE // MEMORY HIERARCHY SIMPLIFICATION",
+                title: "메모리가 CPU의 속도로 움직이면, 컴퓨터의 구조가 달라집니다.",
+                text: "기존 컴퓨팅은 CPU(레지스터)부터 캐시 SRAM, DRAM, Flash·SSD까지 복잡한 계층을 오가며 심각한 데이터 이동 병목과 지연 시간을 겪습니다. V-Memory는 비휘발성·고속·저전력 특성을 동시에 추구하여 메모리와 저장 계층을 단순화하는 통합 아키텍처를 제시합니다.",
+                point: "💡 핵심 원리: 계층 간 불필요한 데이터 왕복을 줄여 폰 노이만 병목을 완화하고, 단일 메모리 계층으로 컴퓨팅 효율을 극대화합니다.",
+                img: "slide_01.png",
+                fallbackImg: "Venus.png",
+                caption: "FIG 01 // 기존 메모리 계층 vs V-Memory 통합 구상"
+            },
+            s2: {
+                tag: "02. 0T0C CELL // DOMAIN-WALL CURRENT PATH CONTROL",
+                title: "전하를 저장하는 방식에서, 전류가 흐르는 길을 제어하는 방식으로.",
+                text: "기존 플래시 메모리는 절연층 너머 플로팅 게이트에 전자를 주입·소거하는 방식이라 쓰기 속도가 느리고 반복 수명과 전력 소모에 한계가 있습니다. 반면 V-Memory는 트랜지스터와 커패시터가 없는 0T0C 셀 구조로, 강유전체(HZO) 내부의 분극 경계인 도메인월(DW) 전류 경로를 제어합니다.",
+                point: "💡 핵심 원리: 전하 충·방전 대신 도메인월의 전도 경로를 켜고 끔으로써 ns(나노초)급 고속 동작과 반영구적 수명·초저전력을 지향합니다.",
+                img: "slide_02.png",
+                fallbackImg: "Venus_Model_m.jpg",
+                caption: "FIG 02 // 브이메모리(0T0C 도메인월) vs 플래시 메모리"
+            },
+            s3: {
+                tag: "03. MANUFACTURABILITY // 1/6 ULTRA-SIMPLE PROCESS",
+                title: "DRAM보다 빠른 속도, Flash보다 높은 집적도, 공정은 약 1/6 수준!",
+                text: "기존 차세대 메모리(RRAM·PRAM·MRAM 등)는 DRAM급 속도와 Flash급 집적도를 동시에 만족하기 어려웠습니다. V-Memory는 새로운 특수 설비 없이 기존 반도체 장비와 이미 검증·상용화된 강유전체 재료(HZO 등)를 그대로 활용하며, 복잡한 플래시 대비 제조 공정을 약 1/6 수준으로 단순화합니다.",
+                point: "💡 핵심 원리: 상용 장비·검증 재료 기반의 초심플 셀 공정으로 양산 현실성과 압도적 원가 경쟁력을 동시에 확보합니다.",
+                img: "slide_03.png",
+                fallbackImg: "Venus.png",
+                caption: "FIG 03 // 성능 포지셔닝 & 1/6 초심플 양산 공정"
+            },
+            s4: {
+                tag: "04. AI DATA CENTER // POWER & COOLING INNOVATION",
+                title: "AI 데이터센터, 메모리에서 시작해 전력 구조를 바꾸다",
+                text: "현재 데이터센터 전력은 서버 등 IT 장비(66%)와 냉각·설비(34%, 평균 PUE 1.52)에 막대한 에너지를 소모합니다. V-Memory는 1단계 메모리 최적화를 통한 전력 절감에서 출발해, 2단계 발열·냉각 부담 완화, 3단계 GPU·CIV 연산 확장까지 테스트베드에서 단계별 절감 효과를 검증합니다.",
+                point: "💡 핵심 원리: 데이터 이동 감소와 주기적 리프레시 제거를 통해 AI 데이터센터의 발열과 냉각 전력 악순환을 근본적으로 끊어냅니다.",
+                img: "slide_04.png",
+                fallbackImg: "Venus_Model_m.jpg",
+                caption: "FIG 04 // 데이터센터 전력 분포(PUE 1.52) & 단계별 절감 시나리오"
+            },
+            s5: {
+                tag: "05. PHYSICAL AI // CIV (CPU-IN-VMEMORY) ARCHITECTURE",
+                title: "로봇의 두뇌, 연산과 기억을 직접 결합하는 CIV 아키텍처",
+                text: "휴머노이드와 로봇 AI의 진정한 경쟁력은 몸체가 아니라 온디바이스에서 실시간 판단하는 두뇌 구조에 있습니다. TRL 5 실증 이후 V-Memory는 CPU와 메모리를 직접 결합하는 CIV(CPU-In-VMemory) 아키텍처로 확장하여, 클라우드 네트워크 연결 없이도 상태를 유지하며 초저지연·초저전력으로 작동합니다.",
+                point: "💡 핵심 원리: 연산·기억 근접 처리(In-Memory)와 소자 고유 물리 지문(PUF) 보안으로 자율형 피지컬 AI의 핵심 두뇌를 구현합니다.",
+                img: "slide_05.png",
+                fallbackImg: "Venus.png",
+                caption: "FIG 05 // CIV (CPU-In-VMemory) & 피지컬 AI 로봇 두뇌"
+            },
+            s6: {
+                tag: "06. MARKET EXPANSION // SOM → SAM → TAM ROADMAP",
+                title: "비휘발성 메모리에서 시작해 $3.4T 시스템 반도체까지 확장",
+                text: "V-Memory는 단계적 시장 확장 전략을 추진합니다. 2028~2030년 비휘발성 메모리(SOM, 약 $600B) 초기 진입을 시작으로, 2030~2032년 휘발성·비휘발성 통합 메모리(SAM, 약 $2.0T)로 확대하고, 2034~2036년 CIV 기반 시스템 반도체(TAM, 약 $3.4T)까지 글로벌 IP 플랫폼 비전을 실현합니다.",
+                point: "💡 핵심 원리: 원천 특허 포트폴리오 기반의 고수익 반도체 IP 라이선싱 및 공동개발(JDA) 모델로 글로벌 시장을 공략합니다.",
+                img: "slide_06.png",
+                fallbackImg: "Venus_Model_m.jpg",
+                caption: "FIG 06 // SOM($600B) → SAM($2.0T) → TAM($3.4T) 시장 확장 전략"
+            }
         };
+
         function selectHost(key, btn) {
             document.querySelectorAll('.hud-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            document.getElementById('hud-tag').innerText = hostData[key].tag;
-            document.getElementById('hud-title').innerText = hostData[key].title;
-            document.getElementById('hud-text').innerText = hostData[key].text;
-            document.getElementById('venus-img').src = hostData[key].img;
+            const d = hostData[key];
+            document.getElementById('hud-tag').innerText = d.tag;
+            document.getElementById('hud-title').innerText = d.title;
+            document.getElementById('hud-text').innerText = d.text;
+            document.getElementById('hud-point').innerHTML = d.point;
+            document.getElementById('img-caption').innerText = d.caption;
+
+            const imgEl = document.getElementById('venus-img');
+            imgEl.onerror = () => { imgEl.src = d.fallbackImg; };
+            imgEl.src = d.img;
         }
 
-        // 5. 15초 영상 모달 제어
+        // 5. 이미지 크게 보기 모달
+        function openImgZoom() {
+            const currentSrc = document.getElementById('venus-img').src;
+            const currentCap = document.getElementById('img-caption').innerText;
+            document.getElementById('zoom-img').src = currentSrc;
+            document.getElementById('zoom-title').innerText = currentCap;
+            document.getElementById('img-modal').classList.add('open');
+        }
+        function closeImgZoom() {
+            document.getElementById('img-modal').classList.remove('open');
+        }
+
+        // 6. 15초 영상 모달 제어
         const modal = document.getElementById('video-modal');
         const vid = document.getElementById('modal-video');
         const fallback = document.getElementById('video-fallback');
