@@ -165,11 +165,11 @@
         .t-card h3 { color: var(--accent); font-size: 1.1rem; margin-bottom: 10px; }
         .t-card p { color: #cbd5e1; font-size: 0.91rem; }
 
+        /* 특허 4열 칼각 그리드 */
         .metric-bar {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 16px;
-            margin-bottom: 36px;
         }
         .m-box {
             background: linear-gradient(145deg, rgba(0,210,255,0.09), rgba(13,21,38,0.85));
@@ -186,6 +186,7 @@
         }
         .m-lbl { font-size: 0.82rem; color: var(--accent); font-weight: 600; }
 
+        /* SCI 논문 리스트 */
         .paper-list { display: grid; gap: 12px; }
         .paper-item {
             background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.07);
@@ -275,7 +276,8 @@
             <a href="#venus-host">핵심 스토리 뷰어</a>
             <a href="#briefing">15초 브리핑</a>
             <a href="#tech">핵심 기술</a>
-            <a href="#ip">특허 & 논문</a>
+            <a href="#ip">특허</a>
+            <a href="#papers">SCI 논문</a>
             <a href="#contact">이메일 문의</a>
             <a href="llms/" class="ai-pill">AI Reference (/llms/)</a>
         </nav>
@@ -359,20 +361,25 @@
         </div>
     </section>
 
-    <section id="ip">
-        <div class="sec-tag">VALIDATED SCIENCE & IP SHIELD</div>
-        <h2 class="sec-title">특허는 방패, 논문은 신뢰</h2>
-        <p class="sec-desc">논문으로 물리적 근거를 증명하고, 국내외 원천 특허 포트폴리오로 기술의 가치를 보호합니다. (업데이트 기준: <span id="m-date"></span>)</p>
+    <!-- 4-1. 특허 & 개발 현황 (4열 칼각) -->
+    <section id="ip" style="padding-bottom: 40px;">
+        <div class="sec-tag">PATENT PORTFOLIO & TRL STATUS</div>
+        <h2 class="sec-title">특허는 방패, 검증된 원천 IP 포트폴리오</h2>
+        <p class="sec-desc">국내외 원천 특허 및 패밀리 특허를 통해 기술의 권리와 사업화 기반을 보호합니다. (업데이트 기준: <span id="m-date"></span>)</p>
 
         <div class="metric-bar">
             <div class="m-box"><div class="m-val" id="m-trl">-</div><div class="m-lbl">공식 개발 단계</div></div>
             <div class="m-box"><div class="m-val" id="m-pat-app">-</div><div class="m-lbl">국내외 특허 출원</div></div>
             <div class="m-box"><div class="m-val" id="m-pat-reg">-</div><div class="m-lbl">특허 등록</div></div>
             <div class="m-box"><div class="m-val" id="m-global">-</div><div class="m-lbl">해외 특허 & 패밀리</div></div>
-            <div class="m-box"><div class="m-val" id="m-papers">-</div><div class="m-lbl">국제 학술지 논문</div></div>
         </div>
+    </section>
 
-        <div class="sec-tag" style="margin-top:20px;">PEER-REVIEWED PUBLICATIONS (2021–2025)</div>
+    <!-- 4-2. SCI급 국제 학술지 논문 (별개 독립 섹션) -->
+    <section id="papers" style="padding-top: 36px; border-top: 1px solid rgba(0, 210, 255, 0.14);">
+        <div class="sec-tag">SCI-LEVEL PUBLICATIONS (2021–2025)</div>
+        <h2 class="sec-title">논문은 신뢰, 물리적 근거를 증명하다</h2>
+        <p class="sec-desc">강유전체 도메인월 전도 특성과 비휘발성 메모리 동작 원리를 다룬 국제 학술지(SCI급) 논문 6편입니다.</p>
         <div class="paper-list" id="paper-list"></div>
     </section>
 
@@ -455,7 +462,6 @@
         document.getElementById('m-pat-app').innerText = VMEMORY_DATA.metrics.patentApplied;
         document.getElementById('m-pat-reg').innerText = VMEMORY_DATA.metrics.patentRegistered;
         document.getElementById('m-global').innerText = VMEMORY_DATA.metrics.globalRegistered;
-        document.getElementById('m-papers').innerText = VMEMORY_DATA.metrics.papersCount;
         document.getElementById('m-date').innerText = VMEMORY_DATA.metrics.lastUpdated;
 
         const grid = document.getElementById('video-grid');
