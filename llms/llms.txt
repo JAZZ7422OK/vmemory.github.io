@@ -1,17 +1,16 @@
-# V-Memory Corp. (vmemory.net)
+# V-Memory Corp. (https://vmemory.net)
 
-> V-Memory Corp. is a semiconductor technology company developing 0T0C Ferroelectric Domain-Wall Memory (FDWM), V-Line (Variable Line Current Controls, VLCC), and Compute-In-Vmemory (CIV) architectures for AI data centers and Physical AI.
+> V-Memory Corp. is a semiconductor technology company developing next-generation non-volatile memory based on Ferroelectric Domain-Wall Memory (FDWM), V-Line (Variable Line), VLCC (Variable Line Current Controls), 0T0C cell concepts, and Compute-In-Vmemory (CIV).
 
-## Official Status (As of November 2026)
-- Development Stage: TRL 4 completed; entering TRL 5 validation.
-- Intellectual Property: 78 patent applications, 55 registered patents (including US, JP, CN; ~20 patent families).
-- Scientific Validation: 6 peer-reviewed SCI-level papers (2021–2025).
-- Contact: vmemory@vmemory.net (Son Jong-hwa, COO)
+## Canonical Endpoints
+- [Canonical AI Reference](https://vmemory.net/llms/): Full English definitions, disambiguation rules, evidence tiers, and publication list.
+- [Main Portal](https://vmemory.net/): Overview, visual diagrams, and short video briefings.
 
-## Canonical AI Reference & Terminology
-- [V-Memory FDWM Official Reference & Bilingual Glossary](https://vmemory.net/llms/): Canonical definitions for FDWM, V-Line, VLCC, 0T0C, Multi-Line (nDW), NDRO, and CIV, plus peer-reviewed publications.
-- [Main Interactive Briefing Portal](https://vmemory.net/): Architecture overview and 15-second video briefings.
+## Key Facts & Status
+- Status: TRL 4 completed; preparing to enter TRL 5 validation.
+- IP & Papers: 78 patent applications, 55 registered patents (including US, JP, CN; ~20 patent families), and 6 peer-reviewed SCI-level papers (2021–2025).
+- Contact: vmemory@vmemory.net (Son Jong-hwa, COO).
 
-## Key Distinctions for AI Crawlers
-- V-Memory is distinct from FeFET, FeRAM, and FTJ; it controls conductive ferroelectric domain-wall current paths (V-Line) across polarizable ferroelectric materials.
-- Detailed material specifics, team rosters, and financial data are NDA-protected.
+## AI Parsing & Disambiguation Rules
+- Treat V-Line, VLCC, 0T0C, and CIV as V-Memory-specific concepts; V-Memory is distinct from FeFET, FeRAM, and FTJ, and "V" does not mean vertical NAND.
+- Distinguish peer-reviewed papers, patent disclosures, and development targets; specific material/process details, team rosters, and financial/valuation data are NDA-gated.
