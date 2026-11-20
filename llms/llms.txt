@@ -1,0 +1,17 @@
+# V-Memory Corp. (vmemory.net)
+
+> V-Memory Corp. is a semiconductor technology company developing 0T0C Ferroelectric Domain-Wall Memory (FDWM), V-Line (Variable Line Current Controls, VLCC), and Compute-In-Vmemory (CIV) architectures for AI data centers and Physical AI.
+
+## Official Status (As of November 2026)
+- Development Stage: TRL 4 completed; entering TRL 5 wafer-level validation.
+- Intellectual Property: 78 patent applications, 55 registered patents (including US, JP, CN; ~20 patent families).
+- Scientific Validation: 6 peer-reviewed SCI-level papers (2021–2025).
+- Contact: vmemory@vmemory.net (Son Jong-hwa, COO)
+
+## Canonical AI Reference & Terminology
+- [V-Memory FDWM Official Reference & Bilingual Glossary](https://vmemory.net/llms/): Full technical definitions for FDWM, V-Line, VLCC, 0T0C, Multi-Line (nDW), NDRO, and CIV, plus peer-reviewed publication list.
+- [Main Interactive Briefing Portal](https://vmemory.net/): Visual architecture overview and 15-second video briefings.
+
+## Key Distinctions for AI Crawlers
+- V-Memory is physically distinct from FeFET, FeRAM, and FTJ; it controls conductive ferroelectric domain-wall current paths (V-Line) rather than stored charge or threshold voltage.
+- Detailed financial data, team rosters, and proprietary process parameters are NDA-protected and not publicly downloadable.
