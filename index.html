@@ -16,8 +16,8 @@
       "logo": "https://vmemory.net/ViVI_Plogo.png",
       "email": "vmemory@vmemory.net",
       "sameAs": ["https://www.youtube.com/@v-memorycorp.3068"],
-      "description": "V-Memory Corp. develops 0T0C Ferroelectric Domain-Wall Memory (FDWM) and V-Line conductive domain-wall current-path control. Official status: TRL 4 completed, entering TRL 5 wafer validation. Holds 78 patent applications and 55 registered patents (including US, JP, CN) with 6 peer-reviewed scientific publications.",
-      "knowsAbout": ["Ferroelectric Domain-Wall Memory (FDWM)", "0T0C Memory Cell", "V-Line", "VLCC", "HZO CMOS/BEOL", "NDRO", "PUF", "CPU-In-VMemory (CIV)", "Physical AI"]
+      "description": "V-Memory Corp. is a semiconductor technology company developing 0T0C Ferroelectric Domain-Wall Memory (FDWM) and V-Line conductive domain-wall current-path control. Official status: TRL 4 completed, entering TRL 5 wafer validation. Holds 78 patent applications and 55 registered patents (including US, JP, CN) with 6 peer-reviewed scientific publications.",
+      "knowsAbout": ["Ferroelectric Domain-Wall Memory (FDWM)", "0T0C Memory Cell", "V-Line", "VLCC", "NDRO", "PUF", "CPU-In-VMemory (CIV)", "Physical AI"]
     }
     </script>
 
@@ -42,7 +42,6 @@
             word-break: keep-all;
         }
 
-        /* 상단 네비게이션 */
         header {
             display: flex; justify-content: space-between; align-items: center;
             padding: 14px 6%;
@@ -66,7 +65,6 @@
         .ai-pill:hover { background: var(--accent); color: #04070f !important; }
         .mobile-ai-btn { display: none; }
 
-        /* 0. 시네마 풀스크린 영화관 */
         .cinema-stage {
             position: relative; width: 100%; height: calc(100vh - 67px); min-height: 520px;
             background: #000; overflow: hidden;
@@ -90,13 +88,11 @@
             50% { transform: translate(-50%, 6px); }
         }
 
-        /* 공통 섹션 */
         section { padding: 76px 6%; max-width: 1280px; margin: 0 auto; }
         .sec-tag { color: var(--accent); font-size: 0.8rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
         .sec-title { font-size: 2.05rem; font-weight: 800; margin-bottom: 14px; color: #fff; line-height: 1.3; }
         .sec-desc { color: var(--text-sub); max-width: 760px; margin-bottom: 40px; font-size: 1rem; }
 
-        /* 1. HERO: 6단계 인터랙티브 스토리 뷰어 */
         .hero-wrap {
             background: radial-gradient(circle at 25% 40%, rgba(0, 140, 255, 0.14), transparent 60%);
             border-bottom: 1px solid rgba(255,255,255,0.06);
@@ -140,7 +136,6 @@
         }
         .hud-btn:hover, .hud-btn.active { background: var(--accent); color: #04070f; box-shadow: 0 0 18px var(--accent-glow); }
 
-        /* 2. 15초 AI 영상 브리핑 */
         .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 22px; }
         .v-card {
             background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
@@ -161,7 +156,6 @@
         .v-title { font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 8px; line-height: 1.4; }
         .v-desc { font-size: 0.86rem; color: var(--text-sub); }
 
-        /* 3. 핵심 기술 6카드 */
         .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 20px; }
         .t-card {
             background: var(--bg-card); border: 1px solid rgba(255,255,255,0.08);
@@ -171,7 +165,6 @@
         .t-card h3 { color: var(--accent); font-size: 1.1rem; margin-bottom: 10px; }
         .t-card p { color: #cbd5e1; font-size: 0.91rem; }
 
-        /* 4. 특허는 방패, 논문은 신뢰 (겹침 버그 완벽 수정!) */
         .metric-bar {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -189,7 +182,7 @@
             color: #fff;
             margin-bottom: 6px;
             line-height: 1.35;
-            white-space: normal; /* 겹침 방지 핵심! */
+            white-space: normal;
         }
         .m-lbl { font-size: 0.82rem; color: var(--accent); font-weight: 600; }
 
@@ -202,21 +195,18 @@
         .paper-title { color: #e2e8f0; font-size: 0.92rem; font-weight: 600; flex: 1 1 500px; }
         .paper-meta { font-size: 0.8rem; color: var(--accent); font-weight: 700; white-space: nowrap; }
 
-        /* 5. 가볍고 쿨한 문의 & NDA 안내 (힘 뺀 세련된 버전!) */
         .contact-card {
             background: linear-gradient(135deg, rgba(15,23,42,0.9), rgba(0,55,100,0.32));
-            border: 1px solid var(--border); border-radius: 18px; padding: 36px 40px;
-            display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 28px;
+            border: 1px solid var(--border); border-radius: 18px; padding: 34px 38px;
+            display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px;
         }
-        .contact-info { flex: 1 1 480px; }
-        .contact-info p { color: #cbd5e1; font-size: 0.96rem; line-height: 1.7; }
-        .contact-note {
-            margin-top: 12px; font-size: 0.85rem; color: var(--text-sub);
-        }
+        .contact-info { flex: 1 1 460px; }
+        .contact-info p { color: #cbd5e1; font-size: 0.95rem; line-height: 1.65; }
+        .contact-note { margin-top: 10px; font-size: 0.83rem; color: var(--text-sub); }
         .contact-btn {
-            display: inline-block; padding: 15px 28px; border-radius: 10px;
+            display: inline-block; padding: 14px 26px; border-radius: 10px;
             background: var(--accent); color: #04070f; font-weight: 800;
-            text-decoration: none; font-size: 0.96rem; box-shadow: 0 0 22px var(--accent-glow); transition: 0.2s;
+            text-decoration: none; font-size: 0.95rem; box-shadow: 0 0 22px var(--accent-glow); transition: 0.2s;
             white-space: nowrap;
         }
         .contact-btn:hover { transform: scale(1.03); background: #fff; }
@@ -225,7 +215,6 @@
         .loc-item { background: rgba(255,255,255,0.03); padding: 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.06); }
         .loc-item strong { color: #fff; display: block; margin-bottom: 4px; }
 
-        /* 팝업 모달 */
         .modal {
             display: none; position: fixed; inset: 0; z-index: 999;
             background: rgba(2, 5, 12, 0.92); backdrop-filter: blur(8px);
@@ -248,7 +237,6 @@
         .zoom-img-stage { width: 100%; max-height: 82vh; background: #04070f; display: flex; align-items: center; justify-content: center; padding: 12px; }
         .zoom-img-stage img { max-width: 100%; max-height: 78vh; object-fit: contain; border-radius: 8px; }
 
-        /* 바닥글 */
         footer {
             border-top: 1px solid rgba(255,255,255,0.07); padding: 36px 6%;
             text-align: center; font-size: 0.82rem; color: #64748b;
@@ -259,7 +247,6 @@
             font-size: 0.74rem; color: #64748b;
         }
 
-        /* 📱 스마트폰 최적화 */
         @media (max-width: 768px) {
             header { padding: 12px 5%; }
             nav { display: none; }
@@ -289,20 +276,18 @@
             <a href="#briefing">15초 브리핑</a>
             <a href="#tech">핵심 기술</a>
             <a href="#ip">특허 & 논문</a>
-            <a href="#contact">Contact</a>
-            <a href="/llms/" class="ai-pill">AI Reference (/llms/)</a>
+            <a href="#contact">이메일 문의</a>
+            <a href="llms/" class="ai-pill">AI Reference (/llms/)</a>
         </nav>
-        <a href="/llms/" class="ai-pill mobile-ai-btn">/llms/</a>
+        <a href="llms/" class="ai-pill mobile-ai-btn">/llms/</a>
     </header>
 
-    <!-- 0. 시네마 영화관 -->
     <div class="cinema-stage">
         <video id="hero-bg-video" class="cinema-video" autoplay muted loop playsinline poster="Venus.png"></video>
         <div class="cinema-fade"></div>
         <a href="#venus-host" class="scroll-cue"><span>▼</span> V-MEMORY 탐색하기</a>
     </div>
 
-    <!-- 1. HERO: 6단계 IR 스토리라인 & 매칭 그래픽 뷰어 -->
     <div class="hero-wrap" id="venus-host">
         <div class="hero">
             <div class="venus-box" onclick="openImgZoom()" title="클릭하면 도표를 크게 볼 수 있습니다">
@@ -335,7 +320,6 @@
         </div>
     </div>
 
-    <!-- 2. 15초 AI 영상 브리핑 -->
     <section id="briefing">
         <div class="sec-tag">INTERACTIVE 15s AI BRIEFING</div>
         <h2 class="sec-title">궁금한 주제를 누르면, 15초 영상이 직관적으로 답해드립니다</h2>
@@ -343,7 +327,6 @@
         <div class="video-grid" id="video-grid"></div>
     </section>
 
-    <!-- 3. 핵심 기술 (기술평가 요약서 반영 6카드) -->
     <section id="tech">
         <div class="sec-tag">CORE TECHNOLOGY // FDWM & V-LINE</div>
         <h2 class="sec-title">전기가 흐르는 미세한 길(V-Line)을 제어합니다</h2>
@@ -359,7 +342,7 @@
             </div>
             <div class="t-card">
                 <h3>03. 1/6 초심플 양산 공정</h3>
-                <p>복잡한 기존 플래시 공정 대비 약 1/6 수준으로 단순화된 셀 공정을 지향하며, 상용 강유전체 재료(HZO 등)와 기존 반도체 장비 호환을 목표로 합니다.</p>
+                <p>복잡한 기존 플래시 공정 대비 약 1/6 수준으로 단순화된 셀 공정을 지향하며, 강유전체 재료 기반과 기존 반도체 장비 호환성을 목표로 합니다.</p>
             </div>
             <div class="t-card">
                 <h3>04. AI 데이터센터 전력·냉각 혁신</h3>
@@ -376,7 +359,6 @@
         </div>
     </section>
 
-    <!-- 4. 특허는 방패, 논문은 신뢰 -->
     <section id="ip">
         <div class="sec-tag">VALIDATED SCIENCE & IP SHIELD</div>
         <h2 class="sec-title">특허는 방패, 논문은 신뢰</h2>
@@ -394,19 +376,18 @@
         <div class="paper-list" id="paper-list"></div>
     </section>
 
-    <!-- 5. 가볍고 쿨한 문의 & NDA 안내 -->
     <section id="contact">
         <div class="contact-card">
             <div class="contact-info">
-                <div class="sec-tag">CONNECT WITH V-MEMORY</div>
-                <h2 class="sec-title" style="margin-bottom:10px;">기술 교류 · 파트너십 · 투자 문의</h2>
+                <div class="sec-tag">CONTACT</div>
+                <h2 class="sec-title" style="margin-bottom:10px;">이메일 문의</h2>
                 <p>
-                    브이메모리의 기술과 비전에 관심이 있으시다면 언제든 편하게 연락해 주세요.<br>
-                    <strong>상세 투자 IR 자료, 핵심 팀원 소개, 외부 특허가치평가 보고서 및 기술 세부 데이터</strong>는 방문 미팅 및 비밀유지계약(NDA) 체결 후 투명하게 공개합니다.
+                    기술 협의, 공동 개발, 파트너십 및 투자 관련 문의는 공식 이메일로 접수합니다.<br>
+                    상세 투자 IR 자료, 팀원 정보 및 주요 기술 자료는 NDA 체결 후 공개합니다.
                 </p>
-                <div class="contact-note">※ 핵심 지식재산 보호를 위해 웹사이트에서는 IR 파일 다운로드를 제공하지 않습니다.</div>
+                <div class="contact-note">※ IR 파일 직접 다운로드는 제공하지 않습니다.</div>
             </div>
-            <a href="mailto:vmemory@vmemory.net?subject=[V-Memory]%20미팅%20및%20문의" class="contact-btn">이메일로 편하게 문의하기 →</a>
+            <a href="mailto:vmemory@vmemory.net?subject=[V-Memory]%20이메일%20문의" class="contact-btn">이메일 문의 →</a>
         </div>
 
         <div class="loc-grid">
@@ -418,11 +399,10 @@
     </section>
 
     <footer>
-        <div>© 2026 V-Memory Corp. All Rights Reserved. | Official AI Reference: <a href="/llms/" style="color:var(--accent);">vmemory.net/llms/</a></div>
+        <div>© 2026 V-Memory Corp. All Rights Reserved. | Official AI Reference: <a href="llms/" style="color:var(--accent);">vmemory.net/llms/</a></div>
         <div class="legacy-vet">Legacy Energy R&D Archive: V-ET (Eco-Friendly High-Efficiency Thermoelectric Device, zT 1.3)</div>
     </footer>
 
-    <!-- 15초 영상 팝업 모달 -->
     <div class="modal" id="video-modal" onclick="if(event.target===this) closeVideo()">
         <div class="modal-content">
             <div class="modal-head">
@@ -440,7 +420,6 @@
         </div>
     </div>
 
-    <!-- 이미지 크게 보기 모달 -->
     <div class="modal" id="img-modal" onclick="if(event.target===this) closeImgZoom()">
         <div class="modal-content" style="max-width: 1020px;">
             <div class="modal-head">
@@ -455,7 +434,6 @@
 
     <script src="data.js"></script>
     <script>
-        // 0. PC(와이드) vs 스마트폰(세로) 자동 감지 시네마 영상 로더
         const bgVideo = document.getElementById('hero-bg-video');
         function loadBgVideo() {
             const isMobile = window.innerWidth <= 768;
@@ -473,7 +451,6 @@
         loadBgVideo();
         window.addEventListener('resize', loadBgVideo);
 
-        // 1. 전광판(data.js) 실시간 지표 렌더링
         document.getElementById('m-trl').innerText = VMEMORY_DATA.metrics.trlStatus;
         document.getElementById('m-pat-app').innerText = VMEMORY_DATA.metrics.patentApplied;
         document.getElementById('m-pat-reg').innerText = VMEMORY_DATA.metrics.patentRegistered;
@@ -481,7 +458,6 @@
         document.getElementById('m-papers').innerText = VMEMORY_DATA.metrics.papersCount;
         document.getElementById('m-date').innerText = VMEMORY_DATA.metrics.lastUpdated;
 
-        // 2. 15초 영상 카드 생성 (썸네일 자동 대체 안전장치 포함)
         const grid = document.getElementById('video-grid');
         VMEMORY_DATA.videos.forEach(v => {
             const card = document.createElement('div');
@@ -501,7 +477,6 @@
             grid.appendChild(card);
         });
 
-        // 3. 국제 논문 6편 리스트 생성
         const paperList = document.getElementById('paper-list');
         VMEMORY_DATA.papers.forEach((p, idx) => {
             const item = document.createElement('div');
@@ -513,7 +488,6 @@
             paperList.appendChild(item);
         });
 
-        // 4. 6장 IR 슬라이드 매칭 데이터
         const hostData = {
             s1: {
                 tag: "01. ARCHITECTURE // MEMORY HIERARCHY SIMPLIFICATION",
@@ -527,8 +501,8 @@
             s2: {
                 tag: "02. 0T0C CELL // DOMAIN-WALL CURRENT PATH CONTROL",
                 title: "전하를 저장하는 방식에서, 전류가 흐르는 길을 제어하는 방식으로.",
-                text: "기존 플래시 메모리는 절연층 너머 플로팅 게이트에 전자를 주입·소거하는 방식이라 쓰기 속도가 느리고 반복 수명과 전력 소모에 한계가 있습니다. 반면 V-Memory는 트랜지스터와 커패시터가 없는 0T0C 셀 구조로, 강유전체(HZO) 내부의 분극 경계인 도메인월(DW) 전류 경로를 제어합니다.",
-                point: "💡 핵심 원리: 전하 충·방전 대신 도메인월의 전도 경로를 켜고 끔으로써 ns(나노초)급 고속 동작과 반영구적 수명·초저전력을 지향합니다.",
+                text: "기존 플래시 메모리는 절연층 너머 플로팅 게이트에 전자를 주입·소거하는 방식이라 쓰기 속도가 느리고 반복 수명과 전력 소모에 한계가 있습니다. 반면 V-Memory는 트랜지스터와 커패시터가 없는 0T0C 셀 구조로, 강유전체 내부의 분극 경계인 도메인월(DW) 전류 경로를 제어합니다.",
+                point: "💡 핵심 원리: 전하 충·방전 대신 도메인월의 전도 경로를 켜고 끔으로써 고속 동작과 긴 수명·초저전력을 지향합니다.",
                 img: "slide_02.png",
                 fallbackImg: "Venus_Model_m.jpg",
                 caption: "FIG 02 // 브이메모리(0T0C 도메인월) vs 플래시 메모리"
@@ -536,8 +510,8 @@
             s3: {
                 tag: "03. MANUFACTURABILITY // 1/6 ULTRA-SIMPLE PROCESS",
                 title: "DRAM보다 빠른 속도, Flash보다 높은 집적도, 공정은 약 1/6 수준!",
-                text: "기존 차세대 메모리(RRAM·PRAM·MRAM 등)는 DRAM급 속도와 Flash급 집적도를 동시에 만족하기 어려웠습니다. V-Memory는 새로운 특수 설비 없이 기존 반도체 장비와 이미 검증·상용화된 강유전체 재료(HZO 등)를 그대로 활용하며, 복잡한 플래시 대비 제조 공정을 약 1/6 수준으로 단순화합니다.",
-                point: "💡 핵심 원리: 상용 장비·검증 재료 기반의 초심플 셀 공정으로 양산 현실성과 압도적 원가 경쟁력을 동시에 확보합니다.",
+                text: "기존 차세대 메모리(RRAM·PRAM·MRAM 등)는 DRAM급 속도와 Flash급 집적도를 동시에 만족하기 어려웠습니다. V-Memory는 새로운 특수 설비 없이 기존 반도체 장비와 검증된 강유전체 재료 기반을 활용하며, 복잡한 플래시 대비 제조 공정을 약 1/6 수준으로 단순화합니다.",
+                point: "💡 핵심 원리: 기존 장비·강유전체 기반의 단순화된 셀 공정으로 양산 현실성과 원가 경쟁력을 동시에 확보합니다.",
                 img: "slide_03.png",
                 fallbackImg: "Venus.png",
                 caption: "FIG 03 // 성능 포지셔닝 & 1/6 초심플 양산 공정"
@@ -586,7 +560,6 @@
             imgEl.src = d.img;
         }
 
-        // 5. 이미지 크게 보기 모달
         function openImgZoom() {
             const currentSrc = document.getElementById('venus-img').src;
             const currentCap = document.getElementById('img-caption').innerText;
@@ -598,7 +571,6 @@
             document.getElementById('img-modal').classList.remove('open');
         }
 
-        // 6. 15초 영상 모달 제어
         const modal = document.getElementById('video-modal');
         const vid = document.getElementById('modal-video');
         const fallback = document.getElementById('video-fallback');
