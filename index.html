@@ -384,7 +384,7 @@
                 <button type="button" class="close-btn" onclick="closeVideo()">&times;</button>
             </div>
             <div class="video-stage">
-                <video id="modal-video" controls autoplay playsinline></video>
+                <video id="modal-video" controls playsinline></video>
                 <div class="video-fallback" id="video-fallback">
                     <div style="color:var(--accent); font-weight:700; margin-bottom:8px;" id="fb-title"></div>
                     <p style="font-size:0.88rem; color:#cbd5e1;" id="fb-desc"></p>
@@ -778,33 +778,43 @@
         const fallback = document.getElementById('video-fallback');
 
         function openVideo(v) {
+            // 이전 재생 트랙 및 잔여 음성 완전 초기화
+            vid.pause();
+            vid.muted = true;
+            vid.removeAttribute('src');
+            vid.load();
+
             const isEn = currentLang === 'en';
             const u = UI_TEXT[currentLang];
-            const primarySrc = isEn ? (v.videoFileEn || v.videoFileKo || v.videoFile) : (v.videoFileKo || v.videoFileEn || v.videoFile);
-            const backupSrc = isEn ? (v.videoFileKo || v.videoFile) : (v.videoFileEn || v.videoFile);
+            const targetSrc = isEn ? (v.videoFileEn || v.videoFile) : (v.videoFileKo || v.videoFile);
 
             document.getElementById('modal-title').innerText = (isEn ? (v.titleEn || v.title) : (v.titleKo || v.title)) || "";
             document.getElementById('modal-detail').innerText = (isEn ? (v.detailEn || v.detail) : (v.detailKo || v.detail)) || "";
-            document.getElementById('fb-desc').innerHTML = `${u.fbDescPrefix}<strong style="color:#fff;">${primarySrc}</strong>${u.fbDescSuffix}`;
+            document.getElementById('fb-desc').innerHTML = `${u.fbDescPrefix}<strong style="color:#fff;">${targetSrc}</strong>${u.fbDescSuffix}`;
 
             fallback.style.display = 'none';
             vid.style.display = 'block';
-            let triedBackup = false;
             vid.onerror = () => {
-                if (!triedBackup && backupSrc && backupSrc !== primarySrc) {
-                    triedBackup = true;
-                    vid.src = backupSrc;
-                } else {
-                    vid.style.display = 'none';
-                    fallback.style.display = 'flex';
-                }
+                vid.pause();
+                vid.muted = true;
+                vid.removeAttribute('src');
+                vid.load();
+                vid.style.display = 'none';
+                fallback.style.display = 'flex';
             };
-            vid.src = primarySrc;
+            vid.src = targetSrc;
+            vid.muted = false;
             modal.classList.add('open');
+            vid.play().catch(() => {});
         }
+
         function closeVideo() {
+            // 창을 닫을 때 음소거·일시정지·소스 해제로 잔여 음성 100% 차단
             vid.pause();
-            vid.src = "";
+            vid.muted = true;
+            vid.currentTime = 0;
+            vid.removeAttribute('src');
+            vid.load();
             modal.classList.remove('open');
         }
 
