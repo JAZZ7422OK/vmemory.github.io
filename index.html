@@ -299,7 +299,7 @@
     <div class="hero-wrap" id="venus-host">
         <div class="hero">
             <div class="venus-box" onclick="openImgZoom()" id="venus-box-el">
-                <img id="venus-img" src="slide_01.png" onerror="this.src='Venus.png'" alt="V-Memory Architecture Diagram">
+                <img id="venus-img" src="slide_01_en.png" alt="V-Memory Architecture Diagram">
                 <div class="venus-badge">
                     <span id="img-caption"></span>
                     <span class="zoom-hint" id="zoom-hint-text">🔍 Zoom</span>
@@ -408,6 +408,31 @@
 
     <script src="data.js"></script>
     <script>
+        const FALLBACK_DATA = {
+            metrics: {
+                en: { trlStatus: "TRL 4 Done -> Entering TRL 5", patentApplied: "78 Filings", patentRegistered: "55 Granted", globalRegistered: "8 Global (~20 Families)", lastUpdated: "Nov 2026" },
+                ko: { trlStatus: "TRL 4 완료 -> TRL 5 실증 진입", patentApplied: "78건 출원", patentRegistered: "55건 등록", globalRegistered: "8건 (약 20개 패밀리)", lastUpdated: "2026.11" }
+            },
+            videos: [
+                { id: "v1", badgeEn: "Q1 · 15s Primer", badgeKo: "Q1 · 15초 기초 입문", titleEn: "Before 0T0C: Understanding Conventional DRAM's '1T1C' Cell", titleKo: "0T0C를 이해하기 위한 첫걸음: 기존 DRAM의 '1T1C' 구조란?", descEn: "A quick look at the standard 1T1C memory cell and its scaling and power limits.", descKo: "트랜지스터(1T)와 커패시터(1C) 기반 기존 메모리 구조와 한계를 먼저 짚어봅니다.", videoFileEn: "video_01_en.mp4", videoFileKo: "video_01.mp4", posterEn: "thumb_01_en.jpg", posterKo: "thumb_01.jpg", fallbackPoster: "Venus.png", detailEn: "Conventional DRAM stores a bit using a switch (1T) and a charge-storage capacitor (1C).", detailKo: "기존 DRAM은 스위치(1T)와 전하 저장통(1C)으로 1비트를 다룹니다." },
+                { id: "v2", badgeEn: "Q2 · 15s Core Principle ①", badgeKo: "Q2 · 15초 핵심 원리 ①", titleEn: "Controlling Domain-Wall Current Paths Instead of Stored Charge", titleKo: "전하 대신 '도메인월 전류 경로'를 제어하는 FDWM", descEn: "How voltage pulses create, remove, and modulate conductive domain-wall paths.", descKo: "강유전체 내부 분극 경계(도메인월)를 따라 흐르는 전류 경로를 전압으로 제어하는 원리.", videoFileEn: "video_02_en.mp4", videoFileKo: "video_02.mp4", posterEn: "thumb_02_en.jpg", posterKo: "thumb_02.jpg", fallbackPoster: "Venus_Model_m.jpg", detailEn: "Voltage pulses form or erase conductive domain-wall paths and read current differences.", detailKo: "전압 펄스로 전기의 길(도메인월 경로)을 생성·소멸시키고 전류 차이를 읽습니다." },
+                { id: "v3", badgeEn: "Q3 · 15s Core Principle ②", badgeKo: "Q3 · 15초 핵심 원리 ②", titleEn: "Multi-Line (nDW) & V-Line: Scaling Conductive Paths", titleKo: "도로 차선을 늘리듯 멀티라인(nDW) & V-Line 확장", descEn: "Expanding current signal margins and multi-state potential by controlling multiple domain-wall paths.", descKo: "단일 선을 넘어 멀티라인(1DW->nDW) 전류 경로 제어로 다중 상태와 신호 여유를 넓히는 구조.", videoFileEn: "video_03_en.mp4", videoFileKo: "video_03.mp4", posterEn: "thumb_03_en.jpg", posterKo: "thumb_03.jpg", fallbackPoster: "Venus.png", detailEn: "Modulating multiple domain-wall conduction paths (1DW to nDW) supports current scaling.", detailKo: "전극 사이 전류 경로 수(nDW)를 제어해 전류 신호 수준을 확장합니다." },
+                { id: "v4", badgeEn: "Q4 · 15s Market Bottleneck", badgeKo: "Q4 · 15초 시장 돌파", titleEn: "Beyond Stacked HBM: Addressing Power, Heat & Packaging Limits", titleKo: "적층의 한계에 부딪힌 HBM, 그 다음 도약을 위한 해법은?", descEn: "Why AI data centers need low-power non-volatile memory innovation beyond stacked DRAM/HBM.", descKo: "DRAM 적층 기반 HBM의 전력·발열·패키징 부담을 줄일 차세대 비휘발성 메모리 비전.", videoFileEn: "video_04_en.mp4", videoFileKo: "video_04.mp4", posterEn: "thumb_04_en.jpg", posterKo: "thumb_04.jpg", fallbackPoster: "Venus_Model_m.jpg", detailEn: "V-Memory explores non-volatile domain-wall architectures without periodic refresh overhead.", detailKo: "주기적 리프레시가 필요 없는 비휘발성·저전력 도메인월 아키텍처를 모색합니다." },
+                { id: "v5", badgeEn: "Q5 · 15s Hierarchy Integration", badgeKo: "Q5 · 15초 계층 통합", titleEn: "When Memory Moves at CPU Speed, System Structure Changes", titleKo: "메모리가 CPU의 속도로 움직이면, 컴퓨터의 구조가 달라집니다", descEn: "Simplifying multi-tier memory hierarchies and reducing data-movement bottlenecks.", descKo: "레지스터·캐시·DRAM·SSD 계층 간 데이터 이동 병목을 줄이는 메모리 통합 구상.", videoFileEn: "video_05_en.mp4", videoFileKo: "video_05.mp4", posterEn: "thumb_05_en.jpg", posterKo: "thumb_05.jpg", fallbackPoster: "Venus.png", detailEn: "Reducing data shuttling across memory tiers supports high-efficiency architectures.", detailKo: "다단계 메모리 계층을 오가며 생기는 병목과 지연을 줄입니다." },
+                { id: "v6", badgeEn: "Q6 · 15s CIV & Physical AI", badgeKo: "Q6 · 15초 CIV & 피지컬 AI", titleEn: "The Robot Brain: Compute-In-Vmemory (CIV) for Physical AI", titleKo: "로봇의 두뇌, 연산과 기억을 직접 결합하는 CIV 아키텍처", descEn: "From virtual intelligence to embodied Physical AI—bringing memory closer to computation with CIV.", descKo: "가상 AI에서 물리적 행동 AI(Physical AI)로! CIV가 여는 온디바이스 두뇌 아키텍처.", videoFileEn: "video_06_en.mp4", videoFileKo: "video_06.mp4", posterEn: "thumb_06_en.jpg", posterKo: "thumb_06.jpg", fallbackPoster: "Venus_Model_m.jpg", detailEn: "CIV brings memory closer to computation—a new vision for Physical AI.", detailKo: "CIV는 연산과 메모리를 가까이 결합해 온디바이스 지능을 뒷받침합니다." }
+            ],
+            papers: [
+                { year: "2025", journal: "Journal of Physics and Chemistry of Solids", title: "Electrical conduction of ferroelectric domains and domain walls in polycrystalline Bi5Ti3FeO15 thin films" },
+                { year: "2025", journal: "Journal of Applied Physics", title: "Leakage current characteristics affected by crystallinity and domain wall current of epitaxial Bi5Ti3FeO15 thin films" },
+                { year: "2023", journal: "Journal of Alloys and Compounds", title: "Leakage current characteristics of polycrystalline BiFeO3 thin films affected by thickness-dependent domain wall currents" },
+                { year: "2023", journal: "Ceramics International", title: "Ferroelectric domain wall current corresponding to ferroelectric domain structures of BaTiO3 nanodots fabricated by dip-pen nanolithography" },
+                { year: "2021", journal: "Ceramics International", title: "Nonvolatile-memory current characteristics of BiFeO3 nanodots switched by applying external bias and force" },
+                { year: "2021", journal: "Applied Physics Letters", title: "Current change due to artificial patterning of the number of ferroelectric domain walls and nonvolatile memory characteristics" }
+            ]
+        };
+
+        const ACTIVE_DATA = (typeof VMEMORY_DATA !== "undefined" && VMEMORY_DATA) ? VMEMORY_DATA : FALLBACK_DATA;
+
         let currentLang = "en";
         let currentSlideKey = "s1";
 
@@ -425,7 +450,7 @@
                 techDesc: "Rather than storing charge alone, V-Memory controls domain-wall current paths inside ferroelectric materials.",
                 techCards: [
                     { h: "01. 0T0C & V-Line Control", p: "Designed without conventional per-cell transistors or capacitors, forming and removing domain-wall current paths (V-Line) for non-destructive readout (NDRO) potential." },
-                    { h: "02. Multi-Line (nDW) Scaling", p: "Modulating multiple domain-wall conduction paths (1DW → nDW) to scale current signals and support multi-state memory concepts." },
+                    { h: "02. Multi-Line (nDW) Scaling", p: "Modulating multiple domain-wall conduction paths (1DW -> nDW) to scale current signals and support multi-state memory concepts." },
                     { h: "03. Streamlined Cell Process", p: "Targeting roughly one-sixth the complexity of conventional flash processes while leveraging ferroelectric materials and existing semiconductor tools." },
                     { h: "04. Data-Center Power & Cooling", p: "Addressing data-center power and thermal overhead (IT 66%, cooling/facility 34%, avg. PUE 1.52) from memory optimization to CIV expansion." },
                     { h: "05. CIV for Physical AI", p: "Bringing compute closer to memory with Compute-In-Vmemory (CIV) for low-latency, low-power on-device intelligence and robotics." },
@@ -435,14 +460,14 @@
                 ipTitle: "Patents as Shield, Structured IP Portfolio",
                 ipDescPrefix: "Protecting core architectural concepts through domestic and global filings. Updated: ",
                 lblTrl: "Maturity Status", lblApp: "Patent Filings", lblReg: "Granted Patents", lblGlobal: "Global & Families",
-                papersTag: "SCI-LEVEL PUBLICATIONS (2021–2025)",
+                papersTag: "SCI-LEVEL PUBLICATIONS (2021-2025)",
                 papersTitle: "Peer-Reviewed Scientific Foundation",
                 papersDesc: "Six peer-reviewed papers examining ferroelectric domain-wall conduction and non-volatile switching behavior.",
                 contactTag: "CONTACT",
                 contactTitle: "Email Inquiry",
                 contactBody: "Reach out by email for technical discussions, joint development, partnerships, or investment inquiries.<br>Detailed IR materials, team profiles, and confidential technical data are shared after NDA execution.",
                 contactNote: "※ Direct IR file downloads are not available on the public site.",
-                contactBtn: "Email Inquiry →",
+                contactBtn: "Email Inquiry ->",
                 contactSubject: "[V-Memory]%20Email%20Inquiry",
                 locs: [
                     { t: "Headquarters (CA)", d: "6F A, 165 Yeoksam-ro, Gangnam-gu, Seoul" },
@@ -468,7 +493,7 @@
                 techDesc: "기존 메모리처럼 전자를 가두는 방식이 아니라, 강유전체 내부 분극 경계(도메인월)를 따라 흐르는 전류 경로를 제어하는 아키텍처입니다.",
                 techCards: [
                     { h: "01. 0T0C & V-Line 제어", p: "셀당 트랜지스터·커패시터 구조를 배제한 접근으로, 도메인월 전류 경로(V-Line) 제어와 비파괴 읽기(NDRO) 가능성을 지향합니다." },
-                    { h: "02. 도로 차선을 늘리듯 멀티라인(nDW)", p: "전극 사이 전류 경로 수(1DW → nDW) 조절을 통해 전류 신호 수준 확장과 다중 상태 구현 가능성을 연구합니다." },
+                    { h: "02. 도로 차선을 늘리듯 멀티라인(nDW)", p: "전극 사이 전류 경로 수(1DW -> nDW) 조절을 통해 전류 신호 수준 확장과 다중 상태 구현 가능성을 연구합니다." },
                     { h: "03. 1/6 초심플 양산 공정", p: "기존 플래시 공정 대비 약 1/6 수준의 단순화된 셀 공정을 지향하며, 강유전체 기반 및 기존 반도체 장비 활용을 목표로 합니다." },
                     { h: "04. AI 데이터센터 전력·냉각 혁신", p: "IT 장비(66%)와 냉각·설비(34%, 평균 PUE 1.52)로 나뉜 데이터센터 전력 구조를 메모리 최적화부터 CIV 확장까지 단계적으로 개선합니다." },
                     { h: "05. 로봇의 두뇌, CIV 아키텍처", p: "연산과 메모리를 근접 통합하는 CIV(Compute-In-Vmemory) 구상으로 온디바이스 AI 및 로봇의 저지연·저전력 두뇌로 확장합니다." },
@@ -478,14 +503,14 @@
                 ipTitle: "특허는 방패, 검증된 원천 IP 포트폴리오",
                 ipDescPrefix: "국내외 출원 및 등록 특허를 통해 기술적 권리와 사업화 기반을 보호합니다. (기준: ",
                 lblTrl: "공식 개발 단계", lblApp: "국내외 특허 출원", lblReg: "특허 등록", lblGlobal: "해외 특허 & 패밀리",
-                papersTag: "SCI-LEVEL PUBLICATIONS (2021–2025)",
+                papersTag: "SCI-LEVEL PUBLICATIONS (2021-2025)",
                 papersTitle: "논문은 신뢰, 물리적 근거를 증명하다",
                 papersDesc: "강유전체 도메인월 전도 특성과 비휘발성 메모리 동작 원리를 다룬 국제 학술지(SCI급) 논문 6편입니다.",
                 contactTag: "CONTACT",
                 contactTitle: "이메일 문의",
                 contactBody: "기술 협의, 공동 개발, 파트너십 및 투자 관련 문의는 공식 이메일로 접수합니다.<br>상세 투자 IR 자료, 팀원 정보 및 주요 기술 자료는 NDA 체결 후 공개합니다.",
                 contactNote: "※ IR 파일 직접 다운로드는 제공하지 않습니다.",
-                contactBtn: "이메일 문의 →",
+                contactBtn: "이메일 문의 ->",
                 contactSubject: "[V-Memory]%20이메일%20문의",
                 locs: [
                     { t: "Headquarters (CA)", d: "서울특별시 강남구 역삼로 165, 6층 A" },
@@ -510,7 +535,7 @@
                 textKo: "기존 컴퓨팅은 레지스터·SRAM·DRAM·Flash/SSD 계층을 오가며 데이터 이동 병목을 겪습니다. V-Memory는 비휘발성·고속·저전력 특성을 추구해 메모리 계층을 단순화하는 통합 구상을 제시합니다.",
                 pointEn: "💡 Key Concept: Reducing multi-tier data movement eases von Neumann bottlenecks and improves system efficiency.",
                 pointKo: "💡 핵심 원리: 계층 간 불필요한 데이터 왕복을 줄여 병목을 완화하고 단일 메모리 계층으로 효율을 높입니다.",
-                img: "slide_01.png", fallbackImg: "Venus.png",
+                imgEn: "slide_01_en.png", imgKo: "slide_01.png", fallbackImg: "Venus.png",
                 capEn: "FIG 01 // Legacy Memory Tiers vs. V-Memory Integration",
                 capKo: "FIG 01 // 기존 메모리 계층 vs V-Memory 통합 구상"
             },
@@ -523,7 +548,7 @@
                 textKo: "전하 주입·소거 방식은 수명과 전력 측면에서 한계가 있습니다. V-Memory는 0T0C 셀 개념을 바탕으로 강유전체 내부 도메인월 전류 경로를 제어합니다.",
                 pointEn: "💡 Key Concept: Sensing domain-wall conduction supports non-destructive readout (NDRO) and low-energy operation.",
                 pointKo: "💡 핵심 원리: 도메인월 전도 경로 제어를 통해 비파괴 읽기(NDRO)와 저전력 동작을 지향합니다.",
-                img: "slide_02.png", fallbackImg: "Venus_Model_m.jpg",
+                imgEn: "slide_02_en.png", imgKo: "slide_02.png", fallbackImg: "Venus_Model_m.jpg",
                 capEn: "FIG 02 // V-Memory (Domain-Wall Control) vs. Flash Memory",
                 capKo: "FIG 02 // 브이메모리(도메인월 제어) vs 플래시 메모리"
             },
@@ -536,7 +561,7 @@
                 textKo: "기존 플래시 공정 대비 약 1/6 수준으로 단순화된 셀 공정을 지향하며, 강유전체 기반과 기존 반도체 장비를 활용합니다.",
                 pointEn: "💡 Key Concept: Tool compatibility and simplified steps support scalability and cost efficiency.",
                 pointKo: "💡 핵심 원리: 기존 장비 호환성과 단순화된 공정으로 양산성과 원가 경쟁력을 추구합니다.",
-                img: "slide_03.png", fallbackImg: "Venus.png",
+                imgEn: "slide_03_en.png", imgKo: "slide_03.png", fallbackImg: "Venus.png",
                 capEn: "FIG 03 // Performance Positioning & ~1/6 Process Concept",
                 capKo: "FIG 03 // 성능 포지셔닝 & 1/6 초심플 양산 공정"
             },
@@ -549,7 +574,7 @@
                 textKo: "IT 장비(66%)와 냉각·설비(34%, 평균 PUE 1.52) 구조에서 메모리 최적화, 발열·냉각 완화, GPU·CIV 확장으로 이어지는 단계별 절감을 검증합니다.",
                 pointEn: "💡 Key Concept: Lowering data movement and refresh overhead helps curb heat and cooling load.",
                 pointKo: "💡 핵심 원리: 데이터 이동 감소와 리프레시 부담 완화로 발열·냉각 전력 부담을 줄입니다.",
-                img: "slide_04.png", fallbackImg: "Venus_Model_m.jpg",
+                imgEn: "slide_04_en.png", imgKo: "slide_04.png", fallbackImg: "Venus_Model_m.jpg",
                 capEn: "FIG 04 // Data-Center Power Split (PUE 1.52) & Phased Savings",
                 capKo: "FIG 04 // 데이터센터 전력 분포(PUE 1.52) & 단계별 절감 시나리오"
             },
@@ -562,22 +587,22 @@
                 textKo: "TRL 5 검증 이후 연산과 메모리를 가깝게 통합하는 CIV 아키텍처로 확장해 온디바이스 AI 및 자율 로봇 두뇌로 발전합니다.",
                 pointEn: "💡 Key Concept: Near-memory processing reduces latency and connectivity reliance in autonomous systems.",
                 pointKo: "💡 핵심 원리: 연산·기억 근접 통합으로 지연 시간을 줄이고 온디바이스 판단력을 높입니다.",
-                img: "slide_05.png", fallbackImg: "Venus.png",
+                imgEn: "slide_05_en.png", imgKo: "slide_05.png", fallbackImg: "Venus.png",
                 capEn: "FIG 05 // CIV (Compute-In-Vmemory) & Physical AI Brain",
                 capKo: "FIG 05 // CIV (Compute-In-Vmemory) & 피지컬 AI 로봇 두뇌"
             },
             s6: {
-                btnEn: "06. SOM → SAM → TAM", btnKo: "06. SOM→SAM→TAM 시장 확장",
-                tagEn: "06. MARKET EXPANSION // SOM → SAM → TAM ROADMAP", tagKo: "06. MARKET EXPANSION // SOM → SAM → TAM ROADMAP",
+                btnEn: "06. SOM -> SAM -> TAM", btnKo: "06. SOM->SAM->TAM 시장 확장",
+                tagEn: "06. MARKET EXPANSION // SOM -> SAM -> TAM ROADMAP", tagKo: "06. MARKET EXPANSION // SOM -> SAM -> TAM ROADMAP",
                 titleEn: "Expanding from Non-Volatile Memory to a $3.4T Semiconductor Vision.",
                 titleKo: "비휘발성 메모리에서 시작해 $3.4T 시스템 반도체까지 확장",
                 textEn: "V-Memory outlines a phased expansion from non-volatile memory (SOM, ~$600B) to broader memory (SAM, ~$2.0T) and integrated memory-compute systems (TAM, ~$3.4T).",
                 textKo: "비휘발성 메모리(SOM, 약 $600B)에서 통합 메모리(SAM, 약 $2.0T), CIV 시스템 반도체(TAM, 약 $3.4T)로 이어지는 단계적 확장 전략입니다.",
                 pointEn: "💡 Key Concept: Combining core patents with partner collaborations and IP licensing models.",
                 pointKo: "💡 핵심 원리: 원천 특허 기반의 공동개발 및 IP 라이선싱 모델로 글로벌 시장을 확장합니다.",
-                img: "slide_06.png", fallbackImg: "Venus_Model_m.jpg",
-                capEn: "FIG 06 // SOM ($600B) → SAM ($2.0T) → TAM ($3.4T) Expansion",
-                capKo: "FIG 06 // SOM($600B) → SAM($2.0T) → TAM($3.4T) 시장 확장 전략"
+                imgEn: "slide_06_en.png", imgKo: "slide_06.png", fallbackImg: "Venus_Model_m.jpg",
+                capEn: "FIG 06 // SOM ($600B) -> SAM ($2.0T) -> TAM ($3.4T) Expansion",
+                capKo: "FIG 06 // SOM($600B) -> SAM($2.0T) -> TAM($3.4T) 시장 확장 전략"
             }
         };
 
@@ -633,7 +658,8 @@
                 `<div class="t-card"><h3>${c.h}</h3><p>${c.p}</p></div>`
             ).join('');
 
-            const m = VMEMORY_DATA.metrics[lang];
+            const metricSet = ACTIVE_DATA.metrics || FALLBACK_DATA.metrics;
+            const m = metricSet[lang] || metricSet.en || FALLBACK_DATA.metrics[lang];
             document.getElementById('ip-tag').innerText = u.ipTag;
             document.getElementById('ip-title').innerText = u.ipTitle;
             document.getElementById('ip-desc').innerText = `${u.ipDescPrefix}${m.lastUpdated})`;
@@ -673,9 +699,19 @@
             document.getElementById('hud-point').innerHTML = isEn ? d.pointEn : d.pointKo;
             document.getElementById('img-caption').innerText = isEn ? d.capEn : d.capKo;
 
+            const primaryImg = isEn ? (d.imgEn || d.imgKo) : (d.imgKo || d.imgEn);
+            const backupImg = isEn ? (d.imgKo || d.fallbackImg) : (d.imgEn || d.fallbackImg);
             const imgEl = document.getElementById('venus-img');
-            imgEl.onerror = () => { imgEl.src = d.fallbackImg; };
-            imgEl.src = d.img;
+            let triedImgBackup = false;
+            imgEl.onerror = () => {
+                if (!triedImgBackup && backupImg && backupImg !== primaryImg) {
+                    triedImgBackup = true;
+                    imgEl.src = backupImg;
+                } else {
+                    imgEl.src = d.fallbackImg || "Venus.png";
+                }
+            };
+            imgEl.src = primaryImg;
         }
 
         function selectHost(key, btn) {
@@ -689,16 +725,21 @@
             const isEn = currentLang === 'en';
             const grid = document.getElementById('video-grid');
             grid.innerHTML = '';
-            VMEMORY_DATA.videos.forEach(v => {
+            const vids = (ACTIVE_DATA.videos && ACTIVE_DATA.videos.length) ? ACTIVE_DATA.videos : FALLBACK_DATA.videos;
+            vids.forEach(v => {
                 const card = document.createElement('div');
                 card.className = 'v-card';
                 card.onclick = () => openVideo(v);
-                const badge = isEn ? v.badgeEn : v.badgeKo;
-                const title = isEn ? v.titleEn : v.titleKo;
-                const desc = isEn ? v.descEn : v.descKo;
+                const badge = (isEn ? (v.badgeEn || v.badge) : (v.badgeKo || v.badge)) || "";
+                const title = (isEn ? (v.titleEn || v.title) : (v.titleKo || v.title)) || "";
+                const desc = (isEn ? (v.descEn || v.desc) : (v.descKo || v.desc)) || "";
+                const primaryPoster = isEn ? (v.posterEn || v.posterKo || v.poster) : (v.posterKo || v.posterEn || v.poster);
+                const backupPoster = isEn ? (v.posterKo || v.poster) : (v.posterEn || v.poster);
+                const fbPoster = v.fallbackPoster || "Venus.png";
+
                 card.innerHTML = `
                     <div class="v-thumb">
-                        <img src="${v.poster}" onerror="this.src='${v.fallbackPoster || 'Venus.png'}'" alt="${title}">
+                        <img src="${primaryPoster}" data-backup="${backupPoster}" data-fb="${fbPoster}" onerror="if(!this.dataset.tried1){this.dataset.tried1='1';this.src=this.dataset.backup||this.dataset.fb;}else if(!this.dataset.tried2){this.dataset.tried2='1';this.src=this.dataset.fb;}" alt="${title}">
                         <div class="play-icon">▶</div>
                     </div>
                     <div class="v-body">
@@ -712,7 +753,8 @@
         }
 
         const paperList = document.getElementById('paper-list');
-        VMEMORY_DATA.papers.forEach((p, idx) => {
+        const papers = (ACTIVE_DATA.papers && ACTIVE_DATA.papers.length) ? ACTIVE_DATA.papers : FALLBACK_DATA.papers;
+        papers.forEach((p, idx) => {
             const item = document.createElement('div');
             item.className = 'paper-item';
             item.innerHTML = `
@@ -738,11 +780,11 @@
         function openVideo(v) {
             const isEn = currentLang === 'en';
             const u = UI_TEXT[currentLang];
-            const primarySrc = isEn ? (v.videoFileEn || v.videoFileKo) : (v.videoFileKo || v.videoFileEn);
-            const backupSrc = isEn ? v.videoFileKo : v.videoFileEn;
+            const primarySrc = isEn ? (v.videoFileEn || v.videoFileKo || v.videoFile) : (v.videoFileKo || v.videoFileEn || v.videoFile);
+            const backupSrc = isEn ? (v.videoFileKo || v.videoFile) : (v.videoFileEn || v.videoFile);
 
-            document.getElementById('modal-title').innerText = isEn ? v.titleEn : v.titleKo;
-            document.getElementById('modal-detail').innerText = isEn ? v.detailEn : v.detailKo;
+            document.getElementById('modal-title').innerText = (isEn ? (v.titleEn || v.title) : (v.titleKo || v.title)) || "";
+            document.getElementById('modal-detail').innerText = (isEn ? (v.detailEn || v.detail) : (v.detailKo || v.detail)) || "";
             document.getElementById('fb-desc').innerHTML = `${u.fbDescPrefix}<strong style="color:#fff;">${primarySrc}</strong>${u.fbDescSuffix}`;
 
             fallback.style.display = 'none';
@@ -766,7 +808,6 @@
             modal.classList.remove('open');
         }
 
-        // 초기 진입은 영어(EN) 기본
         setLang('en');
     </script>
 </body>
