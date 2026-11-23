@@ -1,773 +1,126 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V-Memory Corp. | 0T0C Ferroelectric Domain-Wall Memory (FDWM)</title>
-    <meta name="description" content="V-Memory Corp. develops 0T0C Ferroelectric Domain-Wall Memory (FDWM), V-Line, and Compute-In-Vmemory (CIV) architectures for AI data centers and Physical AI. 78 patent applications, 55 registered patents, 6 peer-reviewed papers.">
-    <link rel="icon" type="image/png" href="ViVI_Plogo.png">
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "V-Memory Corp.",
-      "url": "https://vmemory.net",
-      "logo": "https://vmemory.net/ViVI_Plogo.png",
-      "email": "vmemory@vmemory.net",
-      "sameAs": ["https://www.youtube.com/@v-memorycorp.3068"],
-      "description": "V-Memory Corp. is a semiconductor technology company developing 0T0C Ferroelectric Domain-Wall Memory (FDWM) and V-Line conductive domain-wall current-path control. Official status: TRL 4 completed, entering TRL 5 wafer validation. Holds 78 patent applications and 55 registered patents (including US, JP, CN) with 6 peer-reviewed scientific publications.",
-      "knowsAbout": ["Ferroelectric Domain-Wall Memory (FDWM)", "0T0C Memory Cell", "V-Line", "VLCC", "NDRO", "PUF", "Compute-In-Vmemory (CIV)", "Physical AI"]
-    }
-    </script>
-
-    <style>
-        :root {
-            --bg-dark: #04070f;
-            --bg-card: rgba(13, 21, 38, 0.78);
-            --accent: #00d2ff;
-            --accent-glow: rgba(0, 210, 255, 0.35);
-            --text-main: #f1f5f9;
-            --text-sub: #94a3b8;
-            --border: rgba(0, 210, 255, 0.25);
+// ==========================================
+// [V-MEMORY 전광판 v7] EN 기본 + KO 스위처 (텍스트 & 영상 매핑)
+// ==========================================
+const VMEMORY_DATA = {
+    metrics: {
+        en: {
+            trlStatus: "TRL 4 Done → Entering TRL 5",
+            patentApplied: "78 Filings",
+            patentRegistered: "55 Granted",
+            globalRegistered: "8 Global (~20 Families)",
+            papersCount: "6 SCI Papers",
+            lastUpdated: "Nov 2026"
+        },
+        ko: {
+            trlStatus: "TRL 4 완료 → TRL 5 실증 진입",
+            patentApplied: "78건 출원",
+            patentRegistered: "55건 등록",
+            globalRegistered: "8건 (약 20개 패밀리)",
+            papersCount: "6편 (SCI급)",
+            lastUpdated: "2026.11"
         }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            line-height: 1.65;
-            overflow-x: hidden;
-            word-break: keep-all;
+    },
+
+    // 6단계 15초 브리핑 (videoFileEn / videoFileKo 각각 지정 가능, 미존재 시 자동 대체)
+    videos: [
+        {
+            id: "v1",
+            badgeEn: "Q1 · 15s Primer",
+            badgeKo: "Q1 · 15초 기초 입문",
+            titleEn: "Before 0T0C: Understanding Conventional DRAM's '1T1C' Cell",
+            titleKo: "0T0C를 이해하기 위한 첫걸음: 기존 DRAM의 '1T1C' 구조란?",
+            descEn: "A quick look at the standard 1-transistor, 1-capacitor (1T1C) memory cell and its scaling and power limits.",
+            descKo: "트랜지스터(1T)와 커패시터(1C) 기반 기존 메모리 구조와 미세화·전력 한계를 먼저 짚어봅니다.",
+            videoFileEn: "video_01.mp4",
+            videoFileKo: "video_01.mp4",
+            poster: "thumb_01.jpg",
+            fallbackPoster: "Venus.png",
+            detailEn: "Conventional DRAM stores a bit using a switch (1T) and a charge-storage capacitor (1C). Understanding this baseline highlights how controlling ferroelectric domain-wall current paths without 1T1C differs.",
+            detailKo: "기존 DRAM은 스위치(1T)와 전하 저장통(1C)으로 1비트를 다룹니다. 트랜지스터와 커패시터 구조의 한계를 알면 도메인월 전류 경로를 제어하는 V-Memory의 차별점이 분명해집니다."
+        },
+        {
+            id: "v2",
+            badgeEn: "Q2 · 15s Core Principle ①",
+            badgeKo: "Q2 · 15초 핵심 원리 ①",
+            titleEn: "Controlling Domain-Wall Current Paths Instead of Stored Charge",
+            titleKo: "전하 대신 '도메인월 전류 경로'를 제어하는 FDWM",
+            descEn: "How voltage pulses create, remove, and modulate conductive domain-wall paths inside ferroelectric materials.",
+            descKo: "강유전체 내부 분극 경계(도메인월)를 따라 흐르는 전류 경로를 전압으로 제어하는 원리.",
+            videoFileEn: "video_02.mp4",
+            videoFileKo: "video_02.mp4",
+            poster: "thumb_02.jpg",
+            fallbackPoster: "Venus_Model_m.jpg",
+            detailEn: "Voltage pulses form or erase conductive domain-wall paths and read current differences for non-volatile storage and non-destructive readout (NDRO).",
+            detailKo: "전압 펄스로 전기의 길(도메인월 경로)을 생성·소멸시키고, 흐르는 전류 차이를 읽어 비휘발성 저장과 비파괴 읽기(NDRO)를 지향합니다."
+        },
+        {
+            id: "v3",
+            badgeEn: "Q3 · 15s Core Principle ②",
+            badgeKo: "Q3 · 15초 핵심 원리 ②",
+            titleEn: "Multi-Line (nDW) & V-Line: Scaling Conductive Paths",
+            titleKo: "도로 차선을 늘리듯 멀티라인(nDW) & V-Line 확장",
+            descEn: "Expanding current signal margins and multi-state potential by controlling multiple domain-wall paths (1DW → nDW).",
+            descKo: "단일 선을 넘어 멀티라인(1DW→nDW) 전류 경로 제어로 다중 상태와 신호 여유를 넓히는 구조.",
+            videoFileEn: "video_03.mp4",
+            videoFileKo: "video_03.mp4",
+            poster: "thumb_03.jpg",
+            fallbackPoster: "Venus.png",
+            detailEn: "Modulating the number of domain-wall conduction paths (1DW to nDW) enables scalable current levels and multi-state storage concepts within a cell.",
+            detailKo: "전극 사이 전류 경로 수(nDW)를 제어하면 전류 신호 수준을 확장할 수 있습니다. 이는 고집적·고신뢰 메모리 및 다중 상태 구현의 핵심 기반입니다."
+        },
+        {
+            id: "v4",
+            badgeEn: "Q4 · 15s Market Bottleneck",
+            badgeKo: "Q4 · 15초 시장 돌파",
+            titleEn: "Beyond Stacked HBM: Addressing Power, Heat & Packaging Limits",
+            titleKo: "적층의 한계에 부딪힌 HBM, 그 다음 도약을 위한 해법은?",
+            descEn: "Why AI data centers need low-power non-volatile memory innovation beyond conventional stacked DRAM/HBM.",
+            descKo: "DRAM 적층 기반 HBM의 전력·발열·패키징 부담을 줄일 차세대 비휘발성 메모리 비전.",
+            videoFileEn: "video_04.mp4",
+            videoFileKo: "video_04.mp4",
+            poster: "thumb_04.jpg",
+            fallbackPoster: "Venus_Model_m.jpg",
+            detailEn: "To ease data-center power and thermal pressure, V-Memory explores non-volatile domain-wall architectures without periodic refresh overhead.",
+            detailKo: "AI 데이터센터의 전력과 냉각 부담을 완화하기 위해, 주기적 리프레시가 필요 없는 비휘발성·저전력 도메인월 아키텍처로의 전환을 모색합니다."
+        },
+        {
+            id: "v5",
+            badgeEn: "Q5 · 15s Hierarchy Integration",
+            badgeKo: "Q5 · 15초 계층 통합",
+            titleEn: "When Memory Moves at CPU Speed, System Structure Changes",
+            titleKo: "메모리가 CPU의 속도로 움직이면, 컴퓨터의 구조가 달라집니다",
+            descEn: "Simplifying multi-tier memory hierarchies and reducing data-movement bottlenecks across compute systems.",
+            descKo: "레지스터·캐시·DRAM·SSD 계층 간 데이터 이동 병목을 줄이는 메모리 통합 구상.",
+            videoFileEn: "video_05.mp4",
+            videoFileKo: "video_05.mp4",
+            poster: "thumb_05.jpg",
+            fallbackPoster: "Venus.png",
+            detailEn: "Reducing data shuttling across memory tiers supports high-efficiency architectures and future partner-led development and IP licensing after TRL 5.",
+            detailKo: "다단계 메모리 계층을 오가며 생기는 병목과 지연을 줄여, TRL 5 이후 파트너십 기반 공동개발 및 IP 라이선싱 모델로 확장합니다."
+        },
+        {
+            id: "v6",
+            badgeEn: "Q6 · 15s CIV & Physical AI",
+            badgeKo: "Q6 · 15초 CIV & 피지컬 AI",
+            titleEn: "The Robot Brain: Compute-In-Vmemory (CIV) for Physical AI",
+            titleKo: "로봇의 두뇌, 연산과 기억을 직접 결합하는 CIV 아키텍처",
+            descEn: "From virtual intelligence to embodied Physical AI—bringing memory closer to computation with CIV.",
+            descKo: "가상 AI에서 물리적 행동 AI(Physical AI)로! CIV가 여는 온디바이스 두뇌 아키텍처.",
+            videoFileEn: "video_06.mp4",
+            videoFileKo: "video_06.mp4",
+            poster: "thumb_06.jpg",
+            fallbackPoster: "Venus_Model_m.jpg",
+            detailEn: "From virtual intelligence to robots that sense and act, the next frontier is the brain. CIV brings memory closer to computation—a new vision for Physical AI.",
+            detailKo: "가상 지능에서 감지하고 행동하는 피지컬 AI로 나아가는 다음 프런티어는 두뇌입니다. CIV는 연산과 메모리를 가까이 결합해 온디바이스 지능을 뒷받침합니다."
         }
+    ],
 
-        header {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 14px 6%;
-            background: rgba(4, 7, 15, 0.9);
-            backdrop-filter: blur(14px);
-            border-bottom: 1px solid var(--border);
-            position: sticky; top: 0; z-index: 100; gap: 12px;
-        }
-        .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff; }
-        .brand img { width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--accent); box-shadow: 0 0 12px var(--accent-glow); }
-        .brand-text { font-size: 1.2rem; font-weight: 800; letter-spacing: 2px; }
-        .brand-text span { color: var(--accent); }
-        .nav-wrap { display: flex; gap: 18px; align-items: center; }
-        nav { display: flex; gap: 18px; align-items: center; }
-        nav a { color: var(--text-sub); text-decoration: none; font-size: 0.86rem; font-weight: 600; transition: 0.2s; white-space: nowrap; }
-        nav a:hover { color: var(--accent); }
-
-        .lang-switch {
-            display: inline-flex; border: 1px solid rgba(0, 210, 255, 0.45);
-            border-radius: 8px; overflow: hidden; background: rgba(0, 210, 255, 0.06);
-        }
-        .lang-btn {
-            background: transparent; border: none; color: var(--text-sub);
-            padding: 5px 10px; font-size: 0.76rem; font-weight: 800; cursor: pointer; transition: 0.2s;
-        }
-        .lang-btn.active { background: var(--accent); color: #04070f; }
-
-        .ai-pill {
-            padding: 6px 12px; border-radius: 20px; border: 1px solid var(--accent);
-            color: var(--accent) !important; background: rgba(0, 210, 255, 0.08); font-size: 0.78rem;
-            text-decoration: none; font-weight: 700; white-space: nowrap;
-        }
-        .ai-pill:hover { background: var(--accent); color: #04070f !important; }
-
-        .cinema-stage {
-            position: relative; width: 100%; height: calc(100vh - 67px); min-height: 520px;
-            background: #000; overflow: hidden;
-        }
-        .cinema-video { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .cinema-fade {
-            position: absolute; bottom: 0; left: 0; right: 0; height: 140px;
-            background: linear-gradient(to bottom, transparent, #04070f); pointer-events: none;
-        }
-        .scroll-cue {
-            position: absolute; bottom: 26px; left: 50%; transform: translateX(-50%); z-index: 5;
-            display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border-radius: 30px;
-            background: rgba(4, 7, 15, 0.72); border: 1px solid rgba(0, 210, 255, 0.55);
-            color: #fff; text-decoration: none; font-size: 0.84rem; font-weight: 700; letter-spacing: 1.2px;
-            backdrop-filter: blur(8px); box-shadow: 0 0 20px rgba(0, 210, 255, 0.25);
-            animation: floatCue 2s infinite ease-in-out; white-space: nowrap;
-        }
-        .scroll-cue span { color: var(--accent); }
-        @keyframes floatCue {
-            0%, 100% { transform: translate(-50%, 0); }
-            50% { transform: translate(-50%, 6px); }
-        }
-
-        section { padding: 76px 6%; max-width: 1280px; margin: 0 auto; }
-        .sec-tag { color: var(--accent); font-size: 0.8rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
-        .sec-title { font-size: 2.05rem; font-weight: 800; margin-bottom: 14px; color: #fff; line-height: 1.3; }
-        .sec-desc { color: var(--text-sub); max-width: 760px; margin-bottom: 40px; font-size: 1rem; }
-
-        .hero-wrap {
-            background: radial-gradient(circle at 25% 40%, rgba(0, 140, 255, 0.14), transparent 60%);
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-        }
-        .hero {
-            width: 100%; display: flex; flex-wrap: wrap; align-items: stretch; justify-content: space-between;
-            gap: 32px; padding: 72px 6% 80px; max-width: 1320px; margin: 0 auto;
-        }
-        .venus-box {
-            flex: 1 1 480px; position: relative; border-radius: 18px; overflow: hidden;
-            border: 1px solid rgba(0, 210, 255, 0.45); box-shadow: 0 0 45px rgba(0, 210, 255, 0.18);
-            background: #070d1a; display: flex; align-items: center; justify-content: center;
-            cursor: zoom-in; min-height: 360px;
-        }
-        .venus-box img { width: 100%; height: 100%; display: block; object-fit: contain; transition: 0.3s ease; }
-        .venus-box:hover img { transform: scale(1.015); }
-        .venus-badge {
-            position: absolute; bottom: 12px; left: 12px; right: 12px;
-            display: flex; justify-content: space-between; align-items: center;
-            background: rgba(4, 7, 15, 0.9); border-left: 3px solid var(--accent);
-            padding: 8px 14px; font-size: 0.78rem; border-radius: 0 8px 8px 0;
-        }
-        .zoom-hint { color: var(--accent); font-weight: 700; font-size: 0.75rem; white-space: nowrap; }
-
-        .hud {
-            flex: 1 1 460px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 18px;
-            padding: 32px; backdrop-filter: blur(14px); box-shadow: 0 12px 36px rgba(0,0,0,0.5);
-            display: flex; flex-direction: column; justify-content: space-between;
-        }
-        .hud-title { font-size: 1.56rem; font-weight: 800; line-height: 1.35; margin-bottom: 14px; color: #fff; }
-        .hud-text { color: #e2e8f0; font-size: 0.94rem; line-height: 1.72; margin-bottom: 16px; }
-        .hud-point {
-            background: rgba(0, 210, 255, 0.08); border-left: 3px solid var(--accent);
-            padding: 11px 14px; border-radius: 0 8px 8px 0; font-size: 0.85rem; color: #bae6fd; margin-bottom: 22px;
-        }
-        .btn-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-        .hud-btn {
-            background: rgba(0, 210, 255, 0.08); border: 1px solid rgba(0, 210, 255, 0.35);
-            color: #fff; padding: 12px 12px; border-radius: 10px; font-size: 0.82rem; font-weight: 700;
-            cursor: pointer; transition: 0.2s; text-align: left;
-        }
-        .hud-btn:hover, .hud-btn.active { background: var(--accent); color: #04070f; box-shadow: 0 0 18px var(--accent-glow); }
-
-        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 22px; }
-        .v-card {
-            background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
-            overflow: hidden; cursor: pointer; transition: 0.25s; display: flex; flex-direction: column;
-        }
-        .v-card:hover { transform: translateY(-6px); border-color: var(--accent); box-shadow: 0 10px 30px rgba(0, 210, 255, 0.18); }
-        .v-thumb { position: relative; height: 185px; overflow: hidden; background: #0b1324; }
-        .v-thumb img { width: 100%; height: 100%; object-fit: cover; opacity: 0.84; transition: 0.3s; }
-        .v-card:hover .v-thumb img { opacity: 1; transform: scale(1.04); }
-        .play-icon {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            width: 50px; height: 50px; border-radius: 50%; background: rgba(0, 210, 255, 0.92); color: #04070f;
-            display: flex; align-items: center; justify-content: center; font-size: 1.15rem; font-weight: 900;
-            box-shadow: 0 0 20px var(--accent);
-        }
-        .v-body { padding: 20px; flex: 1; }
-        .v-badge { font-size: 0.75rem; color: var(--accent); font-weight: 700; margin-bottom: 8px; }
-        .v-title { font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 8px; line-height: 1.4; }
-        .v-desc { font-size: 0.86rem; color: var(--text-sub); }
-
-        .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 20px; }
-        .t-card {
-            background: var(--bg-card); border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 14px; padding: 26px; transition: 0.2s;
-        }
-        .t-card:hover { border-color: var(--accent); }
-        .t-card h3 { color: var(--accent); font-size: 1.1rem; margin-bottom: 10px; }
-        .t-card p { color: #cbd5e1; font-size: 0.91rem; }
-
-        .metric-bar {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;
-        }
-        .m-box {
-            background: linear-gradient(145deg, rgba(0,210,255,0.09), rgba(13,21,38,0.85));
-            border: 1px solid var(--border); border-radius: 14px; padding: 22px 16px;
-            text-align: center; display: flex; flex-direction: column; justify-content: center;
-        }
-        .m-val { font-size: 1.22rem; font-weight: 800; color: #fff; margin-bottom: 6px; line-height: 1.35; }
-        .m-lbl { font-size: 0.82rem; color: var(--accent); font-weight: 600; }
-
-        .paper-list { display: grid; gap: 12px; }
-        .paper-item {
-            background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.07);
-            border-left: 3px solid var(--accent); border-radius: 10px;
-            padding: 16px 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;
-        }
-        .paper-title { color: #e2e8f0; font-size: 0.92rem; font-weight: 600; flex: 1 1 500px; }
-        .paper-meta { font-size: 0.8rem; color: var(--accent); font-weight: 700; white-space: nowrap; }
-
-        .contact-card {
-            background: linear-gradient(135deg, rgba(15,23,42,0.9), rgba(0,55,100,0.32));
-            border: 1px solid var(--border); border-radius: 18px; padding: 34px 38px;
-            display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px;
-        }
-        .contact-info { flex: 1 1 460px; }
-        .contact-info p { color: #cbd5e1; font-size: 0.95rem; line-height: 1.65; }
-        .contact-note { margin-top: 10px; font-size: 0.83rem; color: var(--text-sub); }
-        .contact-btn {
-            display: inline-block; padding: 14px 26px; border-radius: 10px;
-            background: var(--accent); color: #04070f; font-weight: 800;
-            text-decoration: none; font-size: 0.95rem; box-shadow: 0 0 22px var(--accent-glow); transition: 0.2s;
-            white-space: nowrap;
-        }
-        .contact-btn:hover { transform: scale(1.03); background: #fff; }
-
-        .loc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 24px; font-size: 0.86rem; color: var(--text-sub); }
-        .loc-item { background: rgba(255,255,255,0.03); padding: 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.06); }
-        .loc-item strong { color: #fff; display: block; margin-bottom: 4px; }
-
-        .modal {
-            display: none; position: fixed; inset: 0; z-index: 999;
-            background: rgba(2, 5, 12, 0.92); backdrop-filter: blur(8px);
-            align-items: center; justify-content: center; padding: 16px;
-        }
-        .modal.open { display: flex; }
-        .modal-content {
-            background: #0b1222; border: 1px solid var(--accent); border-radius: 18px;
-            max-width: 820px; width: 100%; overflow: hidden; box-shadow: 0 0 50px rgba(0,210,255,0.25);
-        }
-        .modal-head { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; border-bottom: 1px solid var(--border); }
-        .close-btn { background: none; border: none; color: #fff; font-size: 1.6rem; cursor: pointer; }
-        .video-stage { width: 100%; background: #000; position: relative; aspect-ratio: 16 / 9; display: flex; align-items: center; justify-content: center; }
-        .video-stage video { width: 100%; height: 100%; object-fit: cover; }
-        .video-fallback {
-            display: none; position: absolute; inset: 0; background: rgba(4,7,15,0.88);
-            flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px;
-        }
-        .modal-body { padding: 20px; color: #cbd5e1; font-size: 0.92rem; }
-        .zoom-img-stage { width: 100%; max-height: 82vh; background: #04070f; display: flex; align-items: center; justify-content: center; padding: 12px; }
-        .zoom-img-stage img { max-width: 100%; max-height: 78vh; object-fit: contain; border-radius: 8px; }
-
-        footer {
-            border-top: 1px solid rgba(255,255,255,0.07); padding: 36px 6%;
-            text-align: center; font-size: 0.82rem; color: #64748b;
-        }
-        .legacy-vet {
-            display: inline-block; margin-top: 10px; padding: 4px 12px; border-radius: 12px;
-            background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
-            font-size: 0.74rem; color: #64748b;
-        }
-
-        @media (max-width: 900px) {
-            nav { display: none; }
-        }
-        @media (max-width: 768px) {
-            header { padding: 12px 5%; }
-            .cinema-stage { height: calc(100svh - 62px); min-height: 480px; }
-            section { padding: 54px 5%; }
-            .hero { padding: 44px 5% 56px; gap: 24px; }
-            .venus-box { min-height: 230px; }
-            .hud { padding: 24px 20px; }
-            .hud-title { font-size: 1.35rem; }
-            .sec-title { font-size: 1.52rem; }
-            .btn-grid { grid-template-columns: 1fr; }
-            .contact-card { padding: 28px 22px; }
-            .contact-btn { width: 100%; text-align: center; }
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <a href="#" class="brand">
-            <img src="ViVI_Plogo.png" alt="V-Memory Emblem">
-            <div class="brand-text"><span>V</span>-MEMORY</div>
-        </a>
-        <div class="nav-wrap">
-            <nav>
-                <a href="#venus-host" id="nav-story">Architecture</a>
-                <a href="#briefing" id="nav-brief">15s Briefings</a>
-                <a href="#tech" id="nav-tech">Technology</a>
-                <a href="#ip" id="nav-ip">Patents</a>
-                <a href="#papers" id="nav-papers">SCI Papers</a>
-                <a href="#contact" id="nav-contact">Email Inquiry</a>
-            </nav>
-            <div class="lang-switch" aria-label="Language Selector">
-                <button type="button" class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
-                <button type="button" class="lang-btn" id="btn-ko" onclick="setLang('ko')">KO</button>
-            </div>
-            <a href="llms/" class="ai-pill">/llms/</a>
-        </div>
-    </header>
-
-    <div class="cinema-stage">
-        <video id="hero-bg-video" class="cinema-video" autoplay muted loop playsinline poster="Venus.png"></video>
-        <div class="cinema-fade"></div>
-        <a href="#venus-host" class="scroll-cue" id="scroll-cue-btn"><span>▼</span> EXPLORE V-MEMORY</a>
-    </div>
-
-    <div class="hero-wrap" id="venus-host">
-        <div class="hero">
-            <div class="venus-box" onclick="openImgZoom()" id="venus-box-el">
-                <img id="venus-img" src="slide_01.png" onerror="this.src='Venus.png'" alt="V-Memory Architecture Diagram">
-                <div class="venus-badge">
-                    <span id="img-caption"></span>
-                    <span class="zoom-hint" id="zoom-hint-text">🔍 Zoom</span>
-                </div>
-            </div>
-            <div class="hud">
-                <div>
-                    <div class="sec-tag" id="hud-tag"></div>
-                    <h1 class="hud-title" id="hud-title"></h1>
-                    <p class="hud-text" id="hud-text"></p>
-                    <div class="hud-point" id="hud-point"></div>
-                </div>
-                <div class="btn-grid" id="hud-btn-grid">
-                    <button type="button" class="hud-btn active" data-key="s1" onclick="selectHost('s1', this)"></button>
-                    <button type="button" class="hud-btn" data-key="s2" onclick="selectHost('s2', this)"></button>
-                    <button type="button" class="hud-btn" data-key="s3" onclick="selectHost('s3', this)"></button>
-                    <button type="button" class="hud-btn" data-key="s4" onclick="selectHost('s4', this)"></button>
-                    <button type="button" class="hud-btn" data-key="s5" onclick="selectHost('s5', this)"></button>
-                    <button type="button" class="hud-btn" data-key="s6" onclick="selectHost('s6', this)"></button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <section id="briefing">
-        <div class="sec-tag" id="brief-tag"></div>
-        <h2 class="sec-title" id="brief-title"></h2>
-        <p class="sec-desc" id="brief-desc"></p>
-        <div class="video-grid" id="video-grid"></div>
-    </section>
-
-    <section id="tech">
-        <div class="sec-tag" id="tech-tag"></div>
-        <h2 class="sec-title" id="tech-title"></h2>
-        <p class="sec-desc" id="tech-desc"></p>
-        <div class="tech-grid" id="tech-grid"></div>
-    </section>
-
-    <section id="ip" style="padding-bottom: 40px;">
-        <div class="sec-tag" id="ip-tag"></div>
-        <h2 class="sec-title" id="ip-title"></h2>
-        <p class="sec-desc" id="ip-desc"></p>
-
-        <div class="metric-bar">
-            <div class="m-box"><div class="m-val" id="m-trl">-</div><div class="m-lbl" id="lbl-trl"></div></div>
-            <div class="m-box"><div class="m-val" id="m-pat-app">-</div><div class="m-lbl" id="lbl-app"></div></div>
-            <div class="m-box"><div class="m-val" id="m-pat-reg">-</div><div class="m-lbl" id="lbl-reg"></div></div>
-            <div class="m-box"><div class="m-val" id="m-global">-</div><div class="m-lbl" id="lbl-global"></div></div>
-        </div>
-    </section>
-
-    <section id="papers" style="padding-top: 36px; border-top: 1px solid rgba(0, 210, 255, 0.14);">
-        <div class="sec-tag" id="papers-tag"></div>
-        <h2 class="sec-title" id="papers-title"></h2>
-        <p class="sec-desc" id="papers-desc"></p>
-        <div class="paper-list" id="paper-list"></div>
-    </section>
-
-    <section id="contact">
-        <div class="contact-card">
-            <div class="contact-info">
-                <div class="sec-tag" id="contact-tag"></div>
-                <h2 class="sec-title" id="contact-title" style="margin-bottom:10px;"></h2>
-                <p id="contact-body"></p>
-                <div class="contact-note" id="contact-note"></div>
-            </div>
-            <a href="mailto:vmemory@vmemory.net?subject=[V-Memory]%20Inquiry" class="contact-btn" id="contact-btn-el"></a>
-        </div>
-
-        <div class="loc-grid" id="loc-grid"></div>
-    </section>
-
-    <footer>
-        <div id="footer-copy"></div>
-        <div class="legacy-vet">Legacy Energy R&D Archive: V-ET (Thermoelectric Device, zT 1.3)</div>
-    </footer>
-
-    <div class="modal" id="video-modal" onclick="if(event.target===this) closeVideo()">
-        <div class="modal-content">
-            <div class="modal-head">
-                <strong id="modal-title" style="color:#fff;"></strong>
-                <button type="button" class="close-btn" onclick="closeVideo()">&times;</button>
-            </div>
-            <div class="video-stage">
-                <video id="modal-video" controls autoplay playsinline></video>
-                <div class="video-fallback" id="video-fallback">
-                    <div style="color:var(--accent); font-weight:700; margin-bottom:8px;" id="fb-title"></div>
-                    <p style="font-size:0.88rem; color:#cbd5e1;" id="fb-desc"></p>
-                </div>
-            </div>
-            <div class="modal-body" id="modal-detail"></div>
-        </div>
-    </div>
-
-    <div class="modal" id="img-modal" onclick="if(event.target===this) closeImgZoom()">
-        <div class="modal-content" style="max-width: 1020px;">
-            <div class="modal-head">
-                <strong id="zoom-title" style="color:#fff;"></strong>
-                <button type="button" class="close-btn" onclick="closeImgZoom()">&times;</button>
-            </div>
-            <div class="zoom-img-stage">
-                <img id="zoom-img" src="" alt="Expanded Diagram">
-            </div>
-        </div>
-    </div>
-
-    <script src="data.js"></script>
-    <script>
-        let currentLang = "en";
-        let currentSlideKey = "s1";
-
-        const UI_TEXT = {
-            en: {
-                navStory: "Architecture", navBrief: "15s Briefings", navTech: "Technology",
-                navIp: "Patents", navPapers: "SCI Papers", navContact: "Email Inquiry",
-                scrollCue: "EXPLORE V-MEMORY",
-                zoomHint: "🔍 Zoom", zoomTitleAttr: "Click to enlarge diagram",
-                briefTag: "INTERACTIVE 15s AI BRIEFING",
-                briefTitle: "Short 15-Second Visual Briefings",
-                briefDesc: "Explore V-Memory step by step—from conventional 1T1C memory to domain-wall control, HBM bottlenecks, and Compute-In-Vmemory (CIV).",
-                techTag: "CORE TECHNOLOGY // FDWM & V-LINE",
-                techTitle: "Controlling Conductive Domain-Wall Paths (V-Line)",
-                techDesc: "Rather than storing charge alone, V-Memory controls domain-wall current paths inside ferroelectric materials.",
-                techCards: [
-                    { h: "01. 0T0C & V-Line Control", p: "Designed without conventional per-cell transistors or capacitors, forming and removing domain-wall current paths (V-Line) for non-destructive readout (NDRO) potential." },
-                    { h: "02. Multi-Line (nDW) Scaling", p: "Modulating multiple domain-wall conduction paths (1DW → nDW) to scale current signals and support multi-state memory concepts." },
-                    { h: "03. Streamlined Cell Process", p: "Targeting roughly one-sixth the complexity of conventional flash processes while leveraging ferroelectric materials and existing semiconductor tools." },
-                    { h: "04. Data-Center Power & Cooling", p: "Addressing data-center power and thermal overhead (IT 66%, cooling/facility 34%, avg. PUE 1.52) from memory optimization to CIV expansion." },
-                    { h: "05. CIV for Physical AI", p: "Bringing compute closer to memory with Compute-In-Vmemory (CIV) for low-latency, low-power on-device intelligence and robotics." },
-                    { h: "06. JDA & IP Licensing", p: "Following TRL 5 validation, pursuing joint development (JDA), technology transfer, and IP licensing with semiconductor and system partners." }
-                ],
-                ipTag: "PATENT PORTFOLIO & TRL STATUS",
-                ipTitle: "Patents as Shield, Structured IP Portfolio",
-                ipDescPrefix: "Protecting core architectural concepts through domestic and global filings. Updated: ",
-                lblTrl: "Maturity Status", lblApp: "Patent Filings", lblReg: "Granted Patents", lblGlobal: "Global & Families",
-                papersTag: "SCI-LEVEL PUBLICATIONS (2021–2025)",
-                papersTitle: "Peer-Reviewed Scientific Foundation",
-                papersDesc: "Six peer-reviewed papers examining ferroelectric domain-wall conduction and non-volatile switching behavior.",
-                contactTag: "CONTACT",
-                contactTitle: "Email Inquiry",
-                contactBody: "Reach out by email for technical discussions, joint development, partnerships, or investment inquiries.<br>Detailed IR materials, team profiles, and confidential technical data are shared after NDA execution.",
-                contactNote: "※ Direct IR file downloads are not available on the public site.",
-                contactBtn: "Email Inquiry →",
-                contactSubject: "[V-Memory]%20Email%20Inquiry",
-                locs: [
-                    { t: "Headquarters (CA)", d: "6F A, 165 Yeoksam-ro, Gangnam-gu, Seoul" },
-                    { t: "V-Design Lab", d: "Room 128, Lab-03, ICS, 42 Changeop-ro, Sujeong-gu, Seongnam-si" },
-                    { t: "R&D Lab", d: "Lab A-109, Kyung Hee University Global Campus" },
-                    { t: "Official Channels", d: 'Email: vmemory@vmemory.net<br>YouTube: <a href="https://www.youtube.com/@v-memorycorp.3068" target="_blank" style="color:var(--accent);">@v-memorycorp.3068</a>' }
-                ],
-                footerCopy: '© 2026 V-Memory Corp. All Rights Reserved. | AI Reference: <a href="llms/" style="color:var(--accent);">vmemory.net/llms/</a>',
-                fbTitle: "🎬 15s Video Slot Ready",
-                fbDescPrefix: "Upload ",
-                fbDescSuffix: " to the repository to play this briefing in the modal."
-            },
-            ko: {
-                navStory: "핵심 스토리", navBrief: "15초 브리핑", navTech: "핵심 기술",
-                navIp: "특허", navPapers: "SCI 논문", navContact: "이메일 문의",
-                scrollCue: "V-MEMORY 탐색하기",
-                zoomHint: "🔍 클릭 확대", zoomTitleAttr: "클릭하면 도표를 크게 볼 수 있습니다",
-                briefTag: "INTERACTIVE 15s AI BRIEFING",
-                briefTitle: "궁금한 주제를 누르면, 15초 영상이 직관적으로 답해드립니다",
-                briefDesc: "1T1C 기초부터 0T0C 도메인월 원리, HBM의 한계 돌파까지 6단계 핵심 영상을 차례대로 확인해 보세요.",
-                techTag: "CORE TECHNOLOGY // FDWM & V-LINE",
-                techTitle: "전기가 흐르는 미세한 길(V-Line)을 제어합니다",
-                techDesc: "기존 메모리처럼 전자를 가두는 방식이 아니라, 강유전체 내부 분극 경계(도메인월)를 따라 흐르는 전류 경로를 제어하는 아키텍처입니다.",
-                techCards: [
-                    { h: "01. 0T0C & V-Line 제어", p: "셀당 트랜지스터·커패시터 구조를 배제한 접근으로, 도메인월 전류 경로(V-Line) 제어와 비파괴 읽기(NDRO) 가능성을 지향합니다." },
-                    { h: "02. 도로 차선을 늘리듯 멀티라인(nDW)", p: "전극 사이 전류 경로 수(1DW → nDW) 조절을 통해 전류 신호 수준 확장과 다중 상태 구현 가능성을 연구합니다." },
-                    { h: "03. 1/6 초심플 양산 공정", p: "기존 플래시 공정 대비 약 1/6 수준의 단순화된 셀 공정을 지향하며, 강유전체 기반 및 기존 반도체 장비 활용을 목표로 합니다." },
-                    { h: "04. AI 데이터센터 전력·냉각 혁신", p: "IT 장비(66%)와 냉각·설비(34%, 평균 PUE 1.52)로 나뉜 데이터센터 전력 구조를 메모리 최적화부터 CIV 확장까지 단계적으로 개선합니다." },
-                    { h: "05. 로봇의 두뇌, CIV 아키텍처", p: "연산과 메모리를 근접 통합하는 CIV(Compute-In-Vmemory) 구상으로 온디바이스 AI 및 로봇의 저지연·저전력 두뇌로 확장합니다." },
-                    { h: "06. IP 라이선싱 & 공동개발(JDA)", p: "TRL 5 검증 이후 반도체 제조·응용 파트너와의 공동 검증, 공동개발(JDA), 기술이전 및 IP 라이선싱 사업을 추진합니다." }
-                ],
-                ipTag: "PATENT PORTFOLIO & TRL STATUS",
-                ipTitle: "특허는 방패, 검증된 원천 IP 포트폴리오",
-                ipDescPrefix: "국내외 출원 및 등록 특허를 통해 기술적 권리와 사업화 기반을 보호합니다. (기준: ",
-                lblTrl: "공식 개발 단계", lblApp: "국내외 특허 출원", lblReg: "특허 등록", lblGlobal: "해외 특허 & 패밀리",
-                papersTag: "SCI-LEVEL PUBLICATIONS (2021–2025)",
-                papersTitle: "논문은 신뢰, 물리적 근거를 증명하다",
-                papersDesc: "강유전체 도메인월 전도 특성과 비휘발성 메모리 동작 원리를 다룬 국제 학술지(SCI급) 논문 6편입니다.",
-                contactTag: "CONTACT",
-                contactTitle: "이메일 문의",
-                contactBody: "기술 협의, 공동 개발, 파트너십 및 투자 관련 문의는 공식 이메일로 접수합니다.<br>상세 투자 IR 자료, 팀원 정보 및 주요 기술 자료는 NDA 체결 후 공개합니다.",
-                contactNote: "※ IR 파일 직접 다운로드는 제공하지 않습니다.",
-                contactBtn: "이메일 문의 →",
-                contactSubject: "[V-Memory]%20이메일%20문의",
-                locs: [
-                    { t: "Headquarters (CA)", d: "서울특별시 강남구 역삼로 165, 6층 A" },
-                    { t: "V-Design Lab", d: "경기도 성남시 수정구 창업로 42, ICS 128호 Lab-03" },
-                    { t: "R&D Lab", d: "경희대학교 국제캠퍼스 Lab A-109" },
-                    { t: "Official Channels", d: 'Email: vmemory@vmemory.net<br>YouTube: <a href="https://www.youtube.com/@v-memorycorp.3068" target="_blank" style="color:var(--accent);">@v-memorycorp.3068</a>' }
-                ],
-                footerCopy: '© 2026 V-Memory Corp. All Rights Reserved. | AI Reference: <a href="llms/" style="color:var(--accent);">vmemory.net/llms/</a>',
-                fbTitle: "🎬 15초 영상 슬롯 준비 완료",
-                fbDescPrefix: "저장소에 ",
-                fbDescSuffix: " 파일을 올리면 팝업에서 재생됩니다."
-            }
-        };
-
-        const SLIDE_DATA = {
-            s1: {
-                btnEn: "01. Memory Hierarchy", btnKo: "01. 메모리 계층 통합",
-                tagEn: "01. ARCHITECTURE // MEMORY HIERARCHY SIMPLIFICATION", tagKo: "01. ARCHITECTURE // MEMORY HIERARCHY SIMPLIFICATION",
-                titleEn: "When Memory Moves at CPU Speed, System Architecture Changes.",
-                titleKo: "메모리가 CPU의 속도로 움직이면, 컴퓨터의 구조가 달라집니다.",
-                textEn: "Conventional systems move data across registers, SRAM, DRAM, and flash/SSD tiers, creating data-movement bottlenecks. V-Memory aims to simplify memory tiers with non-volatile, high-speed, low-power operation.",
-                textKo: "기존 컴퓨팅은 레지스터·SRAM·DRAM·Flash/SSD 계층을 오가며 데이터 이동 병목을 겪습니다. V-Memory는 비휘발성·고속·저전력 특성을 추구해 메모리 계층을 단순화하는 통합 구상을 제시합니다.",
-                pointEn: "💡 Key Concept: Reducing multi-tier data movement eases von Neumann bottlenecks and improves system efficiency.",
-                pointKo: "💡 핵심 원리: 계층 간 불필요한 데이터 왕복을 줄여 병목을 완화하고 단일 메모리 계층으로 효율을 높입니다.",
-                img: "slide_01.png", fallbackImg: "Venus.png",
-                capEn: "FIG 01 // Legacy Memory Tiers vs. V-Memory Integration",
-                capKo: "FIG 01 // 기존 메모리 계층 vs V-Memory 통합 구상"
-            },
-            s2: {
-                btnEn: "02. 0T0C Domain Wall", btnKo: "02. 0T0C 도메인월 원리",
-                tagEn: "02. 0T0C CELL // DOMAIN-WALL CURRENT PATH CONTROL", tagKo: "02. 0T0C CELL // DOMAIN-WALL CURRENT PATH CONTROL",
-                titleEn: "From Storing Charge to Controlling Domain-Wall Current Paths.",
-                titleKo: "전하를 저장하는 방식에서, 전류가 흐르는 길을 제어하는 방식으로.",
-                textEn: "Charge-trapping memories face endurance and power trade-offs. V-Memory focuses on a 0T0C cell concept that controls conductive domain-wall paths inside ferroelectric layers.",
-                textKo: "전하 주입·소거 방식은 수명과 전력 측면에서 한계가 있습니다. V-Memory는 0T0C 셀 개념을 바탕으로 강유전체 내부 도메인월 전류 경로를 제어합니다.",
-                pointEn: "💡 Key Concept: Sensing domain-wall conduction supports non-destructive readout (NDRO) and low-energy operation.",
-                pointKo: "💡 핵심 원리: 도메인월 전도 경로 제어를 통해 비파괴 읽기(NDRO)와 저전력 동작을 지향합니다.",
-                img: "slide_02.png", fallbackImg: "Venus_Model_m.jpg",
-                capEn: "FIG 02 // V-Memory (Domain-Wall Control) vs. Flash Memory",
-                capKo: "FIG 02 // 브이메모리(도메인월 제어) vs 플래시 메모리"
-            },
-            s3: {
-                btnEn: "03. Streamlined Process", btnKo: "03. 1/6 초심플 양산 공정",
-                tagEn: "03. MANUFACTURABILITY // STREAMLINED CELL PROCESS", tagKo: "03. MANUFACTURABILITY // 1/6 초심플 양산 공정",
-                titleEn: "Higher Speed & Density Potential with a ~1/6 Simplified Process.",
-                titleKo: "DRAM보다 빠른 속도, Flash보다 높은 집적도, 공정은 약 1/6 수준!",
-                textEn: "V-Memory targets a streamlined cell process—roughly one-sixth of conventional flash steps—using ferroelectric materials and established semiconductor manufacturing equipment.",
-                textKo: "기존 플래시 공정 대비 약 1/6 수준으로 단순화된 셀 공정을 지향하며, 강유전체 기반과 기존 반도체 장비를 활용합니다.",
-                pointEn: "💡 Key Concept: Tool compatibility and simplified steps support scalability and cost efficiency.",
-                pointKo: "💡 핵심 원리: 기존 장비 호환성과 단순화된 공정으로 양산성과 원가 경쟁력을 추구합니다.",
-                img: "slide_03.png", fallbackImg: "Venus.png",
-                capEn: "FIG 03 // Performance Positioning & ~1/6 Process Concept",
-                capKo: "FIG 03 // 성능 포지셔닝 & 1/6 초심플 양산 공정"
-            },
-            s4: {
-                btnEn: "04. Data-Center Power", btnKo: "04. AI 데이터센터 전력 혁신",
-                tagEn: "04. AI DATA CENTER // POWER & COOLING INNOVATION", tagKo: "04. AI DATA CENTER // POWER & COOLING INNOVATION",
-                titleEn: "Reshaping AI Data-Center Power from the Memory Layer.",
-                titleKo: "AI 데이터센터, 메모리에서 시작해 전력 구조를 바꾸다",
-                textEn: "With data-center power split across IT equipment (66%) and cooling/facilities (34%, avg. PUE 1.52), V-Memory targets phased gains from memory optimization to cooling relief and CIV.",
-                textKo: "IT 장비(66%)와 냉각·설비(34%, 평균 PUE 1.52) 구조에서 메모리 최적화, 발열·냉각 완화, GPU·CIV 확장으로 이어지는 단계별 절감을 검증합니다.",
-                pointEn: "💡 Key Concept: Lowering data movement and refresh overhead helps curb heat and cooling load.",
-                pointKo: "💡 핵심 원리: 데이터 이동 감소와 리프레시 부담 완화로 발열·냉각 전력 부담을 줄입니다.",
-                img: "slide_04.png", fallbackImg: "Venus_Model_m.jpg",
-                capEn: "FIG 04 // Data-Center Power Split (PUE 1.52) & Phased Savings",
-                capKo: "FIG 04 // 데이터센터 전력 분포(PUE 1.52) & 단계별 절감 시나리오"
-            },
-            s5: {
-                btnEn: "05. CIV for Robotics", btnKo: "05. 로봇의 두뇌, CIV 아키텍처",
-                tagEn: "05. PHYSICAL AI // COMPUTE-IN-VMEMORY (CIV)", tagKo: "05. PHYSICAL AI // COMPUTE-IN-VMEMORY (CIV)",
-                titleEn: "The Robot Brain: Integrating Compute and Memory with CIV.",
-                titleKo: "로봇의 두뇌, 연산과 기억을 직접 결합하는 CIV 아키텍처",
-                textEn: "After TRL 5 validation, V-Memory expands into Compute-In-Vmemory (CIV) to bring compute closer to memory for responsive, low-power on-device Physical AI and robotics.",
-                textKo: "TRL 5 검증 이후 연산과 메모리를 가깝게 통합하는 CIV 아키텍처로 확장해 온디바이스 AI 및 자율 로봇 두뇌로 발전합니다.",
-                pointEn: "💡 Key Concept: Near-memory processing reduces latency and connectivity reliance in autonomous systems.",
-                pointKo: "💡 핵심 원리: 연산·기억 근접 통합으로 지연 시간을 줄이고 온디바이스 판단력을 높입니다.",
-                img: "slide_05.png", fallbackImg: "Venus.png",
-                capEn: "FIG 05 // CIV (Compute-In-Vmemory) & Physical AI Brain",
-                capKo: "FIG 05 // CIV (Compute-In-Vmemory) & 피지컬 AI 로봇 두뇌"
-            },
-            s6: {
-                btnEn: "06. SOM → SAM → TAM", btnKo: "06. SOM→SAM→TAM 시장 확장",
-                tagEn: "06. MARKET EXPANSION // SOM → SAM → TAM ROADMAP", tagKo: "06. MARKET EXPANSION // SOM → SAM → TAM ROADMAP",
-                titleEn: "Expanding from Non-Volatile Memory to a $3.4T Semiconductor Vision.",
-                titleKo: "비휘발성 메모리에서 시작해 $3.4T 시스템 반도체까지 확장",
-                textEn: "V-Memory outlines a phased expansion from non-volatile memory (SOM, ~$600B) to broader memory (SAM, ~$2.0T) and integrated memory-compute systems (TAM, ~$3.4T).",
-                textKo: "비휘발성 메모리(SOM, 약 $600B)에서 통합 메모리(SAM, 약 $2.0T), CIV 시스템 반도체(TAM, 약 $3.4T)로 이어지는 단계적 확장 전략입니다.",
-                pointEn: "💡 Key Concept: Combining core patents with partner collaborations and IP licensing models.",
-                pointKo: "💡 핵심 원리: 원천 특허 기반의 공동개발 및 IP 라이선싱 모델로 글로벌 시장을 확장합니다.",
-                img: "slide_06.png", fallbackImg: "Venus_Model_m.jpg",
-                capEn: "FIG 06 // SOM ($600B) → SAM ($2.0T) → TAM ($3.4T) Expansion",
-                capKo: "FIG 06 // SOM($600B) → SAM($2.0T) → TAM($3.4T) 시장 확장 전략"
-            }
-        };
-
-        const bgVideo = document.getElementById('hero-bg-video');
-        function loadBgVideo() {
-            const isMobile = window.innerWidth <= 768;
-            const targetSrc = isMobile ? "Venus.mp4" : "Venus%20in%20CIV.mp4";
-            if (!bgVideo.src.endsWith(targetSrc)) {
-                bgVideo.src = targetSrc;
-                bgVideo.onerror = () => {
-                    if (isMobile && !bgVideo.src.endsWith("Venus%20in%20CIV.mp4")) {
-                        bgVideo.src = "Venus%20in%20CIV.mp4";
-                    }
-                };
-                bgVideo.play().catch(() => {});
-            }
-        }
-        loadBgVideo();
-        window.addEventListener('resize', loadBgVideo);
-
-        function setLang(lang) {
-            currentLang = lang;
-            document.documentElement.lang = lang;
-            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-            document.getElementById('btn-ko').classList.toggle('active', lang === 'ko');
-
-            const u = UI_TEXT[lang];
-            document.getElementById('nav-story').innerText = u.navStory;
-            document.getElementById('nav-brief').innerText = u.navBrief;
-            document.getElementById('nav-tech').innerText = u.navTech;
-            document.getElementById('nav-ip').innerText = u.navIp;
-            document.getElementById('nav-papers').innerText = u.navPapers;
-            document.getElementById('nav-contact').innerText = u.navContact;
-            document.getElementById('scroll-cue-btn').innerHTML = `<span>▼</span> ${u.scrollCue}`;
-            document.getElementById('zoom-hint-text').innerText = u.zoomHint;
-            document.getElementById('venus-box-el').title = u.zoomTitleAttr;
-
-            document.querySelectorAll('#hud-btn-grid .hud-btn').forEach(btn => {
-                const k = btn.dataset.key;
-                btn.innerText = lang === 'en' ? SLIDE_DATA[k].btnEn : SLIDE_DATA[k].btnKo;
-            });
-            renderSlide(currentSlideKey);
-
-            document.getElementById('brief-tag').innerText = u.briefTag;
-            document.getElementById('brief-title').innerText = u.briefTitle;
-            document.getElementById('brief-desc').innerText = u.briefDesc;
-            renderVideos();
-
-            document.getElementById('tech-tag').innerText = u.techTag;
-            document.getElementById('tech-title').innerText = u.techTitle;
-            document.getElementById('tech-desc').innerText = u.techDesc;
-            document.getElementById('tech-grid').innerHTML = u.techCards.map(c =>
-                `<div class="t-card"><h3>${c.h}</h3><p>${c.p}</p></div>`
-            ).join('');
-
-            const m = VMEMORY_DATA.metrics[lang];
-            document.getElementById('ip-tag').innerText = u.ipTag;
-            document.getElementById('ip-title').innerText = u.ipTitle;
-            document.getElementById('ip-desc').innerText = `${u.ipDescPrefix}${m.lastUpdated})`;
-            document.getElementById('lbl-trl').innerText = u.lblTrl;
-            document.getElementById('lbl-app').innerText = u.lblApp;
-            document.getElementById('lbl-reg').innerText = u.lblReg;
-            document.getElementById('lbl-global').innerText = u.lblGlobal;
-            document.getElementById('m-trl').innerText = m.trlStatus;
-            document.getElementById('m-pat-app').innerText = m.patentApplied;
-            document.getElementById('m-pat-reg').innerText = m.patentRegistered;
-            document.getElementById('m-global').innerText = m.globalRegistered;
-
-            document.getElementById('papers-tag').innerText = u.papersTag;
-            document.getElementById('papers-title').innerText = u.papersTitle;
-            document.getElementById('papers-desc').innerText = u.papersDesc;
-
-            document.getElementById('contact-tag').innerText = u.contactTag;
-            document.getElementById('contact-title').innerText = u.contactTitle;
-            document.getElementById('contact-body').innerHTML = u.contactBody;
-            document.getElementById('contact-note').innerText = u.contactNote;
-            document.getElementById('contact-btn-el').innerText = u.contactBtn;
-            document.getElementById('contact-btn-el').href = `mailto:vmemory@vmemory.net?subject=${u.contactSubject}`;
-            document.getElementById('loc-grid').innerHTML = u.locs.map(l =>
-                `<div class="loc-item"><strong>${l.t}</strong>${l.d}</div>`
-            ).join('');
-
-            document.getElementById('footer-copy').innerHTML = u.footerCopy;
-            document.getElementById('fb-title').innerText = u.fbTitle;
-        }
-
-        function renderSlide(key) {
-            const d = SLIDE_DATA[key];
-            const isEn = currentLang === 'en';
-            document.getElementById('hud-tag').innerText = isEn ? d.tagEn : d.tagKo;
-            document.getElementById('hud-title').innerText = isEn ? d.titleEn : d.titleKo;
-            document.getElementById('hud-text').innerText = isEn ? d.textEn : d.textKo;
-            document.getElementById('hud-point').innerHTML = isEn ? d.pointEn : d.pointKo;
-            document.getElementById('img-caption').innerText = isEn ? d.capEn : d.capKo;
-
-            const imgEl = document.getElementById('venus-img');
-            imgEl.onerror = () => { imgEl.src = d.fallbackImg; };
-            imgEl.src = d.img;
-        }
-
-        function selectHost(key, btn) {
-            currentSlideKey = key;
-            document.querySelectorAll('#hud-btn-grid .hud-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            renderSlide(key);
-        }
-
-        function renderVideos() {
-            const isEn = currentLang === 'en';
-            const grid = document.getElementById('video-grid');
-            grid.innerHTML = '';
-            VMEMORY_DATA.videos.forEach(v => {
-                const card = document.createElement('div');
-                card.className = 'v-card';
-                card.onclick = () => openVideo(v);
-                const badge = isEn ? v.badgeEn : v.badgeKo;
-                const title = isEn ? v.titleEn : v.titleKo;
-                const desc = isEn ? v.descEn : v.descKo;
-                card.innerHTML = `
-                    <div class="v-thumb">
-                        <img src="${v.poster}" onerror="this.src='${v.fallbackPoster || 'Venus.png'}'" alt="${title}">
-                        <div class="play-icon">▶</div>
-                    </div>
-                    <div class="v-body">
-                        <div class="v-badge">${badge}</div>
-                        <div class="v-title">${title}</div>
-                        <div class="v-desc">${desc}</div>
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
-        }
-
-        const paperList = document.getElementById('paper-list');
-        VMEMORY_DATA.papers.forEach((p, idx) => {
-            const item = document.createElement('div');
-            item.className = 'paper-item';
-            item.innerHTML = `
-                <div class="paper-title">${idx + 1}. ${p.title}</div>
-                <div class="paper-meta">${p.journal} (${p.year})</div>
-            `;
-            paperList.appendChild(item);
-        });
-
-        function openImgZoom() {
-            document.getElementById('zoom-img').src = document.getElementById('venus-img').src;
-            document.getElementById('zoom-title').innerText = document.getElementById('img-caption').innerText;
-            document.getElementById('img-modal').classList.add('open');
-        }
-        function closeImgZoom() {
-            document.getElementById('img-modal').classList.remove('open');
-        }
-
-        const modal = document.getElementById('video-modal');
-        const vid = document.getElementById('modal-video');
-        const fallback = document.getElementById('video-fallback');
-
-        function openVideo(v) {
-            const isEn = currentLang === 'en';
-            const u = UI_TEXT[currentLang];
-            const primarySrc = isEn ? (v.videoFileEn || v.videoFileKo) : (v.videoFileKo || v.videoFileEn);
-            const backupSrc = isEn ? v.videoFileKo : v.videoFileEn;
-
-            document.getElementById('modal-title').innerText = isEn ? v.titleEn : v.titleKo;
-            document.getElementById('modal-detail').innerText = isEn ? v.detailEn : v.detailKo;
-            document.getElementById('fb-desc').innerHTML = `${u.fbDescPrefix}<strong style="color:#fff;">${primarySrc}</strong>${u.fbDescSuffix}`;
-
-            fallback.style.display = 'none';
-            vid.style.display = 'block';
-            let triedBackup = false;
-            vid.onerror = () => {
-                if (!triedBackup && backupSrc && backupSrc !== primarySrc) {
-                    triedBackup = true;
-                    vid.src = backupSrc;
-                } else {
-                    vid.style.display = 'none';
-                    fallback.style.display = 'flex';
-                }
-            };
-            vid.src = primarySrc;
-            modal.classList.add('open');
-        }
-        function closeVideo() {
-            vid.pause();
-            vid.src = "";
-            modal.classList.remove('open');
-        }
-
-        // 초기 진입은 영어(EN) 기본
-        setLang('en');
-    </script>
-</body>
-</html>
+    papers: [
+        { year: "2025", journal: "Journal of Physics and Chemistry of Solids", title: "Electrical conduction of ferroelectric domains and domain walls in polycrystalline Bi5Ti3FeO15 thin films" },
+        { year: "2025", journal: "Journal of Applied Physics", title: "Leakage current characteristics affected by crystallinity and domain wall current of epitaxial Bi5Ti3FeO15 thin films" },
+        { year: "2023", journal: "Journal of Alloys and Compounds", title: "Leakage current characteristics of polycrystalline BiFeO3 thin films affected by thickness-dependent domain wall currents" },
+        { year: "2023", journal: "Ceramics International", title: "Ferroelectric domain wall current corresponding to ferroelectric domain structures of BaTiO3 nanodots fabricated by dip-pen nanolithography" },
+        { year: "2021", journal: "Ceramics International", title: "Nonvolatile-memory current characteristics of BiFeO3 nanodots switched by applying external bias and force" },
+        { year: "2021", journal: "Applied Physics Letters", title: "Current change due to artificial patterning of the number of ferroelectric domain walls and nonvolatile memory characteristics" }
+    ]
+};
