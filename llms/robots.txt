@@ -1,5 +1,19 @@
 User-agent: *
 Allow: /
-Allow: /llms/
-Allow: /V-ET/
-Allow: /llms.txt
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+Sitemap: https://vmemory.net/sitemap.xml
