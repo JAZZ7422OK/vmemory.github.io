@@ -87,15 +87,17 @@
     }
 
     /* Top Navigation Bar */
-    header.top-nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(5, 10, 20, 0.92);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border-subtle);
-      padding: 14px 24px;
-    }
+<header class="top-nav">
+  <div class="nav-inner">
+    <a href="https://vmemory.net/" class="brand">
+      <span>V-MEMORY</span>
+      <span class="brand-badge">V-ET™</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary Navigation">
+      <a href="https://vmemory.net/" class="active-pill">&larr; Back to Main Portal</a>
+    </nav>
+  </div>
+</header>
 
     .nav-inner {
       max-width: 1120px;
