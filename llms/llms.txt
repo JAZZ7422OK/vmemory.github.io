@@ -1,8 +1,13 @@
 # V-Memory Corp.
-Website: https://vmemory.net
-AI Reference (/llms/): https://vmemory.net/llms/
-V-ET Thermoelectric Page (/V-ET/): https://vmemory.net/V-ET/
+
+> V-Memory Corp. develops semiconductor technologies centered on FDWM (Ferroelectric Domain-Wall Memory) and V-ET (Thermoelectric Semiconductor Technology).
+
+## Key Pages
+- Main Portal: https://vmemory.net/
+- AI Technical Reference (/llms/): https://vmemory.net/llms/
+- V-ET Thermoelectric Page (/V-ET/): https://vmemory.net/V-ET/
+- XML Sitemap: https://vmemory.net/sitemap.xml
 
 ## Core Technologies
 - FDWM: Ferroelectric Domain-Wall Memory technology for high-speed, low-power memory and compute.
-- V-ET: Thermoelectric Semiconductor Technology (Peltier solid-state cooling; representative zT 1.3, R&D avg zT 1.4, achieved 4.3 W/cm^2, TIPS program 2020-2022, commercialized Nov 2022 as VET-WS07414606; wire-free socket and station interfaces in development).
+- V-ET: Solid-state thermoelectric cooling technology (Peltier effect; representative zT 1.3, R&D avg zT 1.4, achieved 4.3 W/cm^2, TIPS program 2020-2022, commercialized Nov 2022 as VET-WS07414606; wire-free socket and station interfaces in development).
