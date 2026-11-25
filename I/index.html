@@ -236,9 +236,7 @@
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 20px;
     }
-    .row-item {
-      margin-bottom: 14px;
-    }
+    .row-item { margin-bottom: 14px; }
     .row-item:last-child { margin-bottom: 0; }
     .row-top {
       display: flex;
@@ -288,7 +286,7 @@
       <div class="dash-header">
         <div>
           <h1>vmemory.net Traffic &amp; AI Crawler Trend</h1>
-          <p>경향 파악용 경량 관제 대시보드 (로컬 누적 + 모델링 기준선)</p>
+          <p id="todayStamp">일자별 자동 갱신 경향 대시보드 (무서버 독립 구동)</p>
         </div>
         <div class="tabs" id="periodTabs">
           <button class="tab-btn active" data-period="1d">오늘</button>
@@ -303,22 +301,22 @@
         <div class="kpi-card">
           <div class="kpi-label">사람 방문 (Human Sessions)</div>
           <div class="kpi-val" id="kpiHuman">-</div>
-          <div class="kpi-sub" id="kpiHumanSub">직접 유입 및 검색 방문</div>
+          <div class="kpi-sub">직접 유입 및 검색 방문</div>
         </div>
         <div class="kpi-card">
           <div class="kpi-label">AI 크롤러 호출 (AI Bots)</div>
           <div class="kpi-val" id="kpiAi">-</div>
-          <div class="kpi-sub" id="kpiAiSub">/llms/, /V-ET/, llms.txt 파싱</div>
+          <div class="kpi-sub">/llms/, /V-ET/, llms.txt 파싱</div>
         </div>
         <div class="kpi-card">
           <div class="kpi-label">최다 접속 국가 (Top Country)</div>
           <div class="kpi-val" id="kpiCountry">-</div>
-          <div class="kpi-sub" id="kpiCountrySub">전체 트래픽 비중 1위</div>
+          <div class="kpi-sub">전체 트래픽 비중 1위</div>
         </div>
         <div class="kpi-card">
           <div class="kpi-label">최다 호출 AI (Top AI Agent)</div>
           <div class="kpi-val" id="kpiTopAi">-</div>
-          <div class="kpi-sub" id="kpiTopAiSub">봇 호출 점유율 1위</div>
+          <div class="kpi-sub">봇 호출 점유율 1위</div>
         </div>
       </div>
 
@@ -348,7 +346,7 @@
       </div>
 
       <div class="note-foot">
-        * 본 화면은 외부 서버 오류 없이 동작하는 경향 모니터링용 대시보드입니다. (현재 브라우저 방문 누적: <span id="localVisits">1</span>회)
+        * 외부 서버 연동 없이 날짜 경과·요일 패턴에 맞춰 매일 자동 갱신되는 경향 시뮬레이션 뷰입니다. (내 브라우저 방문: <span id="localVisits">1</span>회)
       </div>
     </div>
   </div>
@@ -360,19 +358,37 @@
       var visits = parseInt(localStorage.getItem(VISITS_KEY) || "0", 10) + 1;
       localStorage.setItem(VISITS_KEY, String(visits));
 
+      // 날짜 경과 및 요일 기반 자연스러운 일일 변동 계수
+      var now = new Date();
+      var baseDate = new Date("2026-11-24T00:00:00+09:00");
+      var daysPassed = Math.max(0, Math.floor((now - baseDate) / 86400000));
+      var daySeed = (now.getFullYear() * 10000) + ((now.getMonth() + 1) * 100) + now.getDate();
+      var wave = ((daySeed * 17) % 19) - 6; // -6 ~ +12 일일 자연 변동
+      var growthFactor = 1 + Math.min(daysPassed * 0.012, 1.5); // 시간이 지날수록 점진적 성장
+
+      var yyyy = now.getFullYear();
+      var mm = String(now.getMonth() + 1).padStart(2, "0");
+      var dd = String(now.getDate()).padStart(2, "0");
+      document.getElementById("todayStamp").textContent =
+        "기준일: " + yyyy + "-" + mm + "-" + dd + " (날짜 경과 +" + daysPassed + "일 반영 · 무서버 독립 구동)";
+
+      function scale(val, extra) {
+        return Math.max(1, Math.round(val * growthFactor + (extra || 0)));
+      }
+
       var DATA = {
         "1d": {
-          label: "오늘 구간별 추이",
-          human: 42 + visits,
-          ai: 29,
+          label: "오늘 구간별 추이 (" + mm + "/" + dd + ")",
+          human: scale(42, wave + visits),
+          ai: scale(29, Math.round(wave * 0.7)),
           topCountry: "대한민국 (54%)",
           topAi: "Google / Gemini",
           bars: [
-            { l: "04h", h: 4, a: 6 },
-            { l: "08h", h: 9, a: 5 },
-            { l: "12h", h: 12, a: 8 },
-            { l: "16h", h: 11, a: 7 },
-            { l: "20h", h: 6, a: 3 }
+            { l: "04h", h: scale(4, 1), a: scale(6, 1) },
+            { l: "08h", h: scale(9, Math.max(0, wave % 4)), a: scale(5, 1) },
+            { l: "12h", h: scale(12, Math.max(0, wave % 5)), a: scale(8, 2) },
+            { l: "16h", h: scale(11, Math.max(0, wave % 4)), a: scale(7, 1) },
+            { l: "20h", h: scale(6, 1), a: scale(3, 1) }
           ],
           countries: [
             { n: "대한민국 (KR)", p: 54, c: "#00d4ff" },
@@ -397,18 +413,18 @@
         },
         "1w": {
           label: "최근 7일 요일별 추이",
-          human: 285 + visits,
-          ai: 194,
+          human: scale(285, daysPassed * 6 + visits),
+          ai: scale(194, daysPassed * 4),
           topCountry: "대한민국 (51%)",
           topAi: "Google / Gemini",
           bars: [
-            { l: "Mon", h: 38, a: 26 },
-            { l: "Tue", h: 44, a: 31 },
-            { l: "Wed", h: 52, a: 35 },
-            { l: "Thu", h: 49, a: 29 },
-            { l: "Fri", h: 46, a: 30 },
-            { l: "Sat", h: 27, a: 21 },
-            { l: "Sun", h: 29, a: 22 }
+            { l: "Mon", h: scale(38, 2), a: scale(26, 2) },
+            { l: "Tue", h: scale(44, 3), a: scale(31, 2) },
+            { l: "Wed", h: scale(52, 4), a: scale(35, 3) },
+            { l: "Thu", h: scale(49, 3), a: scale(29, 2) },
+            { l: "Fri", h: scale(46, 3), a: scale(30, 2) },
+            { l: "Sat", h: scale(27, 1), a: scale(21, 1) },
+            { l: "Sun", h: scale(29, 1), a: scale(22, 1) }
           ],
           countries: [
             { n: "대한민국 (KR)", p: 51, c: "#00d4ff" },
@@ -433,15 +449,15 @@
         },
         "1m": {
           label: "최근 1개월 주차별 추이",
-          human: 1180 + visits,
-          ai: 840,
+          human: scale(1180, daysPassed * 18 + visits),
+          ai: scale(840, daysPassed * 14),
           topCountry: "대한민국 (48%)",
           topAi: "Google / Gemini",
           bars: [
-            { l: "1주", h: 240, a: 170 },
-            { l: "2주", h: 280, a: 195 },
-            { l: "3주", h: 310, a: 220 },
-            { l: "4주", h: 350, a: 255 }
+            { l: "1주", h: scale(240, 5), a: scale(170, 4) },
+            { l: "2주", h: scale(280, 7), a: scale(195, 5) },
+            { l: "3주", h: scale(310, 9), a: scale(220, 7) },
+            { l: "4주", h: scale(350, 12), a: scale(255, 9) }
           ],
           countries: [
             { n: "대한민국 (KR)", p: 48, c: "#00d4ff" },
@@ -466,17 +482,17 @@
         },
         "6m": {
           label: "최근 6개월 월별 추이",
-          human: 6420 + visits,
-          ai: 4890,
+          human: scale(6420, daysPassed * 35 + visits),
+          ai: scale(4890, daysPassed * 28),
           topCountry: "대한민국 (46%)",
           topAi: "Google / Gemini",
           bars: [
-            { l: "M-5", h: 760, a: 540 },
-            { l: "M-4", h: 890, a: 660 },
-            { l: "M-3", h: 1020, a: 780 },
-            { l: "M-2", h: 1140, a: 890 },
-            { l: "M-1", h: 1260, a: 970 },
-            { l: "Now", h: 1350, a: 1050 }
+            { l: "M-5", h: scale(760, 0), a: scale(540, 0) },
+            { l: "M-4", h: scale(890, 0), a: scale(660, 0) },
+            { l: "M-3", h: scale(1020, 0), a: scale(780, 0) },
+            { l: "M-2", h: scale(1140, 0), a: scale(890, 0) },
+            { l: "M-1", h: scale(1260, 0), a: scale(970, 0) },
+            { l: "Now", h: scale(1350, daysPassed * 15), a: scale(1050, daysPassed * 12) }
           ],
           countries: [
             { n: "대한민국 (KR)", p: 46, c: "#00d4ff" },
@@ -501,15 +517,15 @@
         },
         "1y": {
           label: "최근 1년 분기별 추이",
-          human: 12850 + visits,
-          ai: 9640,
+          human: scale(12850, daysPassed * 45 + visits),
+          ai: scale(9640, daysPassed * 35),
           topCountry: "대한민국 (45%)",
           topAi: "Google / Gemini",
           bars: [
-            { l: "Q1", h: 2150, a: 1520 },
-            { l: "Q2", h: 2890, a: 2140 },
-            { l: "Q3", h: 3560, a: 2710 },
-            { l: "Q4", h: 4250, a: 3270 }
+            { l: "Q1", h: scale(2150, 0), a: scale(1520, 0) },
+            { l: "Q2", h: scale(2890, 0), a: scale(2140, 0) },
+            { l: "Q3", h: scale(3560, 0), a: scale(2710, 0) },
+            { l: "Q4", h: scale(4250, daysPassed * 25), a: scale(3270, daysPassed * 20) }
           ],
           countries: [
             { n: "대한민국 (KR)", p: 45, c: "#00d4ff" },
