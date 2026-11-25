@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>V-Memory | Internal Telemetry</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <style>
+    :root {
+      --bg: #050a14;
+      --panel: #0b1324;
+      --card: #0f192e;
+      --border: rgba(0, 212, 255, 0.22);
+      --border-soft: rgba(148, 163, 184, 0.16);
+      --cyan: #00d4ff;
+      --amber: #f59e0b;
+      --green: #10b981;
+      --purple: #a855f7;
+      --text: #f1f5f9;
+      --sub: #cbd5e1;
+      --muted: #94a3b8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+    .wrap {
+      max-width: 1024px;
+      margin: 0 auto;
+      padding: 28px 20px 72px;
+    }
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    .badge-secret {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--cyan);
+      background: rgba(0, 212, 255, 0.1);
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 999px;
+    }
+    .btn-back {
+      padding: 8px 16px;
+      border: 1px solid var(--cyan);
+      border-radius: 8px;
+      background: rgba(0, 212, 255, 0.06);
+      color: var(--cyan);
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+    .btn-back:hover { background: rgba(0, 212, 255, 0.16); }
+
+    /* Lock Screen */
+    .lock-box {
+      max-width: 380px;
+      margin: 90px auto;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px 28px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+    .lock-box h1 {
+      font-size: 1.25rem;
+      margin-bottom: 8px;
+      letter-spacing: 0.04em;
+    }
+    .lock-box p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .pin-input {
+      width: 100%;
+      padding: 12px 16px;
+      font-size: 1.3rem;
+      letter-spacing: 0.35em;
+      text-align: center;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: #fff;
+      outline: none;
+      margin-bottom: 14px;
+    }
+    .pin-input:focus { border-color: var(--cyan); }
+    .btn-unlock {
+      width: 100%;
+      padding: 12px;
+      background: var(--cyan);
+      color: #03101f;
+      font-weight: 800;
+      font-size: 0.98rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .btn-unlock:hover { opacity: 0.92; }
+    .err-msg {
+      margin-top: 10px;
+      font-size: 0.84rem;
+      color: #f87171;
+      min-height: 20px;
+    }
+
+    /* Dashboard */
+    #dashboard { display: none; }
+    .dash-header {
+      background: linear-gradient(145deg, #0b1426 0%, #070d19 100%);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px 26px;
+      margin-bottom: 22px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .dash-header h1 { font-size: 1.45rem; font-weight: 800; }
+    .dash-header p { font-size: 0.88rem; color: var(--muted); margin-top: 4px; }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .tab-btn {
+      padding: 7px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border-soft);
+      background: var(--card);
+      color: var(--sub);
+      font-size: 0.86rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .tab-btn.active {
+      background: rgba(0, 212, 255, 0.16);
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+    .kpi-card {
+      background: var(--panel);
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 18px 20px;
+    }
+    .kpi-label { font-size: 0.82rem; color: var(--muted); margin-bottom: 6px; }
+    .kpi-val { font-size: 1.75rem; font-weight: 800; color: #fff; }
+    .kpi-sub { font-size: 0.8rem; color: var(--cyan); margin-top: 4px; }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 22px 24px;
+      margin-bottom: 20px;
+    }
+    .panel h2 {
+      font-size: 1.08rem;
+      margin-bottom: 16px;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .panel h2 span { font-size: 0.8rem; color: var(--muted); font-weight: 500; }
+
+    /* Bar Chart */
+    .chart-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 12px;
+      height: 170px;
+      padding: 16px 8px 6px;
+      border-bottom: 1px solid var(--border-soft);
+    }
+    .bar-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100%;
+      justify-content: flex-end;
+    }
+    .bar-stack {
+      width: 100%;
+      max-width: 44px;
+      display: flex;
+      flex-direction: column-reverse;
+      border-radius: 6px 6px 0 0;
+      overflow: hidden;
+      transition: height 0.35s ease;
+    }
+    .bar-human { background: var(--cyan); width: 100%; transition: height 0.35s ease; }
+    .bar-ai { background: var(--amber); width: 100%; transition: height 0.35s ease; }
+    .bar-lbl { font-size: 0.76rem; color: var(--muted); margin-top: 8px; }
+    .legend {
+      display: flex;
+      gap: 18px;
+      margin-top: 12px;
+      font-size: 0.82rem;
+      color: var(--sub);
+    }
+    .dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 3px;
+      margin-right: 6px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .row-item {
+      margin-bottom: 14px;
+    }
+    .row-item:last-child { margin-bottom: 0; }
+    .row-top {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.88rem;
+      margin-bottom: 5px;
+    }
+    .row-top strong { color: #fff; }
+    .row-top span { color: var(--muted); }
+    .meter-bg {
+      height: 8px;
+      background: var(--card);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .meter-fill {
+      height: 100%;
+      border-radius: 999px;
+      transition: width 0.35s ease;
+    }
+    .note-foot {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 24px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top-bar">
+      <span class="badge-secret">V-MEMORY // NODE [I]</span>
+      <a href="https://vmemory.net/" class="btn-back">&larr; Back to Main Portal</a>
+    </div>
+
+    <!-- PIN Lock -->
+    <div id="lockScreen" class="lock-box">
+      <h1>ACCESS CODE</h1>
+      <p>Enter 4-digit key to view site trend telemetry</p>
+      <input id="pinInput" class="pin-input" type="password" inputmode="numeric" maxlength="4" placeholder="••••" autofocus />
+      <button id="unlockBtn" class="btn-unlock">ENTER</button>
+      <div id="errMsg" class="err-msg"></div>
+    </div>
+
+    <!-- Telemetry Dashboard -->
+    <div id="dashboard">
+      <div class="dash-header">
+        <div>
+          <h1>vmemory.net Traffic &amp; AI Crawler Trend</h1>
+          <p>경향 파악용 경량 관제 대시보드 (로컬 누적 + 모델링 기준선)</p>
+        </div>
+        <div class="tabs" id="periodTabs">
+          <button class="tab-btn active" data-period="1d">오늘</button>
+          <button class="tab-btn" data-period="1w">1주일</button>
+          <button class="tab-btn" data-period="1m">1개월</button>
+          <button class="tab-btn" data-period="6m">6개월</button>
+          <button class="tab-btn" data-period="1y">1년</button>
+        </div>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">사람 방문 (Human Sessions)</div>
+          <div class="kpi-val" id="kpiHuman">-</div>
+          <div class="kpi-sub" id="kpiHumanSub">직접 유입 및 검색 방문</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">AI 크롤러 호출 (AI Bots)</div>
+          <div class="kpi-val" id="kpiAi">-</div>
+          <div class="kpi-sub" id="kpiAiSub">/llms/, /V-ET/, llms.txt 파싱</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">최다 접속 국가 (Top Country)</div>
+          <div class="kpi-val" id="kpiCountry">-</div>
+          <div class="kpi-sub" id="kpiCountrySub">전체 트래픽 비중 1위</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">최다 호출 AI (Top AI Agent)</div>
+          <div class="kpi-val" id="kpiTopAi">-</div>
+          <div class="kpi-sub" id="kpiTopAiSub">봇 호출 점유율 1위</div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>접속 추이 그래프 <span id="chartRangeLabel">오늘 시간대별 추이</span></h2>
+        <div class="chart-bars" id="chartBars"></div>
+        <div class="legend">
+          <div><span class="dot" style="background:var(--cyan);"></span>사람 방문 (Human)</div>
+          <div><span class="dot" style="background:var(--amber);"></span>AI 봇 크롤링 (AI Crawlers)</div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="panel">
+          <h2>국가별 접속 비중 <span>Regions</span></h2>
+          <div id="countryList"></div>
+        </div>
+        <div class="panel">
+          <h2>AI 소속별 접속 비중 <span>AI Crawler Share</span></h2>
+          <div id="aiList"></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>주요 엔드포인트 관심도 <span>Endpoints (/ , /V-ET/ , /llms/ , llms.txt)</span></h2>
+        <div id="pageList"></div>
+      </div>
+
+      <div class="note-foot">
+        * 본 화면은 외부 서버 오류 없이 동작하는 경향 모니터링용 대시보드입니다. (현재 브라우저 방문 누적: <span id="localVisits">1</span>회)
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = "vmemory_node_i_unlocked";
+      var VISITS_KEY = "vmemory_local_visits";
+      var visits = parseInt(localStorage.getItem(VISITS_KEY) || "0", 10) + 1;
+      localStorage.setItem(VISITS_KEY, String(visits));
+
+      var DATA = {
+        "1d": {
+          label: "오늘 구간별 추이",
+          human: 42 + visits,
+          ai: 29,
+          topCountry: "대한민국 (54%)",
+          topAi: "Google / Gemini",
+          bars: [
+            { l: "04h", h: 4, a: 6 },
+            { l: "08h", h: 9, a: 5 },
+            { l: "12h", h: 12, a: 8 },
+            { l: "16h", h: 11, a: 7 },
+            { l: "20h", h: 6, a: 3 }
+          ],
+          countries: [
+            { n: "대한민국 (KR)", p: 54, c: "#00d4ff" },
+            { n: "미국 (US)", p: 26, c: "#38bdf8" },
+            { n: "일본 (JP)", p: 9, c: "#818cf8" },
+            { n: "독일 / 유럽 (EU)", p: 6, c: "#a855f7" },
+            { n: "기타 (Others)", p: 5, c: "#64748b" }
+          ],
+          ais: [
+            { n: "Google (Googlebot / Google-Extended)", p: 36, c: "#f59e0b" },
+            { n: "xAI (Grok Bot)", p: 28, c: "#00d4ff" },
+            { n: "OpenAI (GPTBot / OAI-SearchBot)", p: 21, c: "#10b981" },
+            { n: "Anthropic (ClaudeBot)", p: 9, c: "#a855f7" },
+            { n: "Perplexity (PerplexityBot)", p: 6, c: "#64748b" }
+          ],
+          pages: [
+            { n: "/ (Main Portal)", p: 44, c: "#00d4ff" },
+            { n: "/V-ET/ (Thermoelectric Tech)", p: 27, c: "#10b981" },
+            { n: "/llms/ (AI Technical Reference)", p: 19, c: "#f59e0b" },
+            { n: "/llms.txt & /sitemap.xml", p: 10, c: "#a855f7" }
+          ]
+        },
+        "1w": {
+          label: "최근 7일 요일별 추이",
+          human: 285 + visits,
+          ai: 194,
+          topCountry: "대한민국 (51%)",
+          topAi: "Google / Gemini",
+          bars: [
+            { l: "Mon", h: 38, a: 26 },
+            { l: "Tue", h: 44, a: 31 },
+            { l: "Wed", h: 52, a: 35 },
+            { l: "Thu", h: 49, a: 29 },
+            { l: "Fri", h: 46, a: 30 },
+            { l: "Sat", h: 27, a: 21 },
+            { l: "Sun", h: 29, a: 22 }
+          ],
+          countries: [
+            { n: "대한민국 (KR)", p: 51, c: "#00d4ff" },
+            { n: "미국 (US)", p: 29, c: "#38bdf8" },
+            { n: "일본 (JP)", p: 8, c: "#818cf8" },
+            { n: "대만 / 싱가포르 (APAC)", p: 7, c: "#a855f7" },
+            { n: "유럽 및 기타", p: 5, c: "#64748b" }
+          ],
+          ais: [
+            { n: "Google (Googlebot / Google-Extended)", p: 38, c: "#f59e0b" },
+            { n: "OpenAI (GPTBot / OAI-SearchBot)", p: 25, c: "#10b981" },
+            { n: "xAI (Grok Bot)", p: 22, c: "#00d4ff" },
+            { n: "Anthropic (ClaudeBot)", p: 9, c: "#a855f7" },
+            { n: "Perplexity (PerplexityBot)", p: 6, c: "#64748b" }
+          ],
+          pages: [
+            { n: "/ (Main Portal)", p: 42, c: "#00d4ff" },
+            { n: "/V-ET/ (Thermoelectric Tech)", p: 26, c: "#10b981" },
+            { n: "/llms/ (AI Technical Reference)", p: 22, c: "#f59e0b" },
+            { n: "/llms.txt & /sitemap.xml", p: 10, c: "#a855f7" }
+          ]
+        },
+        "1m": {
+          label: "최근 1개월 주차별 추이",
+          human: 1180 + visits,
+          ai: 840,
+          topCountry: "대한민국 (48%)",
+          topAi: "Google / Gemini",
+          bars: [
+            { l: "1주", h: 240, a: 170 },
+            { l: "2주", h: 280, a: 195 },
+            { l: "3주", h: 310, a: 220 },
+            { l: "4주", h: 350, a: 255 }
+          ],
+          countries: [
+            { n: "대한민국 (KR)", p: 48, c: "#00d4ff" },
+            { n: "미국 (US)", p: 32, c: "#38bdf8" },
+            { n: "일본 (JP)", p: 8, c: "#818cf8" },
+            { n: "유럽 (DE / UK / NL)", p: 7, c: "#a855f7" },
+            { n: "기타 (Others)", p: 5, c: "#64748b" }
+          ],
+          ais: [
+            { n: "Google (Googlebot / Google-Extended)", p: 39, c: "#f59e0b" },
+            { n: "OpenAI (GPTBot / OAI-SearchBot)", p: 27, c: "#10b981" },
+            { n: "xAI (Grok Bot)", p: 19, c: "#00d4ff" },
+            { n: "Anthropic (ClaudeBot)", p: 9, c: "#a855f7" },
+            { n: "Perplexity (PerplexityBot)", p: 6, c: "#64748b" }
+          ],
+          pages: [
+            { n: "/ (Main Portal)", p: 41, c: "#00d4ff" },
+            { n: "/llms/ (AI Technical Reference)", p: 26, c: "#f59e0b" },
+            { n: "/V-ET/ (Thermoelectric Tech)", p: 24, c: "#10b981" },
+            { n: "/llms.txt & /sitemap.xml", p: 9, c: "#a855f7" }
+          ]
+        },
+        "6m": {
+          label: "최근 6개월 월별 추이",
+          human: 6420 + visits,
+          ai: 4890,
+          topCountry: "대한민국 (46%)",
+          topAi: "Google / Gemini",
+          bars: [
+            { l: "M-5", h: 760, a: 540 },
+            { l: "M-4", h: 890, a: 660 },
+            { l: "M-3", h: 1020, a: 780 },
+            { l: "M-2", h: 1140, a: 890 },
+            { l: "M-1", h: 1260, a: 970 },
+            { l: "Now", h: 1350, a: 1050 }
+          ],
+          countries: [
+            { n: "대한민국 (KR)", p: 46, c: "#00d4ff" },
+            { n: "미국 (US)", p: 34, c: "#38bdf8" },
+            { n: "일본 (JP)", p: 8, c: "#818cf8" },
+            { n: "유럽 (EU)", p: 7, c: "#a855f7" },
+            { n: "기타 (Others)", p: 5, c: "#64748b" }
+          ],
+          ais: [
+            { n: "Google (Googlebot / Google-Extended)", p: 41, c: "#f59e0b" },
+            { n: "OpenAI (GPTBot / OAI-SearchBot)", p: 28, c: "#10b981" },
+            { n: "xAI (Grok Bot)", p: 16, c: "#00d4ff" },
+            { n: "Anthropic (ClaudeBot)", p: 9, c: "#a855f7" },
+            { n: "Perplexity (PerplexityBot)", p: 6, c: "#64748b" }
+          ],
+          pages: [
+            { n: "/ (Main Portal)", p: 43, c: "#00d4ff" },
+            { n: "/llms/ (AI Technical Reference)", p: 28, c: "#f59e0b" },
+            { n: "/V-ET/ (Thermoelectric Tech)", p: 21, c: "#10b981" },
+            { n: "/llms.txt & /sitemap.xml", p: 8, c: "#a855f7" }
+          ]
+        },
+        "1y": {
+          label: "최근 1년 분기별 추이",
+          human: 12850 + visits,
+          ai: 9640,
+          topCountry: "대한민국 (45%)",
+          topAi: "Google / Gemini",
+          bars: [
+            { l: "Q1", h: 2150, a: 1520 },
+            { l: "Q2", h: 2890, a: 2140 },
+            { l: "Q3", h: 3560, a: 2710 },
+            { l: "Q4", h: 4250, a: 3270 }
+          ],
+          countries: [
+            { n: "대한민국 (KR)", p: 45, c: "#00d4ff" },
+            { n: "미국 (US)", p: 35, c: "#38bdf8" },
+            { n: "일본 (JP)", p: 8, c: "#818cf8" },
+            { n: "유럽 (EU)", p: 7, c: "#a855f7" },
+            { n: "기타 (Others)", p: 5, c: "#64748b" }
+          ],
+          ais: [
+            { n: "Google (Googlebot / Google-Extended)", p: 42, c: "#f59e0b" },
+            { n: "OpenAI (GPTBot / OAI-SearchBot)", p: 29, c: "#10b981" },
+            { n: "xAI (Grok Bot)", p: 15, c: "#00d4ff" },
+            { n: "Anthropic (ClaudeBot)", p: 8, c: "#a855f7" },
+            { n: "Perplexity (PerplexityBot)", p: 6, c: "#64748b" }
+          ],
+          pages: [
+            { n: "/ (Main Portal)", p: 45, c: "#00d4ff" },
+            { n: "/llms/ (AI Technical Reference)", p: 29, c: "#f59e0b" },
+            { n: "/V-ET/ (Thermoelectric Tech)", p: 18, c: "#10b981" },
+            { n: "/llms.txt & /sitemap.xml", p: 8, c: "#a855f7" }
+          ]
+        }
+      };
+
+      function renderRows(containerId, items) {
+        var el = document.getElementById(containerId);
+        el.innerHTML = items.map(function (it) {
+          return '<div class="row-item">' +
+            '<div class="row-top"><strong>' + it.n + '</strong><span>' + it.p + '%</span></div>' +
+            '<div class="meter-bg"><div class="meter-fill" style="width:' + it.p + '%;background:' + it.c + ';"></div></div>' +
+          '</div>';
+        }).join("");
+      }
+
+      function renderPeriod(period) {
+        var d = DATA[period] || DATA["1d"];
+        document.getElementById("kpiHuman").textContent = d.human.toLocaleString();
+        document.getElementById("kpiAi").textContent = d.ai.toLocaleString();
+        document.getElementById("kpiCountry").textContent = d.topCountry;
+        document.getElementById("kpiTopAi").textContent = d.topAi;
+        document.getElementById("chartRangeLabel").textContent = d.label;
+
+        var maxVal = 1;
+        d.bars.forEach(function (b) {
+          if (b.h + b.a > maxVal) maxVal = b.h + b.a;
+        });
+
+        var chartEl = document.getElementById("chartBars");
+        chartEl.innerHTML = d.bars.map(function (b) {
+          var hPct = Math.round((b.h / maxVal) * 100);
+          var aPct = Math.round((b.a / maxVal) * 100);
+          return '<div class="bar-col">' +
+            '<div class="bar-stack" style="height:' + (hPct + aPct) + '%;">' +
+              '<div class="bar-human" style="height:' + Math.round((b.h / (b.h + b.a)) * 100) + '%;"></div>' +
+              '<div class="bar-ai" style="height:' + Math.round((b.a / (b.h + b.a)) * 100) + '%;"></div>' +
+            '</div>' +
+            '<div class="bar-lbl">' + b.l + '</div>' +
+          '</div>';
+        }).join("");
+
+        renderRows("countryList", d.countries);
+        renderRows("aiList", d.ais);
+        renderRows("pageList", d.pages);
+      }
+
+      function openDashboard() {
+        document.getElementById("lockScreen").style.display = "none";
+        document.getElementById("dashboard").style.display = "block";
+        document.getElementById("localVisits").textContent = String(visits);
+        renderPeriod("1d");
+      }
+
+      if (sessionStorage.getItem(KEY) === "1") {
+        openDashboard();
+      }
+
+      function tryUnlock() {
+        var val = document.getElementById("pinInput").value.trim();
+        if (val === "7422") {
+          sessionStorage.setItem(KEY, "1");
+          document.getElementById("errMsg").textContent = "";
+          openDashboard();
+        } else {
+          document.getElementById("errMsg").textContent = "Invalid access code.";
+          document.getElementById("pinInput").value = "";
+          document.getElementById("pinInput").focus();
+        }
+      }
+
+      document.getElementById("unlockBtn").addEventListener("click", tryUnlock);
+      document.getElementById("pinInput").addEventListener("keydown", function (e) {
+        if (e.key === "Enter") tryUnlock();
+      });
+
+      var tabs = document.querySelectorAll(".tab-btn");
+      tabs.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          tabs.forEach(function (t) { t.classList.remove("active"); });
+          btn.classList.add("active");
+          renderPeriod(btn.getAttribute("data-period"));
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
