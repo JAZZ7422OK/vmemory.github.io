@@ -118,32 +118,35 @@
     /* Dashboard */
     #dashboard { display: none; }
 
-    /* Venus Hero Video Stage */
+/* Venus Hero Video Stage */
     .venus-stage {
       background: linear-gradient(160deg, #0b1426 0%, #060b16 100%);
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 14px;
+      padding: 16px;
       margin-bottom: 20px;
       box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
     }
     .venus-frame {
       position: relative;
       width: 100%;
-      max-height: 360px;
-      border-radius: 10px;
+      border-radius: 12px;
       overflow: hidden;
       background: #030711;
       border: 1px solid var(--border-soft);
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: 8px 0;
     }
     .venus-frame video {
-      width: 100%;
-      max-height: 360px;
-      object-fit: cover;
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      max-height: 78vh;
+      border-radius: 10px;
       display: block;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
     }
     .venus-bar {
       display: flex;
