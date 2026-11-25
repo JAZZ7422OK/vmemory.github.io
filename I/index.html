@@ -205,7 +205,34 @@
       border-color: var(--cyan);
       color: var(--cyan);
     }
-
+    <!-- Mepix vs Local Visit Comparison -->
+      <div class="panel" id="mepixComparePanel">
+        <h2>
+          미픽스카운터 실측 vs 내 기기 방문 비교
+          <span>Live Counter &amp; Local Log</span>
+        </h2>
+        <div class="kpi-grid" style="margin-bottom:14px;">
+          <div class="kpi-card">
+            <div class="kpi-label">미픽스카운터 (실제 실측)</div>
+            <div class="kpi-val" style="font-size:1.15rem;color:var(--green);">mepix.ai 연동</div>
+            <div class="kpi-sub">실제 방문자 · AI 유입 집계</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">내 브라우저 방문 횟수</div>
+            <div class="kpi-val" id="compareLocalVisits">-</div>
+            <div class="kpi-sub">이 기기에서 /I/ 연 누적 횟수</div>
+          </div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;">
+          <span style="font-size:0.84rem;color:var(--muted);">
+            * 미픽스카운터는 외부 보안 정책으로 창 안에 안 뜰 수 있어 새 탭으로 여는 게 가장 확실해.
+          </span>
+          <a href="https://mepix.ai" target="_blank" rel="noopener noreferrer" class="btn-back">
+            미픽스카운터 대시보드 열기 &rarr;
+          </a>
+        </div>
+      </div>
+    
     .kpi-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
@@ -663,6 +690,8 @@
       }
 
       function openDashboard() {
+        var cmpEl = document.getElementById("compareLocalVisits");
+        if (cmpEl) cmpEl.textContent = String(visits) + "회";        
         document.getElementById("lockScreen").style.display = "none";
         document.getElementById("dashboard").style.display = "block";
         document.getElementById("localVisits").textContent = String(visits);
