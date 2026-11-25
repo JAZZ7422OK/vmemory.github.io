@@ -3,130 +3,232 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>V-Memory | Internal Telemetry</title>
   <meta name="robots" content="noindex, nofollow" />
+  <title>V-Memory | Internal Telemetry</title>
   <style>
     :root {
-      --bg: #050a14;
+      --bg: #040812;
       --panel: #0b1324;
-      --card: #0f192e;
-      --border: rgba(0, 212, 255, 0.22);
-      --border-soft: rgba(148, 163, 184, 0.16);
-      --cyan: #00d4ff;
-      --amber: #f59e0b;
-      --green: #10b981;
-      --purple: #a855f7;
+      --panel-2: #0f1a31;
+      --border: rgba(56, 189, 248, 0.22);
+      --border-soft: rgba(148, 163, 184, 0.14);
       --text: #f1f5f9;
-      --sub: #cbd5e1;
       --muted: #94a3b8;
+      --accent: #00d4ff;
+      --green: #10b981;
+      --amber: #f59e0b;
+      --red: #f43f5e;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: var(--bg);
+      background: radial-gradient(circle at top, #0c1830 0%, var(--bg) 62%);
       color: var(--text);
-      line-height: 1.5;
+      font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Segoe UI", Roboto, sans-serif;
       min-height: 100vh;
+      line-height: 1.5;
     }
-    .wrap {
-      max-width: 1024px;
-      margin: 0 auto;
-      padding: 28px 20px 72px;
-    }
-    .top-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 24px;
-    }
-    .badge-secret {
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      color: var(--cyan);
-      background: rgba(0, 212, 255, 0.1);
-      border: 1px solid var(--border);
-      padding: 4px 12px;
-      border-radius: 999px;
-    }
-    .btn-back {
-      padding: 8px 16px;
-      border: 1px solid var(--cyan);
-      border-radius: 8px;
-      background: rgba(0, 212, 255, 0.06);
-      color: var(--cyan);
-      font-weight: 600;
-      font-size: 0.9rem;
-      text-decoration: none;
-    }
-    .btn-back:hover { background: rgba(0, 212, 255, 0.16); }
 
     /* Lock Screen */
+    #lockScreen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
     .lock-box {
+      width: 100%;
       max-width: 380px;
-      margin: 90px auto;
-      background: var(--panel);
+      background: linear-gradient(160deg, #0d172c 0%, #070d1a 100%);
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 36px 28px;
+      padding: 32px 26px;
       text-align: center;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
     }
-    .lock-box h1 {
-      font-size: 1.25rem;
-      margin-bottom: 8px;
-      letter-spacing: 0.04em;
-    }
-    .lock-box p {
-      font-size: 0.88rem;
-      color: var(--muted);
-      margin-bottom: 20px;
-    }
-    .pin-input {
-      width: 100%;
-      padding: 12px 16px;
-      font-size: 1.3rem;
-      letter-spacing: 0.35em;
-      text-align: center;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      color: #fff;
-      outline: none;
+
+    .lock-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: var(--accent);
+      background: rgba(0, 212, 255, 0.1);
+      border: 1px solid rgba(0, 212, 255, 0.28);
+      padding: 4px 10px;
+      border-radius: 999px;
       margin-bottom: 14px;
     }
-    .pin-input:focus { border-color: var(--cyan); }
-    .btn-unlock {
-      width: 100%;
-      padding: 12px;
-      background: var(--cyan);
-      color: #03101f;
+
+    .lock-box h1 {
+      font-size: 1.35rem;
       font-weight: 800;
-      font-size: 0.98rem;
+      margin-bottom: 8px;
+    }
+
+    .lock-box p {
+      font-size: 0.86rem;
+      color: var(--muted);
+      margin-bottom: 22px;
+    }
+
+    .pin-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .pin-input {
+      flex: 1;
+      background: #040915;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      color: var(--text);
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.35em;
+      text-align: center;
+      outline: none;
+    }
+
+    .pin-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #00d4ff 0%, #0284c7 100%);
+      color: #03101f;
       border: none;
       border-radius: 10px;
+      padding: 12px 18px;
+      font-size: 0.92rem;
+      font-weight: 800;
       cursor: pointer;
+      transition: transform 0.15s ease, opacity 0.15s ease;
     }
-    .btn-unlock:hover { opacity: 0.92; }
-    .err-msg {
-      margin-top: 10px;
-      font-size: 0.84rem;
-      color: #f87171;
+
+    .btn-primary:hover {
+      opacity: 0.92;
+      transform: translateY(-1px);
+    }
+
+    .lock-err {
       min-height: 20px;
+      font-size: 0.82rem;
+      color: var(--red);
+      margin-bottom: 10px;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      color: var(--accent);
     }
 
     /* Dashboard */
-    #dashboard { display: none; }
+    #dashboard {
+      display: none;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 24px 16px 60px;
+    }
 
-/* Venus Hero Video Stage */
+    .topbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .topbar-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .live-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 10px var(--green);
+    }
+
+    .topbar-title h1 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(15, 23, 42, 0.85);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      padding: 8px 13px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Venus Hero Video Stage (Vertical Smartphone Ratio) */
     .venus-stage {
       background: linear-gradient(160deg, #0b1426 0%, #060b16 100%);
       border: 1px solid var(--border);
-      border-radius: 14px;
+      border-radius: 16px;
       padding: 16px;
       margin-bottom: 20px;
       box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
     }
+
+    .stage-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .stage-head strong {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
     .venus-frame {
       position: relative;
       width: 100%;
@@ -137,8 +239,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 8px 0;
+      padding: 10px 0;
     }
+
     .venus-frame video {
       width: auto;
       max-width: 100%;
@@ -146,601 +249,580 @@
       max-height: 78vh;
       border-radius: 10px;
       display: block;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.65);
     }
-    .venus-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 6px 2px;
-      font-size: 0.82rem;
-      color: var(--muted);
-    }
-    .venus-bar strong { color: var(--cyan); }
-    .btn-sound {
-      padding: 5px 11px;
-      border-radius: 6px;
-      border: 1px solid var(--border);
-      background: var(--card);
-      color: var(--text);
-      font-size: 0.78rem;
-      font-weight: 700;
-      cursor: pointer;
-    }
-    .btn-sound:hover { border-color: var(--cyan); color: var(--cyan); }
 
-    .dash-header {
-      background: linear-gradient(145deg, #0b1426 0%, #070d19 100%);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 24px 26px;
-      margin-bottom: 22px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-    }
-    .dash-header h1 { font-size: 1.45rem; font-weight: 800; }
-    .dash-header p { font-size: 0.88rem; color: var(--muted); margin-top: 4px; }
-
-    .tabs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .tab-btn {
-      padding: 7px 14px;
-      border-radius: 8px;
-      border: 1px solid var(--border-soft);
-      background: var(--card);
-      color: var(--sub);
-      font-size: 0.86rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-    .tab-btn.active {
-      background: rgba(0, 212, 255, 0.16);
-      border-color: var(--cyan);
-      color: var(--cyan);
-    }
-    <!-- Mepix vs Local Visit Comparison -->
-      <div class="panel" id="mepixComparePanel">
-        <h2>
-          미픽스카운터 실측 vs 내 기기 방문 비교
-          <span>Live Counter &amp; Local Log</span>
-        </h2>
-        <div class="kpi-grid" style="margin-bottom:14px;">
-          <div class="kpi-card">
-            <div class="kpi-label">미픽스카운터 (실제 실측)</div>
-            <div class="kpi-val" style="font-size:1.15rem;color:var(--green);">mepix.ai 연동</div>
-            <div class="kpi-sub">실제 방문자 · AI 유입 집계</div>
-          </div>
-          <div class="kpi-card">
-            <div class="kpi-label">내 브라우저 방문 횟수</div>
-            <div class="kpi-val" id="compareLocalVisits">-</div>
-            <div class="kpi-sub">이 기기에서 /I/ 연 누적 횟수</div>
-          </div>
-        </div>
-        <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;">
-          <span style="font-size:0.84rem;color:var(--muted);">
-            * 미픽스카운터는 외부 보안 정책으로 창 안에 안 뜰 수 있어 새 탭으로 여는 게 가장 확실해.
-          </span>
-          <a href="https://mepix.ai" target="_blank" rel="noopener noreferrer" class="btn-back">
-            미픽스카운터 대시보드 열기 &rarr;
-          </a>
-        </div>
-      </div>
-    
-    .kpi-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 14px;
-      margin-bottom: 22px;
-    }
-    .kpi-card {
-      background: var(--panel);
-      border: 1px solid var(--border-soft);
-      border-radius: 12px;
-      padding: 18px 20px;
-    }
-    .kpi-label { font-size: 0.82rem; color: var(--muted); margin-bottom: 6px; }
-    .kpi-val { font-size: 1.75rem; font-weight: 800; color: #fff; }
-    .kpi-sub { font-size: 0.8rem; color: var(--cyan); margin-top: 4px; }
-
+    /* Panels */
     .panel {
-      background: var(--panel);
-      border: 1px solid var(--border-soft);
-      border-radius: 12px;
-      padding: 22px 24px;
+      background: linear-gradient(165deg, var(--panel) 0%, #080f1e 100%);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
       margin-bottom: 20px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
     }
-    .panel h2 {
-      font-size: 1.08rem;
+
+    .panel-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
       margin-bottom: 16px;
-      color: #fff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .panel h2 span { font-size: 0.8rem; color: var(--muted); font-weight: 500; }
-
-    /* Bar Chart */
-    .chart-bars {
-      display: flex;
-      align-items: flex-end;
-      gap: 12px;
-      height: 170px;
-      padding: 16px 8px 6px;
-      border-bottom: 1px solid var(--border-soft);
-    }
-    .bar-col {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      height: 100%;
-      justify-content: flex-end;
-    }
-    .bar-stack {
-      width: 100%;
-      max-width: 44px;
-      display: flex;
-      flex-direction: column-reverse;
-      border-radius: 6px 6px 0 0;
-      overflow: hidden;
-      transition: height 0.35s ease;
-    }
-    .bar-human { background: var(--cyan); width: 100%; transition: height 0.35s ease; }
-    .bar-ai { background: var(--amber); width: 100%; transition: height 0.35s ease; }
-    .bar-lbl { font-size: 0.76rem; color: var(--muted); margin-top: 8px; }
-    .legend {
-      display: flex;
-      gap: 18px;
-      margin-top: 12px;
-      font-size: 0.82rem;
-      color: var(--sub);
-    }
-    .dot {
-      display: inline-block;
-      width: 10px;
-      height: 10px;
-      border-radius: 3px;
-      margin-right: 6px;
     }
 
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
+    .panel-header h2 {
+      font-size: 1.05rem;
+      font-weight: 800;
     }
-    .row-item { margin-bottom: 14px; }
-    .row-item:last-child { margin-bottom: 0; }
-    .row-top {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.88rem;
-      margin-bottom: 5px;
-    }
-    .row-top strong { color: #fff; }
-    .row-top span { color: var(--muted); }
-    .meter-bg {
-      height: 8px;
-      background: var(--card);
-      border-radius: 999px;
-      overflow: hidden;
-    }
-    .meter-fill {
-      height: 100%;
-      border-radius: 999px;
-      transition: width 0.35s ease;
-    }
-    .note-foot {
-      text-align: center;
+
+    .panel-sub {
       font-size: 0.8rem;
       color: var(--muted);
-      margin-top: 24px;
+    }
+
+    /* KPI Grid */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .kpi-card {
+      background: var(--panel-2);
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .kpi-label {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .kpi-val {
+      font-size: 1.7rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .kpi-val.accent { color: var(--accent); }
+    .kpi-val.green { color: var(--green); }
+    .kpi-val.amber { color: var(--amber); }
+
+    .kpi-foot {
+      font-size: 0.76rem;
+      color: var(--muted);
+    }
+
+    /* Mepix Sync Form */
+    .sync-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      background: rgba(4, 9, 21, 0.7);
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 12px 14px;
+    }
+
+    .sync-bar label {
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .num-input {
+      width: 110px;
+      background: #040915;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 10px;
+      color: var(--text);
+      font-size: 0.92rem;
+      font-weight: 700;
+      outline: none;
+    }
+
+    .num-input:focus {
+      border-color: var(--accent);
+    }
+
+    .text-input {
+      flex: 1;
+      min-width: 160px;
+      background: #040915;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 9px 12px;
+      color: var(--text);
+      font-size: 0.86rem;
+      outline: none;
+    }
+
+    .text-input:focus {
+      border-color: var(--accent);
+    }
+
+    .btn-sm {
+      background: rgba(0, 212, 255, 0.14);
+      color: var(--accent);
+      border: 1px solid rgba(0, 212, 255, 0.35);
+      border-radius: 8px;
+      padding: 8px 13px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn-sm:hover {
+      background: rgba(0, 212, 255, 0.24);
+    }
+
+    .btn-danger {
+      background: rgba(244, 63, 94, 0.12);
+      color: #fda4af;
+      border: 1px solid rgba(244, 63, 94, 0.3);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-danger:hover {
+      background: rgba(244, 63, 94, 0.22);
+    }
+
+    /* Click Log List */
+    .log-list {
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 290px;
+      overflow-y: auto;
+    }
+
+    .log-item {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      background: rgba(4, 9, 21, 0.78);
+      border: 1px solid var(--border-soft);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 0.84rem;
+    }
+
+    .log-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .log-no {
+      display: inline-block;
+      background: rgba(0, 212, 255, 0.14);
+      color: var(--accent);
+      font-weight: 800;
+      font-size: 0.76rem;
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+
+    .log-time {
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+      font-size: 0.8rem;
+    }
+
+    .log-dwell {
+      color: var(--amber);
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    .log-note {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .log-empty {
+      text-align: center;
+      padding: 22px 12px;
+      color: var(--muted);
+      font-size: 0.84rem;
+      border: 1px dashed var(--border-soft);
+      border-radius: 10px;
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="top-bar">
-      <span class="badge-secret">V-MEMORY // NODE [I]</span>
-      <a href="https://vmemory.net/" class="btn-back">&larr; Back to Main Portal</a>
-    </div>
 
-    <!-- PIN Lock -->
-    <div id="lockScreen" class="lock-box">
-      <h1>ACCESS CODE</h1>
-      <p>Enter 4-digit key to view site trend telemetry</p>
-      <input id="pinInput" class="pin-input" type="password" inputmode="numeric" maxlength="4" placeholder="••••" autofocus />
-      <button id="unlockBtn" class="btn-unlock">ENTER</button>
-      <div id="errMsg" class="err-msg"></div>
-    </div>
-
-    <!-- Telemetry Dashboard -->
-    <div id="dashboard">
-      <!-- Venus Video Stage -->
-      <div class="venus-stage">
-        <div class="venus-frame">
-          <video id="venusVideo" autoplay muted loop playsinline preload="metadata">
-            <source src="venus.mp4" type="video/mp4" />
-          </video>
-        </div>
-        <div class="venus-bar">
-          <div><strong>VENUS FEED</strong> — Private Telemetry Lounge</div>
-          <button id="soundToggleBtn" class="btn-sound" type="button">SOUND: OFF</button>
-        </div>
+  <!-- PIN Lock Screen -->
+  <div id="lockScreen">
+    <div class="lock-box">
+      <div class="lock-badge">INTERNAL ACCESS</div>
+      <h1>V-Memory Control Room</h1>
+      <p>접근 코드를 입력하면 내부 관제 화면이 열립니다.</p>
+      <div class="pin-row">
+        <input
+          type="password"
+          id="pinInput"
+          class="pin-input"
+          inputmode="numeric"
+          maxlength="8"
+          placeholder="••••"
+          autocomplete="off"
+        />
+        <button type="button" class="btn-primary" id="unlockBtn">입장</button>
       </div>
+      <div class="lock-err" id="lockErr"></div>
+      <a href="/" class="back-link">&larr; vmemory.net 메인으로 돌아가기</a>
+    </div>
+  </div>
 
-      <div class="dash-header">
+  <!-- Main Internal Dashboard -->
+  <div id="dashboard">
+    <div class="topbar">
+      <div class="topbar-title">
+        <span class="live-dot"></span>
+        <h1>vmemory.net Internal Control</h1>
+      </div>
+      <div class="topbar-actions">
+        <a href="https://mepix.ai" target="_blank" rel="noopener noreferrer" class="btn-ghost">
+          미픽스카운터 열기 &nearr;
+        </a>
+        <a href="/" class="btn-ghost">&larr; 메인 홈</a>
+      </div>
+    </div>
+
+    <!-- Venus Vertical Video -->
+    <div class="venus-stage">
+      <div class="stage-head">
+        <span><strong>VENUS</strong> &middot; Vertical Stream (9:16 Native)</span>
+        <span>Autoplay &middot; Muted &middot; Loop</span>
+      </div>
+      <div class="venus-frame">
+        <video id="venusVideo" autoplay muted loop playsinline preload="metadata">
+          <source src="venus.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </div>
+
+    <!-- Section 1: 미픽스카운터 실측 & 내 방문 비교 -->
+    <div class="panel">
+      <div class="panel-header">
         <div>
-          <h1>vmemory.net Traffic &amp; AI Crawler Trend</h1>
-          <p id="todayStamp">일자별 자동 갱신 경향 대시보드 (무서버 독립 구동)</p>
+          <h2>미픽스카운터 &amp; 방문 현황 비교</h2>
+          <div class="panel-sub">실측 카운터(미픽스카운터) 기준값과 이 기기 방문 기록을 나란히 관리합니다.</div>
         </div>
-        <div class="tabs" id="periodTabs">
-          <button class="tab-btn active" data-period="1d">오늘</button>
-          <button class="tab-btn" data-period="1w">1주일</button>
-          <button class="tab-btn" data-period="1m">1개월</button>
-          <button class="tab-btn" data-period="6m">6개월</button>
-          <button class="tab-btn" data-period="1y">1년</button>
-        </div>
+        <span class="panel-sub" id="mepixUpdatedAt">동기화 기록 없음</span>
       </div>
 
       <div class="kpi-grid">
         <div class="kpi-card">
-          <div class="kpi-label">사람 방문 (Human Sessions)</div>
-          <div class="kpi-val" id="kpiHuman">-</div>
-          <div class="kpi-sub">직접 유입 및 검색 방문</div>
+          <div class="kpi-label">미픽스카운터 (실측 방문자)</div>
+          <div class="kpi-val green" id="mepixCountDisplay">2</div>
+          <div class="kpi-foot">mepix.ai 집계 기준 숫자</div>
         </div>
         <div class="kpi-card">
-          <div class="kpi-label">AI 크롤러 호출 (AI Bots)</div>
-          <div class="kpi-val" id="kpiAi">-</div>
-          <div class="kpi-sub">/llms/, /V-ET/, llms.txt 파싱</div>
+          <div class="kpi-label">이 기기 /I/ 방문 횟수</div>
+          <div class="kpi-val accent" id="localVisitsDisplay">1회</div>
+          <div class="kpi-foot">현재 브라우저 누적 입장</div>
         </div>
         <div class="kpi-card">
-          <div class="kpi-label">최다 접속 국가 (Top Country)</div>
-          <div class="kpi-val" id="kpiCountry">-</div>
-          <div class="kpi-sub">전체 트래픽 비중 1위</div>
+          <div class="kpi-label">실측 대비 차이</div>
+          <div class="kpi-val" id="diffDisplay">-</div>
+          <div class="kpi-foot">미픽스카운터 &minus; 이 기기 방문</div>
+        </div>
+      </div>
+
+      <div class="sync-bar">
+        <label for="mepixInput">미픽스카운터 방문수 반영:</label>
+        <input type="number" id="mepixInput" class="num-input" min="0" placeholder="예: 2" />
+        <button type="button" class="btn-sm" id="saveMepixBtn">숫자 저장</button>
+        <a href="https://mepix.ai" target="_blank" rel="noopener noreferrer" class="btn-ghost" style="margin-left:auto;">
+          미픽스카운터에서 숫자 확인 &rarr;
+        </a>
+      </div>
+    </div>
+
+    <!-- Section 2: 머문 시간 & 수동 클릭 확인 로그 -->
+    <div class="panel">
+      <div class="panel-header">
+        <div>
+          <h2>체류 시간 &amp; 클릭 확인 로그</h2>
+          <div class="panel-sub">머문 시간을 실시간 측정하고, 직접 클릭 버튼으로 확인 시점을 기록·정리합니다.</div>
+        </div>
+        <button type="button" class="btn-danger" id="clearLogsBtn">로그 전체 초기화</button>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">현재 세션 머문 시간</div>
+          <div class="kpi-val amber" id="sessionDwellDisplay">00분 00초</div>
+          <div class="kpi-foot">이번 입장 후 경과 시간</div>
         </div>
         <div class="kpi-card">
-          <div class="kpi-label">최다 호출 AI (Top AI Agent)</div>
-          <div class="kpi-val" id="kpiTopAi">-</div>
-          <div class="kpi-sub">봇 호출 점유율 1위</div>
+          <div class="kpi-label">이 기기 누적 체류 시간</div>
+          <div class="kpi-val" id="totalDwellDisplay">00분 00초</div>
+          <div class="kpi-foot">브라우저 누적 체류 합계</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">수동 클릭 확인 횟수</div>
+          <div class="kpi-val accent" id="clickCountDisplay">0회</div>
+          <div class="kpi-foot">아래 버튼으로 직접 체크한 수</div>
         </div>
       </div>
 
-      <div class="panel">
-        <h2>접속 추이 그래프 <span id="chartRangeLabel">오늘 시간대별 추이</span></h2>
-        <div class="chart-bars" id="chartBars"></div>
-        <div class="legend">
-          <div><span class="dot" style="background:var(--cyan);"></span>사람 방문 (Human)</div>
-          <div><span class="dot" style="background:var(--amber);"></span>AI 봇 크롤링 (AI Crawlers)</div>
-        </div>
+      <div class="sync-bar">
+        <input
+          type="text"
+          id="clickNoteInput"
+          class="text-input"
+          maxlength="60"
+          placeholder="메모 입력 (선택, 예: 모바일 테스트 / 미픽스 5명 확인)"
+        />
+        <button type="button" class="btn-primary" id="recordClickBtn">+ 클릭 확인 기록</button>
       </div>
 
-      <div class="grid-2">
-        <div class="panel">
-          <h2>국가별 접속 비중 <span>Regions</span></h2>
-          <div id="countryList"></div>
-        </div>
-        <div class="panel">
-          <h2>AI 소속별 접속 비중 <span>AI Crawler Share</span></h2>
-          <div id="aiList"></div>
-        </div>
-      </div>
-
-      <div class="panel">
-        <h2>주요 엔드포인트 관심도 <span>Endpoints (/ , /V-ET/ , /llms/ , llms.txt)</span></h2>
-        <div id="pageList"></div>
-      </div>
-
-      <div class="note-foot">
-        * 외부 서버 연동 없이 날짜 경과·요일 패턴에 맞춰 매일 자동 갱신되는 경향 시뮬레이션 뷰입니다. (내 브라우저 방문: <span id="localVisits">1</span>회)
-      </div>
+      <div class="log-list" id="clickLogList"></div>
     </div>
   </div>
 
   <script>
     (function () {
-      var KEY = "vmemory_node_i_unlocked";
-      var VISITS_KEY = "vmemory_local_visits";
-      var visits = parseInt(localStorage.getItem(VISITS_KEY) || "0", 10) + 1;
-      localStorage.setItem(VISITS_KEY, String(visits));
+      var PASSCODE = "7422";
+      var KEY_VISITS = "vm_i_local_visits_v2";
+      var KEY_MEPIX = "vm_i_mepix_count_v2";
+      var KEY_MEPIX_TIME = "vm_i_mepix_time_v2";
+      var KEY_TOTAL_DWELL = "vm_i_total_dwell_sec_v2";
+      var KEY_CLICK_LOGS = "vm_i_click_logs_v2";
 
-      var now = new Date();
-      var baseDate = new Date("2026-11-24T00:00:00+09:00");
-      var daysPassed = Math.max(0, Math.floor((now - baseDate) / 86400000));
-      var daySeed = (now.getFullYear() * 10000) + ((now.getMonth() + 1) * 100) + now.getDate();
-      var wave = ((daySeed * 17) % 19) - 6;
-      var growthFactor = 1 + Math.min(daysPassed * 0.012, 1.5);
+      var sessionSeconds = 0;
+      var dwellTimer = null;
 
-      var yyyy = now.getFullYear();
-      var mm = String(now.getMonth() + 1).padStart(2, "0");
-      var dd = String(now.getDate()).padStart(2, "0");
-      document.getElementById("todayStamp").textContent =
-        "기준일: " + yyyy + "-" + mm + "-" + dd + " (날짜 경과 +" + daysPassed + "일 반영 · 무서버 독립 구동)";
+      var lockScreen = document.getElementById("lockScreen");
+      var dashboard = document.getElementById("dashboard");
+      var pinInput = document.getElementById("pinInput");
+      var lockErr = document.getElementById("lockErr");
 
-      function scale(val, extra) {
-        return Math.max(1, Math.round(val * growthFactor + (extra || 0)));
-      }
-
-      var DATA = {
-        "1d": {
-          label: "오늘 구간별 추이 (" + mm + "/" + dd + ")",
-          human: scale(42, wave + visits),
-          ai: scale(29, Math.round(wave * 0.7)),
-          topCountry: "대한민국 (54%)",
-          topAi: "Google / Gemini",
-          bars: [
-            { l: "04h", h: scale(4, 1), a: scale(6, 1) },
-            { l: "08h", h: scale(9, Math.max(0, wave % 4)), a: scale(5, 1) },
-            { l: "12h", h: scale(12, Math.max(0, wave % 5)), a: scale(8, 2) },
-            { l: "16h", h: scale(11, Math.max(0, wave % 4)), a: scale(7, 1) },
-            { l: "20h", h: scale(6, 1), a: scale(3, 1) }
-          ],
-          countries: [
-            { n: "대한민국 (KR)", p: 54, c: "#00d4ff" },
-            { n: "미국 (US)", p: 26, c: "#38bdf8" },
-            { n: "일본 (JP)", p: 9, c: "#818cf8" },
-            { n: "독일 / 유럽 (EU)", p: 6, c: "#a855f7" },
-            { n: "기타 (Others)", p: 5, c: "#64748b" }
-          ],
-          ais: [
-            { n: "Google (Googlebot / Google-Extended)", p: 36, c: "#f59e0b" },
-            { n: "xAI (Grok Bot)", p: 28, c: "#00d4ff" },
-            { n: "OpenAI (GPTBot / OAI-SearchBot)", p: 21, c: "#10b981" },
-            { n: "Anthropic (ClaudeBot)", p: 9, c: "#a855f7" },
-            { n: "Perplexity (PerplexityBot)", p: 6, c: "#64748b" }
-          ],
-          pages: [
-            { n: "/ (Main Portal)", p: 44, c: "#00d4ff" },
-            { n: "/V-ET/ (Thermoelectric Tech)", p: 27, c: "#10b981" },
-            { n: "/llms/ (AI Technical Reference)", p: 19, c: "#f59e0b" },
-            { n: "/llms.txt & /sitemap.xml", p: 10, c: "#a855f7" }
-          ]
-        },
-        "1w": {
-          label: "최근 7일 요일별 추이",
-          human: scale(285, daysPassed * 6 + visits),
-          ai: scale(194, daysPassed * 4),
-          topCountry: "대한민국 (51%)",
-          topAi: "Google / Gemini",
-          bars: [
-            { l: "Mon", h: scale(38, 2), a: scale(26, 2) },
-            { l: "Tue", h: scale(44, 3), a: scale(31, 2) },
-            { l: "Wed", h: scale(52, 4), a: scale(35, 3) },
-            { l: "Thu", h: scale(49, 3), a: scale(29, 2) },
-            { l: "Fri", h: scale(46, 3), a: scale(30, 2) },
-            { l: "Sat", h: scale(27, 1), a: scale(21, 1) },
-            { l: "Sun", h: scale(29, 1), a: scale(22, 1) }
-          ],
-          countries: [
-            { n: "대한민국 (KR)", p: 51, c: "#00d4ff" },
-            { n: "미국 (US)", p: 29, c: "#38bdf8" },
-            { n: "일본 (JP)", p: 8, c: "#818cf8" },
-            { n: "대만 / 싱가포르 (APAC)", p: 7, c: "#a855f7" },
-            { n: "유럽 및 기타", p: 5, c: "#64748b" }
-          ],
-          ais: [
-            { n: "Google (Googlebot / Google-Extended)", p: 38, c: "#f59e0b" },
-            { n: "OpenAI (GPTBot / OAI-SearchBot)", p: 25, c: "#10b981" },
-            { n: "xAI (Grok Bot)", p: 22, c: "#00d4ff" },
-            { n: "Anthropic (ClaudeBot)", p: 9, c: "#a855f7" },
-            { n: "Perplexity (PerplexityBot)", p: 6, c: "#64748b" }
-          ],
-          pages: [
-            { n: "/ (Main Portal)", p: 42, c: "#00d4ff" },
-            { n: "/V-ET/ (Thermoelectric Tech)", p: 26, c: "#10b981" },
-            { n: "/llms/ (AI Technical Reference)", p: 22, c: "#f59e0b" },
-            { n: "/llms.txt & /sitemap.xml", p: 10, c: "#a855f7" }
-          ]
-        },
-        "1m": {
-          label: "최근 1개월 주차별 추이",
-          human: scale(1180, daysPassed * 18 + visits),
-          ai: scale(840, daysPassed * 14),
-          topCountry: "대한민국 (48%)",
-          topAi: "Google / Gemini",
-          bars: [
-            { l: "1주", h: scale(240, 5), a: scale(170, 4) },
-            { l: "2주", h: scale(280, 7), a: scale(195, 5) },
-            { l: "3주", h: scale(310, 9), a: scale(220, 7) },
-            { l: "4주", h: scale(350, 12), a: scale(255, 9) }
-          ],
-          countries: [
-            { n: "대한민국 (KR)", p: 48, c: "#00d4ff" },
-            { n: "미국 (US)", p: 32, c: "#38bdf8" },
-            { n: "일본 (JP)", p: 8, c: "#818cf8" },
-            { n: "유럽 (DE / UK / NL)", p: 7, c: "#a855f7" },
-            { n: "기타 (Others)", p: 5, c: "#64748b" }
-          ],
-          ais: [
-            { n: "Google (Googlebot / Google-Extended)", p: 39, c: "#f59e0b" },
-            { n: "OpenAI (GPTBot / OAI-SearchBot)", p: 27, c: "#10b981" },
-            { n: "xAI (Grok Bot)", p: 19, c: "#00d4ff" },
-            { n: "Anthropic (ClaudeBot)", p: 9, c: "#a855f7" },
-            { n: "Perplexity (PerplexityBot)", p: 6, c: "#64748b" }
-          ],
-          pages: [
-            { n: "/ (Main Portal)", p: 41, c: "#00d4ff" },
-            { n: "/llms/ (AI Technical Reference)", p: 26, c: "#f59e0b" },
-            { n: "/V-ET/ (Thermoelectric Tech)", p: 24, c: "#10b981" },
-            { n: "/llms.txt & /sitemap.xml", p: 9, c: "#a855f7" }
-          ]
-        },
-        "6m": {
-          label: "최근 6개월 월별 추이",
-          human: scale(6420, daysPassed * 35 + visits),
-          ai: scale(4890, daysPassed * 28),
-          topCountry: "대한민국 (46%)",
-          topAi: "Google / Gemini",
-          bars: [
-            { l: "M-5", h: scale(760, 0), a: scale(540, 0) },
-            { l: "M-4", h: scale(890, 0), a: scale(660, 0) },
-            { l: "M-3", h: scale(1020, 0), a: scale(780, 0) },
-            { l: "M-2", h: scale(1140, 0), a: scale(890, 0) },
-            { l: "M-1", h: scale(1260, 0), a: scale(970, 0) },
-            { l: "Now", h: scale(1350, daysPassed * 15), a: scale(1050, daysPassed * 12) }
-          ],
-          countries: [
-            { n: "대한민국 (KR)", p: 46, c: "#00d4ff" },
-            { n: "미국 (US)", p: 34, c: "#38bdf8" },
-            { n: "일본 (JP)", p: 8, c: "#818cf8" },
-            { n: "유럽 (EU)", p: 7, c: "#a855f7" },
-            { n: "기타 (Others)", p: 5, c: "#64748b" }
-          ],
-          ais: [
-            { n: "Google (Googlebot / Google-Extended)", p: 41, c: "#f59e0b" },
-            { n: "OpenAI (GPTBot / OAI-SearchBot)", p: 28, c: "#10b981" },
-            { n: "xAI (Grok Bot)", p: 16, c: "#00d4ff" },
-            { n: "Anthropic (ClaudeBot)", p: 9, c: "#a855f7" },
-            { n: "Perplexity (PerplexityBot)", p: 6, c: "#64748b" }
-          ],
-          pages: [
-            { n: "/ (Main Portal)", p: 43, c: "#00d4ff" },
-            { n: "/llms/ (AI Technical Reference)", p: 28, c: "#f59e0b" },
-            { n: "/V-ET/ (Thermoelectric Tech)", p: 21, c: "#10b981" },
-            { n: "/llms.txt & /sitemap.xml", p: 8, c: "#a855f7" }
-          ]
-        },
-        "1y": {
-          label: "최근 1년 분기별 추이",
-          human: scale(12850, daysPassed * 45 + visits),
-          ai: scale(9640, daysPassed * 35),
-          topCountry: "대한민국 (45%)",
-          topAi: "Google / Gemini",
-          bars: [
-            { l: "Q1", h: scale(2150, 0), a: scale(1520, 0) },
-            { l: "Q2", h: scale(2890, 0), a: scale(2140, 0) },
-            { l: "Q3", h: scale(3560, 0), a: scale(2710, 0) },
-            { l: "Q4", h: scale(4250, daysPassed * 25), a: scale(3270, daysPassed * 20) }
-          ],
-          countries: [
-            { n: "대한민국 (KR)", p: 45, c: "#00d4ff" },
-            { n: "미국 (US)", p: 35, c: "#38bdf8" },
-            { n: "일본 (JP)", p: 8, c: "#818cf8" },
-            { n: "유럽 (EU)", p: 7, c: "#a855f7" },
-            { n: "기타 (Others)", p: 5, c: "#64748b" }
-          ],
-          ais: [
-            { n: "Google (Googlebot / Google-Extended)", p: 42, c: "#f59e0b" },
-            { n: "OpenAI (GPTBot / OAI-SearchBot)", p: 29, c: "#10b981" },
-            { n: "xAI (Grok Bot)", p: 15, c: "#00d4ff" },
-            { n: "Anthropic (ClaudeBot)", p: 8, c: "#a855f7" },
-            { n: "Perplexity (PerplexityBot)", p: 6, c: "#64748b" }
-          ],
-          pages: [
-            { n: "/ (Main Portal)", p: 45, c: "#00d4ff" },
-            { n: "/llms/ (AI Technical Reference)", p: 29, c: "#f59e0b" },
-            { n: "/V-ET/ (Thermoelectric Tech)", p: 18, c: "#10b981" },
-            { n: "/llms.txt & /sitemap.xml", p: 8, c: "#a855f7" }
-          ]
+      function formatDuration(sec) {
+        var s = Math.max(0, Math.floor(sec));
+        var h = Math.floor(s / 3600);
+        var m = Math.floor((s % 3600) / 60);
+        var r = s % 60;
+        var mm = String(m).padStart(2, "0");
+        var ss = String(r).padStart(2, "0");
+        if (h > 0) {
+          return h + "시간 " + mm + "분 " + ss + "초";
         }
-      };
-
-      function renderRows(containerId, items) {
-        var el = document.getElementById(containerId);
-        el.innerHTML = items.map(function (it) {
-          return '<div class="row-item">' +
-            '<div class="row-top"><strong>' + it.n + '</strong><span>' + it.p + '%</span></div>' +
-            '<div class="meter-bg"><div class="meter-fill" style="width:' + it.p + '%;background:' + it.c + ';"></div></div>' +
-          '</div>';
-        }).join("");
+        return mm + "분 " + ss + "초";
       }
 
-      function renderPeriod(period) {
-        var d = DATA[period] || DATA["1d"];
-        document.getElementById("kpiHuman").textContent = d.human.toLocaleString();
-        document.getElementById("kpiAi").textContent = d.ai.toLocaleString();
-        document.getElementById("kpiCountry").textContent = d.topCountry;
-        document.getElementById("kpiTopAi").textContent = d.topAi;
-        document.getElementById("chartRangeLabel").textContent = d.label;
+      function nowString() {
+        var d = new Date();
+        var yyyy = d.getFullYear();
+        var mo = String(d.getMonth() + 1).padStart(2, "0");
+        var dd = String(d.getDate()).padStart(2, "0");
+        var hh = String(d.getHours()).padStart(2, "0");
+        var mi = String(d.getMinutes()).padStart(2, "0");
+        var ss = String(d.getSeconds()).padStart(2, "0");
+        return yyyy + "-" + mo + "-" + dd + " " + hh + ":" + mi + ":" + ss;
+      }
 
-        var maxVal = 1;
-        d.bars.forEach(function (b) {
-          if (b.h + b.a > maxVal) maxVal = b.h + b.a;
+      function getVisits() {
+        return parseInt(localStorage.getItem(KEY_VISITS) || "0", 10) || 0;
+      }
+
+      function getMepixCount() {
+        var raw = localStorage.getItem(KEY_MEPIX);
+        return raw === null ? 2 : (parseInt(raw, 10) || 0);
+      }
+
+      function getTotalDwell() {
+        return parseInt(localStorage.getItem(KEY_TOTAL_DWELL) || "0", 10) || 0;
+      }
+
+      function getLogs() {
+        try {
+          var arr = JSON.parse(localStorage.getItem(KEY_CLICK_LOGS) || "[]");
+          return Array.isArray(arr) ? arr : [];
+        } catch (e) {
+          return [];
+        }
+      }
+
+      function saveLogs(arr) {
+        localStorage.setItem(KEY_CLICK_LOGS, JSON.stringify(arr));
+      }
+
+      function renderStats() {
+        var visits = getVisits();
+        var mepix = getMepixCount();
+        var diff = mepix - visits;
+        var updatedAt = localStorage.getItem(KEY_MEPIX_TIME);
+
+        document.getElementById("mepixCountDisplay").textContent = mepix.toLocaleString() + "명";
+        document.getElementById("localVisitsDisplay").textContent = visits.toLocaleString() + "회";
+        document.getElementById("diffDisplay").textContent = (diff >= 0 ? "+" : "") + diff.toLocaleString();
+        document.getElementById("mepixInput").value = mepix;
+
+        if (updatedAt) {
+          document.getElementById("mepixUpdatedAt").textContent = "최근 반영: " + updatedAt;
+        }
+      }
+
+      function renderDwell() {
+        var total = getTotalDwell();
+        document.getElementById("sessionDwellDisplay").textContent = formatDuration(sessionSeconds);
+        document.getElementById("totalDwellDisplay").textContent = formatDuration(total);
+      }
+
+      function renderLogs() {
+        var logs = getLogs();
+        var listEl = document.getElementById("clickLogList");
+        document.getElementById("clickCountDisplay").textContent = logs.length.toLocaleString() + "회";
+
+        if (logs.length === 0) {
+          listEl.innerHTML = '<div class="log-empty">아직 기록된 클릭 확인 로그가 없습니다. 위 버튼을 눌러 첫 기록을 남겨보세요.</div>';
+          return;
+        }
+
+        listEl.innerHTML = "";
+        logs.forEach(function (item, idx) {
+          var row = document.createElement("div");
+          row.className = "log-item";
+
+          var left = document.createElement("div");
+          left.className = "log-left";
+
+          var badge = document.createElement("span");
+          badge.className = "log-no";
+          badge.textContent = "#" + (logs.length - idx);
+
+          var timeSpan = document.createElement("span");
+          timeSpan.className = "log-time";
+          timeSpan.textContent = item.time;
+
+          var dwellSpan = document.createElement("span");
+          dwellSpan.className = "log-dwell";
+          dwellSpan.textContent = "[체류 " + item.dwell + "]";
+
+          var noteSpan = document.createElement("span");
+          noteSpan.className = "log-note";
+          noteSpan.textContent = item.note || "방문/상태 확인 클릭";
+
+          left.appendChild(badge);
+          left.appendChild(timeSpan);
+          left.appendChild(dwellSpan);
+          left.appendChild(noteSpan);
+
+          var delBtn = document.createElement("button");
+          delBtn.type = "button";
+          delBtn.className = "btn-danger";
+          delBtn.style.padding = "4px 9px";
+          delBtn.style.fontSize = "0.75rem";
+          delBtn.textContent = "삭제";
+          delBtn.onclick = function () {
+            var current = getLogs();
+            current.splice(idx, 1);
+            saveLogs(current);
+            renderLogs();
+          };
+
+          row.appendChild(left);
+          row.appendChild(delBtn);
+          listEl.appendChild(row);
         });
-
-        var chartEl = document.getElementById("chartBars");
-        chartEl.innerHTML = d.bars.map(function (b) {
-          var hPct = Math.round((b.h / maxVal) * 100);
-          var aPct = Math.round((b.a / maxVal) * 100);
-          return '<div class="bar-col">' +
-            '<div class="bar-stack" style="height:' + (hPct + aPct) + '%;">' +
-              '<div class="bar-human" style="height:' + Math.round((b.h / (b.h + b.a)) * 100) + '%;"></div>' +
-              '<div class="bar-ai" style="height:' + Math.round((b.a / (b.h + b.a)) * 100) + '%;"></div>' +
-            '</div>' +
-            '<div class="bar-lbl">' + b.l + '</div>' +
-          '</div>';
-        }).join("");
-
-        renderRows("countryList", d.countries);
-        renderRows("aiList", d.ais);
-        renderRows("pageList", d.pages);
       }
 
-      function playVenus() {
+      function startDwellCounter() {
+        if (dwellTimer) clearInterval(dwellTimer);
+        dwellTimer = setInterval(function () {
+          if (document.hidden) return;
+          sessionSeconds += 1;
+          var nextTotal = getTotalDwell() + 1;
+          localStorage.setItem(KEY_TOTAL_DWELL, String(nextTotal));
+          renderDwell();
+        }, 1000);
+      }
+
+      function openDashboard() {
+        lockScreen.style.display = "none";
+        dashboard.style.display = "block";
+
+        var nextVisits = getVisits() + 1;
+        localStorage.setItem(KEY_VISITS, String(nextVisits));
+
+        renderStats();
+        renderDwell();
+        renderLogs();
+        startDwellCounter();
+
         var vid = document.getElementById("venusVideo");
-        if (vid && typeof vid.play === "function") {
+        if (vid) {
+          vid.muted = true;
           vid.play().catch(function () {});
         }
       }
 
-      function openDashboard() {
-        var cmpEl = document.getElementById("compareLocalVisits");
-        if (cmpEl) cmpEl.textContent = String(visits) + "회";        
-        document.getElementById("lockScreen").style.display = "none";
-        document.getElementById("dashboard").style.display = "block";
-        document.getElementById("localVisits").textContent = String(visits);
-        renderPeriod("1d");
-        playVenus();
-      }
-
-      if (sessionStorage.getItem(KEY) === "1") {
-        openDashboard();
-      }
-
       function tryUnlock() {
-        var val = document.getElementById("pinInput").value.trim();
-        if (val === "7422") {
-          sessionStorage.setItem(KEY, "1");
-          document.getElementById("errMsg").textContent = "";
+        var val = (pinInput.value || "").trim();
+        if (val === PASSCODE) {
+          lockErr.textContent = "";
           openDashboard();
         } else {
-          document.getElementById("errMsg").textContent = "Invalid access code.";
-          document.getElementById("pinInput").value = "";
-          document.getElementById("pinInput").focus();
+          lockErr.textContent = "코드가 일치하지 않습니다.";
+          pinInput.value = "";
+          pinInput.focus();
         }
       }
 
       document.getElementById("unlockBtn").addEventListener("click", tryUnlock);
-      document.getElementById("pinInput").addEventListener("keydown", function (e) {
+      pinInput.addEventListener("keydown", function (e) {
         if (e.key === "Enter") tryUnlock();
       });
 
-      var soundBtn = document.getElementById("soundToggleBtn");
-      var vidEl = document.getElementById("venusVideo");
-      if (soundBtn && vidEl) {
-        soundBtn.addEventListener("click", function () {
-          vidEl.muted = !vidEl.muted;
-          soundBtn.textContent = vidEl.muted ? "SOUND: OFF" : "SOUND: ON";
-          if (!vidEl.muted) {
-            vidEl.play().catch(function () {});
-          }
-        });
-      }
-
-      var tabs = document.querySelectorAll(".tab-btn");
-      tabs.forEach(function (btn) {
-        btn.addEventListener("click", function () {
-          tabs.forEach(function (t) { t.classList.remove("active"); });
-          btn.classList.add("active");
-          renderPeriod(btn.getAttribute("data-period"));
-        });
+      document.getElementById("saveMepixBtn").addEventListener("click", function () {
+        var val = parseInt(document.getElementById("mepixInput").value, 10);
+        if (isNaN(val) || val < 0) val = 0;
+        localStorage.setItem(KEY_MEPIX, String(val));
+        localStorage.setItem(KEY_MEPIX_TIME, nowString());
+        renderStats();
       });
+
+      document.getElementById("recordClickBtn").addEventListener("click", function () {
+        var noteInput = document.getElementById("clickNoteInput");
+        var note = (noteInput.value || "").trim();
+        var logs = getLogs();
+        logs.unshift({
+          time: nowString(),
+          dwell: formatDuration(sessionSeconds),
+          note: note
+        });
+        saveLogs(logs);
+        noteInput.value = "";
+        renderLogs();
+      });
+
+      document.getElementById("clearLogsBtn").addEventListener("click", function () {
+        saveLogs([]);
+        renderLogs();
+      });
+
+      pinInput.focus();
     })();
   </script>
 </body>
