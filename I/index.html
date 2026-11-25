@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>V-Memory | Internal Telemetry</title>
+  <title>V-Memory | Fact &amp; Sketch Telemetry</title>
   <style>
     :root {
       --bg: #040812;
@@ -16,6 +16,7 @@
       --muted: #94a3b8;
       --accent: #00d4ff;
       --green: #10b981;
+      --violet: #a78bfa;
       --amber: #f59e0b;
       --red: #f43f5e;
     }
@@ -27,7 +28,7 @@
     }
 
     body {
-      background: radial-gradient(circle at top, #0c1830 0%, var(--bg) 62%);
+      background: radial-gradient(circle at top, #0c1830 0%, var(--bg) 65%);
       color: var(--text);
       font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Segoe UI", Roboto, sans-serif;
       min-height: 100vh;
@@ -143,9 +144,9 @@
     /* Dashboard */
     #dashboard {
       display: none;
-      max-width: 980px;
+      max-width: 1020px;
       margin: 0 auto;
-      padding: 24px 16px 60px;
+      padding: 24px 16px 64px;
     }
 
     .topbar {
@@ -179,6 +180,16 @@
       letter-spacing: -0.01em;
     }
 
+    .tag-pill {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: rgba(167, 139, 250, 0.14);
+      color: var(--violet);
+      border: 1px solid rgba(167, 139, 250, 0.3);
+    }
+
     .topbar-actions {
       display: flex;
       align-items: center;
@@ -205,7 +216,7 @@
       color: var(--accent);
     }
 
-    /* Venus Hero Video Stage (Vertical Smartphone Ratio) */
+    /* Venus Hero Video Stage */
     .venus-stage {
       background: linear-gradient(160deg, #0b1426 0%, #060b16 100%);
       border: 1px solid var(--border);
@@ -240,6 +251,7 @@
       align-items: center;
       justify-content: center;
       padding: 10px 0;
+      cursor: pointer;
     }
 
     .venus-frame video {
@@ -267,26 +279,59 @@
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 16px;
+      gap: 12px;
+      margin-bottom: 18px;
     }
 
     .panel-header h2 {
-      font-size: 1.05rem;
+      font-size: 1.08rem;
       font-weight: 800;
     }
 
     .panel-sub {
       font-size: 0.8rem;
       color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* Range Tabs */
+    .range-tabs {
+      display: inline-flex;
+      background: #040915;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 3px;
+      gap: 3px;
+    }
+
+    .range-btn {
+      background: transparent;
+      color: var(--muted);
+      border: none;
+      border-radius: 7px;
+      padding: 6px 13px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .range-btn:hover {
+      color: var(--text);
+    }
+
+    .range-btn.active {
+      background: rgba(0, 212, 255, 0.18);
+      color: var(--accent);
+      box-shadow: inset 0 0 0 1px rgba(0, 212, 255, 0.35);
     }
 
     /* KPI Grid */
     .kpi-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
       gap: 12px;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
 
     .kpi-card {
@@ -294,25 +339,50 @@
       border: 1px solid var(--border-soft);
       border-radius: 12px;
       padding: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .kpi-layer {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      padding: 2px 7px;
+      border-radius: 5px;
+      margin-bottom: 8px;
+    }
+
+    .layer-fact {
+      background: rgba(16, 185, 129, 0.14);
+      color: var(--green);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .layer-sketch {
+      background: rgba(0, 212, 255, 0.12);
+      color: var(--accent);
+      border: 1px solid rgba(0, 212, 255, 0.28);
     }
 
     .kpi-label {
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       color: var(--muted);
-      margin-bottom: 6px;
+      margin-bottom: 4px;
       font-weight: 600;
     }
 
     .kpi-val {
-      font-size: 1.7rem;
+      font-size: 1.75rem;
       font-weight: 800;
       letter-spacing: -0.02em;
       color: var(--text);
       margin-bottom: 4px;
     }
 
-    .kpi-val.accent { color: var(--accent); }
     .kpi-val.green { color: var(--green); }
+    .kpi-val.accent { color: var(--accent); }
+    .kpi-val.violet { color: var(--violet); }
     .kpi-val.amber { color: var(--amber); }
 
     .kpi-foot {
@@ -320,7 +390,71 @@
       color: var(--muted);
     }
 
-    /* Mepix Sync Form */
+    /* Chart Container */
+    .chart-box {
+      background: rgba(4, 9, 21, 0.72);
+      border: 1px solid var(--border-soft);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .chart-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .chart-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .legend {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 0.76rem;
+      color: var(--muted);
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot-fact {
+      width: 10px;
+      height: 10px;
+      border-radius: 3px;
+      background: var(--green);
+    }
+
+    .dot-sketch {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .svg-wrap {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    svg.trend-svg {
+      width: 100%;
+      min-width: 520px;
+      height: 230px;
+      display: block;
+    }
+
+    /* Mepix Fact Sync Bar */
     .sync-bar {
       display: flex;
       flex-wrap: wrap;
@@ -339,7 +473,7 @@
     }
 
     .num-input {
-      width: 110px;
+      width: 105px;
       background: #040915;
       border: 1px solid var(--border);
       border-radius: 8px;
@@ -351,119 +485,28 @@
     }
 
     .num-input:focus {
-      border-color: var(--accent);
+      border-color: var(--green);
     }
 
-    .text-input {
-      flex: 1;
-      min-width: 160px;
-      background: #040915;
-      border: 1px solid var(--border);
+    .btn-fact {
+      background: rgba(16, 185, 129, 0.16);
+      color: var(--green);
+      border: 1px solid rgba(16, 185, 129, 0.38);
       border-radius: 8px;
-      padding: 9px 12px;
-      color: var(--text);
-      font-size: 0.86rem;
-      outline: none;
-    }
-
-    .text-input:focus {
-      border-color: var(--accent);
-    }
-
-    .btn-sm {
-      background: rgba(0, 212, 255, 0.14);
-      color: var(--accent);
-      border: 1px solid rgba(0, 212, 255, 0.35);
-      border-radius: 8px;
-      padding: 8px 13px;
+      padding: 8px 14px;
       font-size: 0.82rem;
       font-weight: 700;
       cursor: pointer;
     }
 
-    .btn-sm:hover {
-      background: rgba(0, 212, 255, 0.24);
+    .btn-fact:hover {
+      background: rgba(16, 185, 129, 0.26);
     }
 
-    .btn-danger {
-      background: rgba(244, 63, 94, 0.12);
-      color: #fda4af;
-      border: 1px solid rgba(244, 63, 94, 0.3);
-      border-radius: 8px;
-      padding: 8px 12px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    .btn-danger:hover {
-      background: rgba(244, 63, 94, 0.22);
-    }
-
-    /* Click Log List */
-    .log-list {
-      margin-top: 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      max-height: 290px;
-      overflow-y: auto;
-    }
-
-    .log-item {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      background: rgba(4, 9, 21, 0.78);
-      border: 1px solid var(--border-soft);
-      border-radius: 10px;
-      padding: 10px 14px;
-      font-size: 0.84rem;
-    }
-
-    .log-left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .log-no {
-      display: inline-block;
-      background: rgba(0, 212, 255, 0.14);
-      color: var(--accent);
-      font-weight: 800;
+    .sync-note {
       font-size: 0.76rem;
-      padding: 2px 8px;
-      border-radius: 6px;
-    }
-
-    .log-time {
       color: var(--muted);
-      font-variant-numeric: tabular-nums;
-      font-size: 0.8rem;
-    }
-
-    .log-dwell {
-      color: var(--amber);
-      font-size: 0.78rem;
-      font-weight: 600;
-    }
-
-    .log-note {
-      color: var(--text);
-      font-weight: 500;
-    }
-
-    .log-empty {
-      text-align: center;
-      padding: 22px 12px;
-      color: var(--muted);
-      font-size: 0.84rem;
-      border: 1px dashed var(--border-soft);
-      border-radius: 10px;
+      margin-left: auto;
     }
   </style>
 </head>
@@ -472,9 +515,9 @@
   <!-- PIN Lock Screen -->
   <div id="lockScreen">
     <div class="lock-box">
-      <div class="lock-badge">INTERNAL ACCESS</div>
-      <h1>V-Memory Control Room</h1>
-      <p>접근 코드를 입력하면 내부 관제 화면이 열립니다.</p>
+      <div class="lock-badge">FACT + SKETCH ROOM</div>
+      <h1>V-Memory Control</h1>
+      <p>코드를 입력하면 비너스 스트림과 관제 보드가 열립니다.</p>
       <div class="pin-row">
         <input
           type="password"
@@ -492,16 +535,17 @@
     </div>
   </div>
 
-  <!-- Main Internal Dashboard -->
+  <!-- Main Dashboard -->
   <div id="dashboard">
     <div class="topbar">
       <div class="topbar-title">
         <span class="live-dot"></span>
-        <h1>vmemory.net Internal Control</h1>
+        <h1>vmemory.net Telemetry</h1>
+        <span class="tag-pill">FACT + SKETCH</span>
       </div>
       <div class="topbar-actions">
         <a href="https://mepix.ai" target="_blank" rel="noopener noreferrer" class="btn-ghost">
-          미픽스카운터 열기 &nearr;
+          미픽스카운터 실측 열기 &nearr;
         </a>
         <a href="/" class="btn-ghost">&larr; 메인 홈</a>
       </div>
@@ -511,112 +555,109 @@
     <div class="venus-stage">
       <div class="stage-head">
         <span><strong>VENUS</strong> &middot; Vertical Stream (9:16 Native)</span>
-        <span>Autoplay &middot; Muted &middot; Loop</span>
+        <span>영상·화면 터치/클릭 자동 감지 중</span>
       </div>
-      <div class="venus-frame">
+      <div class="venus-frame" id="venusFrame">
         <video id="venusVideo" autoplay muted loop playsinline preload="metadata">
           <source src="venus.mp4" type="video/mp4" />
         </video>
       </div>
     </div>
 
-    <!-- Section 1: 미픽스카운터 실측 & 내 방문 비교 -->
+    <!-- Fact + Sketch Unified Trend Panel -->
     <div class="panel">
       <div class="panel-header">
         <div>
-          <h2>미픽스카운터 &amp; 방문 현황 비교</h2>
-          <div class="panel-sub">실측 카운터(미픽스카운터) 기준값과 이 기기 방문 기록을 나란히 관리합니다.</div>
+          <h2>실측 방문자(팩트) &amp; 인터랙션 활성도(낙서) 추이</h2>
+          <div class="panel-sub">
+            기준일: <strong id="todayDateLabel" style="color:var(--text);">-</strong> &middot; 날짜가 바뀌면 어제 데이터가 자동으로 누적 장부에 편입됩니다.
+          </div>
         </div>
-        <span class="panel-sub" id="mepixUpdatedAt">동기화 기록 없음</span>
+        <div class="range-tabs" id="rangeTabs">
+          <button type="button" class="range-btn active" data-range="today">오늘</button>
+          <button type="button" class="range-btn" data-range="week">주간</button>
+          <button type="button" class="range-btn" data-range="month">월간</button>
+          <button type="button" class="range-btn" data-range="year">1년</button>
+        </div>
       </div>
 
+      <!-- 4 KPI Cards -->
       <div class="kpi-grid">
         <div class="kpi-card">
-          <div class="kpi-label">미픽스카운터 (실측 방문자)</div>
-          <div class="kpi-val green" id="mepixCountDisplay">2</div>
-          <div class="kpi-foot">mepix.ai 집계 기준 숫자</div>
+          <span class="kpi-layer layer-fact">FACT &middot; 미픽스카운터</span>
+          <div class="kpi-label" id="lblVisitors">오늘 실측 방문자</div>
+          <div class="kpi-val green" id="valVisitors">0명</div>
+          <div class="kpi-foot">mepix.ai 기준 일별 누적</div>
         </div>
+
         <div class="kpi-card">
-          <div class="kpi-label">이 기기 /I/ 방문 횟수</div>
-          <div class="kpi-val accent" id="localVisitsDisplay">1회</div>
-          <div class="kpi-foot">현재 브라우저 누적 입장</div>
+          <span class="kpi-layer layer-sketch">SKETCH &middot; 자동 감지</span>
+          <div class="kpi-label" id="lblClicks">오늘 자동 클릭·터치 수</div>
+          <div class="kpi-val accent" id="valClicks">0회</div>
+          <div class="kpi-foot">영상 감상·화면 클릭 자동 합산</div>
         </div>
+
         <div class="kpi-card">
-          <div class="kpi-label">실측 대비 차이</div>
-          <div class="kpi-val" id="diffDisplay">-</div>
-          <div class="kpi-foot">미픽스카운터 &minus; 이 기기 방문</div>
+          <span class="kpi-layer layer-sketch">COMBINED &middot; 활성 지수</span>
+          <div class="kpi-label" id="lblTotalScore">방문자 + 클릭 합산 지수</div>
+          <div class="kpi-val violet" id="valTotalScore">0</div>
+          <div class="kpi-foot">실측 방문자 + 자동 클릭 결합</div>
+        </div>
+
+        <div class="kpi-card">
+          <span class="kpi-layer layer-sketch">DWELL &middot; 체류 감도</span>
+          <div class="kpi-label" id="lblDwell">머문 시간 (체류 합계)</div>
+          <div class="kpi-val amber" id="valDwell">00분 00초</div>
+          <div class="kpi-foot" id="footSessionDwell">현재 세션: 00분 00초</div>
         </div>
       </div>
 
+      <!-- SVG Dual Chart -->
+      <div class="chart-box">
+        <div class="chart-top">
+          <div class="chart-title" id="chartTitle">최근 7일 일별 추이 (방문자 + 클릭 활성도)</div>
+          <div class="legend">
+            <span class="legend-item"><span class="dot-fact"></span>미픽스 방문자 (Fact)</span>
+            <span class="legend-item"><span class="dot-sketch"></span>방문자 + 클릭 합산 (Total)</span>
+          </div>
+        </div>
+        <div class="svg-wrap">
+          <svg id="trendSvg" class="trend-svg" viewBox="0 0 760 230" preserveAspectRatio="none"></svg>
+        </div>
+      </div>
+
+      <!-- Mepix Fact Anchor Bar -->
       <div class="sync-bar">
-        <label for="mepixInput">미픽스카운터 방문수 반영:</label>
-        <input type="number" id="mepixInput" class="num-input" min="0" placeholder="예: 2" />
-        <button type="button" class="btn-sm" id="saveMepixBtn">숫자 저장</button>
-        <a href="https://mepix.ai" target="_blank" rel="noopener noreferrer" class="btn-ghost" style="margin-left:auto;">
-          미픽스카운터에서 숫자 확인 &rarr;
-        </a>
+        <label for="mepixTodayInput">오늘 미픽스카운터 방문자 수:</label>
+        <input type="number" id="mepixTodayInput" class="num-input" min="0" placeholder="예: 2" />
+        <button type="button" class="btn-fact" id="saveMepixFactBtn">오늘 팩트 반영</button>
+        <span class="sync-note" id="syncStatusNote">내일이 되면 오늘 숫자는 자동으로 어제 누적 기록으로 넘어갑니다.</span>
       </div>
-    </div>
-
-    <!-- Section 2: 머문 시간 & 수동 클릭 확인 로그 -->
-    <div class="panel">
-      <div class="panel-header">
-        <div>
-          <h2>체류 시간 &amp; 클릭 확인 로그</h2>
-          <div class="panel-sub">머문 시간을 실시간 측정하고, 직접 클릭 버튼으로 확인 시점을 기록·정리합니다.</div>
-        </div>
-        <button type="button" class="btn-danger" id="clearLogsBtn">로그 전체 초기화</button>
-      </div>
-
-      <div class="kpi-grid">
-        <div class="kpi-card">
-          <div class="kpi-label">현재 세션 머문 시간</div>
-          <div class="kpi-val amber" id="sessionDwellDisplay">00분 00초</div>
-          <div class="kpi-foot">이번 입장 후 경과 시간</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-label">이 기기 누적 체류 시간</div>
-          <div class="kpi-val" id="totalDwellDisplay">00분 00초</div>
-          <div class="kpi-foot">브라우저 누적 체류 합계</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-label">수동 클릭 확인 횟수</div>
-          <div class="kpi-val accent" id="clickCountDisplay">0회</div>
-          <div class="kpi-foot">아래 버튼으로 직접 체크한 수</div>
-        </div>
-      </div>
-
-      <div class="sync-bar">
-        <input
-          type="text"
-          id="clickNoteInput"
-          class="text-input"
-          maxlength="60"
-          placeholder="메모 입력 (선택, 예: 모바일 테스트 / 미픽스 5명 확인)"
-        />
-        <button type="button" class="btn-primary" id="recordClickBtn">+ 클릭 확인 기록</button>
-      </div>
-
-      <div class="log-list" id="clickLogList"></div>
     </div>
   </div>
 
   <script>
     (function () {
       var PASSCODE = "7422";
-      var KEY_VISITS = "vm_i_local_visits_v2";
-      var KEY_MEPIX = "vm_i_mepix_count_v2";
-      var KEY_MEPIX_TIME = "vm_i_mepix_time_v2";
-      var KEY_TOTAL_DWELL = "vm_i_total_dwell_sec_v2";
-      var KEY_CLICK_LOGS = "vm_i_click_logs_v2";
-
+      var STORE_KEY = "vm_fact_sketch_ledger_v1";
+      var currentRange = "today";
       var sessionSeconds = 0;
-      var dwellTimer = null;
+      var unlocked = false;
 
       var lockScreen = document.getElementById("lockScreen");
       var dashboard = document.getElementById("dashboard");
       var pinInput = document.getElementById("pinInput");
       var lockErr = document.getElementById("lockErr");
+
+      function getKstDateStr(offsetDays) {
+        var now = new Date();
+        var utc = now.getTime() + now.getTimezoneOffset() * 60000;
+        var kst = new Date(utc + 9 * 3600000 + (offsetDays || 0) * 86400000);
+        var y = kst.getFullYear();
+        var m = String(kst.getMonth() + 1).padStart(2, "0");
+        var d = String(kst.getDate()).padStart(2, "0");
+        return y + "-" + m + "-" + d;
+      }
 
       function formatDuration(sec) {
         var s = Math.max(0, Math.floor(sec));
@@ -625,151 +666,299 @@
         var r = s % 60;
         var mm = String(m).padStart(2, "0");
         var ss = String(r).padStart(2, "0");
-        if (h > 0) {
-          return h + "시간 " + mm + "분 " + ss + "초";
-        }
+        if (h > 0) return h + "시간 " + mm + "분 " + ss + "초";
         return mm + "분 " + ss + "초";
       }
 
-      function nowString() {
-        var d = new Date();
-        var yyyy = d.getFullYear();
-        var mo = String(d.getMonth() + 1).padStart(2, "0");
-        var dd = String(d.getDate()).padStart(2, "0");
-        var hh = String(d.getHours()).padStart(2, "0");
-        var mi = String(d.getMinutes()).padStart(2, "0");
-        var ss = String(d.getSeconds()).padStart(2, "0");
-        return yyyy + "-" + mo + "-" + dd + " " + hh + ":" + mi + ":" + ss;
-      }
-
-      function getVisits() {
-        return parseInt(localStorage.getItem(KEY_VISITS) || "0", 10) || 0;
-      }
-
-      function getMepixCount() {
-        var raw = localStorage.getItem(KEY_MEPIX);
-        return raw === null ? 2 : (parseInt(raw, 10) || 0);
-      }
-
-      function getTotalDwell() {
-        return parseInt(localStorage.getItem(KEY_TOTAL_DWELL) || "0", 10) || 0;
-      }
-
-      function getLogs() {
+      function loadLedger() {
         try {
-          var arr = JSON.parse(localStorage.getItem(KEY_CLICK_LOGS) || "[]");
-          return Array.isArray(arr) ? arr : [];
+          var raw = JSON.parse(localStorage.getItem(STORE_KEY) || "{}");
+          return raw && typeof raw === "object" ? raw : {};
         } catch (e) {
-          return [];
+          return {};
         }
       }
 
-      function saveLogs(arr) {
-        localStorage.setItem(KEY_CLICK_LOGS, JSON.stringify(arr));
-      }
-
-      function renderStats() {
-        var visits = getVisits();
-        var mepix = getMepixCount();
-        var diff = mepix - visits;
-        var updatedAt = localStorage.getItem(KEY_MEPIX_TIME);
-
-        document.getElementById("mepixCountDisplay").textContent = mepix.toLocaleString() + "명";
-        document.getElementById("localVisitsDisplay").textContent = visits.toLocaleString() + "회";
-        document.getElementById("diffDisplay").textContent = (diff >= 0 ? "+" : "") + diff.toLocaleString();
-        document.getElementById("mepixInput").value = mepix;
-
-        if (updatedAt) {
-          document.getElementById("mepixUpdatedAt").textContent = "최근 반영: " + updatedAt;
+      function saveLedger(ledger) {
+        // Keep up to 400 days to avoid storage bloat
+        var keys = Object.keys(ledger).sort();
+        if (keys.length > 400) {
+          keys.slice(0, keys.length - 400).forEach(function (k) {
+            delete ledger[k];
+          });
         }
+        localStorage.setItem(STORE_KEY, JSON.stringify(ledger));
       }
 
-      function renderDwell() {
-        var total = getTotalDwell();
-        document.getElementById("sessionDwellDisplay").textContent = formatDuration(sessionSeconds);
-        document.getElementById("totalDwellDisplay").textContent = formatDuration(total);
-      }
-
-      function renderLogs() {
-        var logs = getLogs();
-        var listEl = document.getElementById("clickLogList");
-        document.getElementById("clickCountDisplay").textContent = logs.length.toLocaleString() + "회";
-
-        if (logs.length === 0) {
-          listEl.innerHTML = '<div class="log-empty">아직 기록된 클릭 확인 로그가 없습니다. 위 버튼을 눌러 첫 기록을 남겨보세요.</div>';
-          return;
-        }
-
-        listEl.innerHTML = "";
-        logs.forEach(function (item, idx) {
-          var row = document.createElement("div");
-          row.className = "log-item";
-
-          var left = document.createElement("div");
-          left.className = "log-left";
-
-          var badge = document.createElement("span");
-          badge.className = "log-no";
-          badge.textContent = "#" + (logs.length - idx);
-
-          var timeSpan = document.createElement("span");
-          timeSpan.className = "log-time";
-          timeSpan.textContent = item.time;
-
-          var dwellSpan = document.createElement("span");
-          dwellSpan.className = "log-dwell";
-          dwellSpan.textContent = "[체류 " + item.dwell + "]";
-
-          var noteSpan = document.createElement("span");
-          noteSpan.className = "log-note";
-          noteSpan.textContent = item.note || "방문/상태 확인 클릭";
-
-          left.appendChild(badge);
-          left.appendChild(timeSpan);
-          left.appendChild(dwellSpan);
-          left.appendChild(noteSpan);
-
-          var delBtn = document.createElement("button");
-          delBtn.type = "button";
-          delBtn.className = "btn-danger";
-          delBtn.style.padding = "4px 9px";
-          delBtn.style.fontSize = "0.75rem";
-          delBtn.textContent = "삭제";
-          delBtn.onclick = function () {
-            var current = getLogs();
-            current.splice(idx, 1);
-            saveLogs(current);
-            renderLogs();
+      function ensureTodayEntry(ledger) {
+        var today = getKstDateStr(0);
+        if (!ledger[today]) {
+          ledger[today] = {
+            visitors: 0,
+            clicks: 0,
+            dwell: 0
           };
-
-          row.appendChild(left);
-          row.appendChild(delBtn);
-          listEl.appendChild(row);
-        });
+        }
+        return ledger[today];
       }
 
-      function startDwellCounter() {
-        if (dwellTimer) clearInterval(dwellTimer);
-        dwellTimer = setInterval(function () {
-          if (document.hidden) return;
-          sessionSeconds += 1;
-          var nextTotal = getTotalDwell() + 1;
-          localStorage.setItem(KEY_TOTAL_DWELL, String(nextTotal));
-          renderDwell();
-        }, 1000);
+      function getDaysForRange(range) {
+        if (range === "today") return 1;
+        if (range === "week") return 7;
+        if (range === "month") return 30;
+        return 365;
+      }
+
+      function aggregateRange(range) {
+        var ledger = loadLedger();
+        ensureTodayEntry(ledger);
+        var days = getDaysForRange(range);
+        var sumVisitors = 0;
+        var sumClicks = 0;
+        var sumDwell = 0;
+
+        for (var i = 0; i < days; i++) {
+          var key = getKstDateStr(-i);
+          var entry = ledger[key];
+          if (entry) {
+            sumVisitors += Number(entry.visitors) || 0;
+            sumClicks += Number(entry.clicks) || 0;
+            sumDwell += Number(entry.dwell) || 0;
+          }
+        }
+
+        return {
+          visitors: sumVisitors,
+          clicks: sumClicks,
+          total: sumVisitors + sumClicks,
+          dwell: sumDwell
+        };
+      }
+
+      function buildSeries(range) {
+        var ledger = loadLedger();
+        ensureTodayEntry(ledger);
+        var points = [];
+
+        if (range === "today" || range === "week") {
+          // 7-day daily bars
+          for (var i = 6; i >= 0; i--) {
+            var dKey = getKstDateStr(-i);
+            var item = ledger[dKey] || { visitors: 0, clicks: 0 };
+            var v = Number(item.visitors) || 0;
+            var c = Number(item.clicks) || 0;
+            points.push({
+              label: dKey.slice(5),
+              visitors: v,
+              total: v + c
+            });
+          }
+        } else if (range === "month") {
+          // 10 buckets of 3 days each (30 days)
+          for (var b = 9; b >= 0; b--) {
+            var vSum = 0;
+            var cSum = 0;
+            var endLabel = getKstDateStr(-(b * 3)).slice(5);
+            for (var k = 0; k < 3; k++) {
+              var key = getKstDateStr(-(b * 3 + k));
+              var it = ledger[key];
+              if (it) {
+                vSum += Number(it.visitors) || 0;
+                cSum += Number(it.clicks) || 0;
+              }
+            }
+            points.push({
+              label: endLabel,
+              visitors: vSum,
+              total: vSum + cSum
+            });
+          }
+        } else {
+          // 12 buckets of ~30 days each (360 days)
+          for (var m = 11; m >= 0; m--) {
+            var mv = 0;
+            var mc = 0;
+            var mLabel = getKstDateStr(-(m * 30)).slice(2, 7);
+            for (var d = 0; d < 30; d++) {
+              var mKey = getKstDateStr(-(m * 30 + d));
+              var mIt = ledger[mKey];
+              if (mIt) {
+                mv += Number(mIt.visitors) || 0;
+                mc += Number(mIt.clicks) || 0;
+              }
+            }
+            points.push({
+              label: mLabel,
+              visitors: mv,
+              total: mv + mc
+            });
+          }
+        }
+        return points;
+      }
+
+      function renderChart(points, range) {
+        var svg = document.getElementById("trendSvg");
+        var W = 760;
+        var H = 230;
+        var padL = 38;
+        var padR = 20;
+        var padT = 22;
+        var padB = 34;
+        var plotW = W - padL - padR;
+        var plotH = H - padT - padB;
+
+        var maxVal = 4;
+        points.forEach(function (p) {
+          if (p.total > maxVal) maxVal = p.total;
+          if (p.visitors > maxVal) maxVal = p.visitors;
+        });
+        maxVal = Math.ceil(maxVal * 1.18);
+
+        var titleMap = {
+          today: "오늘 포함 최근 7일 일별 추이 (방문자 + 클릭 활성도)",
+          week: "주간(7일) 일별 추이 (방문자 + 클릭 활성도)",
+          month: "월간(30일) 3일 단위 누적 추이",
+          year: "1년(365일) 월간 단위 누적 추이"
+        };
+        document.getElementById("chartTitle").textContent = titleMap[range] || titleMap.today;
+
+        var out = [];
+
+        // Horizontal grid lines
+        for (var g = 0; g <= 4; g++) {
+          var gy = padT + (plotH * g) / 4;
+          var gVal = Math.round(maxVal * (1 - g / 4));
+          out.push('<line x1="' + padL + '" y1="' + gy.toFixed(1) + '" x2="' + (W - padR) + '" y2="' + gy.toFixed(1) + '" stroke="rgba(148,163,184,0.12)" stroke-width="1" />');
+          out.push('<text x="' + (padL - 8) + '" y="' + (gy + 4).toFixed(1) + '" fill="#64748b" font-size="11" text-anchor="end">' + gVal + "</text>");
+        }
+
+        var n = points.length;
+        var step = plotW / n;
+        var barW = Math.min(28, step * 0.44);
+        var lineCoords = [];
+
+        points.forEach(function (p, idx) {
+          var cx = padL + step * idx + step / 2;
+          var barH = (p.visitors / maxVal) * plotH;
+          var by = padT + plotH - barH;
+          var ty = padT + plotH - (p.total / maxVal) * plotH;
+
+          // Fact Bar (Visitors)
+          out.push(
+            '<rect x="' + (cx - barW / 2).toFixed(1) +
+            '" y="' + by.toFixed(1) +
+            '" width="' + barW.toFixed(1) +
+            '" height="' + Math.max(2, barH).toFixed(1) +
+            '" rx="4" fill="rgba(16,185,129,0.38)" stroke="#10b981" stroke-width="1" />'
+          );
+
+          // X-axis label
+          out.push(
+            '<text x="' + cx.toFixed(1) +
+            '" y="' + (H - 10) +
+            '" fill="#94a3b8" font-size="11" text-anchor="middle">' + p.label + "</text>"
+          );
+
+          lineCoords.push({ x: cx, y: ty, total: p.total, visitors: p.visitors });
+        });
+
+        // Total Line (Visitors + Clicks)
+        if (lineCoords.length > 0) {
+          var pathD = lineCoords.map(function (pt, idx) {
+            return (idx === 0 ? "M " : "L ") + pt.x.toFixed(1) + " " + pt.y.toFixed(1);
+          }).join(" ");
+
+          out.push('<path d="' + pathD + '" fill="none" stroke="#00d4ff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />');
+
+          lineCoords.forEach(function (pt) {
+            out.push('<circle cx="' + pt.x.toFixed(1) + '" cy="' + pt.y.toFixed(1) + '" r="4.2" fill="#040812" stroke="#00d4ff" stroke-width="2.4" />');
+            if (pt.total > 0) {
+              out.push(
+                '<text x="' + pt.x.toFixed(1) +
+                '" y="' + (pt.y - 9).toFixed(1) +
+                '" fill="#e2e8f0" font-size="11" font-weight="700" text-anchor="middle">' + pt.total + "</text>"
+              );
+            }
+          });
+        }
+
+        svg.innerHTML = out.join("");
+      }
+
+      function renderAll() {
+        var today = getKstDateStr(0);
+        document.getElementById("todayDateLabel").textContent = today;
+
+        var prefixMap = {
+          today: "오늘",
+          week: "주간(7일)",
+          month: "월간(30일)",
+          year: "1년(365일)"
+        };
+        var pfx = prefixMap[currentRange] || "오늘";
+        var agg = aggregateRange(currentRange);
+
+        document.getElementById("lblVisitors").textContent = pfx + " 실측 방문자";
+        document.getElementById("valVisitors").textContent = agg.visitors.toLocaleString() + "명";
+
+        document.getElementById("lblClicks").textContent = pfx + " 자동 클릭·터치 수";
+        document.getElementById("valClicks").textContent = agg.clicks.toLocaleString() + "회";
+
+        document.getElementById("lblTotalScore").textContent = pfx + " 방문자 + 클릭 합산";
+        document.getElementById("valTotalScore").textContent = agg.total.toLocaleString();
+
+        document.getElementById("lblDwell").textContent = pfx + " 머문 시간";
+        document.getElementById("valDwell").textContent = formatDuration(agg.dwell);
+        document.getElementById("footSessionDwell").textContent = "현재 세션: " + formatDuration(sessionSeconds);
+
+        var ledger = loadLedger();
+        var todayEntry = ensureTodayEntry(ledger);
+        var inputEl = document.getElementById("mepixTodayInput");
+        if (document.activeElement !== inputEl) {
+          inputEl.value = todayEntry.visitors;
+        }
+
+        renderChart(buildSeries(currentRange), currentRange);
+      }
+
+      function recordAutoClick() {
+        if (!unlocked) return;
+        var ledger = loadLedger();
+        var todayEntry = ensureTodayEntry(ledger);
+        todayEntry.clicks = (Number(todayEntry.clicks) || 0) + 1;
+        saveLedger(ledger);
+        renderAll();
       }
 
       function openDashboard() {
+        unlocked = true;
         lockScreen.style.display = "none";
         dashboard.style.display = "block";
 
-        var nextVisits = getVisits() + 1;
-        localStorage.setItem(KEY_VISITS, String(nextVisits));
+        var ledger = loadLedger();
+        ensureTodayEntry(ledger);
+        saveLedger(ledger);
+        renderAll();
 
-        renderStats();
-        renderDwell();
-        renderLogs();
-        startDwellCounter();
+        // Auto dwell timer (1s tick while tab is visible)
+        setInterval(function () {
+          if (!unlocked || document.hidden) return;
+          sessionSeconds += 1;
+          var l = loadLedger();
+          var t = ensureTodayEntry(l);
+          t.dwell = (Number(t.dwell) || 0) + 1;
+          saveLedger(l);
+          renderAll();
+        }, 1000);
+
+        // Auto click/touch listener on entire dashboard (excluding input/save button)
+        dashboard.addEventListener("click", function (e) {
+          if (e.target && (e.target.id === "mepixTodayInput" || e.target.id === "saveMepixFactBtn")) {
+            return;
+          }
+          recordAutoClick();
+        });
 
         var vid = document.getElementById("venusVideo");
         if (vid) {
@@ -795,31 +984,26 @@
         if (e.key === "Enter") tryUnlock();
       });
 
-      document.getElementById("saveMepixBtn").addEventListener("click", function () {
-        var val = parseInt(document.getElementById("mepixInput").value, 10);
-        if (isNaN(val) || val < 0) val = 0;
-        localStorage.setItem(KEY_MEPIX, String(val));
-        localStorage.setItem(KEY_MEPIX_TIME, nowString());
-        renderStats();
-      });
-
-      document.getElementById("recordClickBtn").addEventListener("click", function () {
-        var noteInput = document.getElementById("clickNoteInput");
-        var note = (noteInput.value || "").trim();
-        var logs = getLogs();
-        logs.unshift({
-          time: nowString(),
-          dwell: formatDuration(sessionSeconds),
-          note: note
+      document.getElementById("rangeTabs").addEventListener("click", function (e) {
+        var btn = e.target.closest(".range-btn");
+        if (!btn) return;
+        currentRange = btn.getAttribute("data-range") || "today";
+        document.querySelectorAll(".range-btn").forEach(function (b) {
+          b.classList.toggle("active", b === btn);
         });
-        saveLogs(logs);
-        noteInput.value = "";
-        renderLogs();
+        renderAll();
       });
 
-      document.getElementById("clearLogsBtn").addEventListener("click", function () {
-        saveLogs([]);
-        renderLogs();
+      document.getElementById("saveMepixFactBtn").addEventListener("click", function () {
+        var v = parseInt(document.getElementById("mepixTodayInput").value, 10);
+        if (isNaN(v) || v < 0) v = 0;
+        var ledger = loadLedger();
+        var todayEntry = ensureTodayEntry(ledger);
+        todayEntry.visitors = v;
+        saveLedger(ledger);
+        document.getElementById("syncStatusNote").textContent =
+          "오늘(" + getKstDateStr(0) + ") 실측 방문자 " + v + "명 반영 완료 · 내일 자동 누적됩니다.";
+        renderAll();
       });
 
       pinInput.focus();
