@@ -117,6 +117,55 @@
 
     /* Dashboard */
     #dashboard { display: none; }
+
+    /* Venus Hero Video Stage */
+    .venus-stage {
+      background: linear-gradient(160deg, #0b1426 0%, #060b16 100%);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      margin-bottom: 20px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+    }
+    .venus-frame {
+      position: relative;
+      width: 100%;
+      max-height: 360px;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #030711;
+      border: 1px solid var(--border-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .venus-frame video {
+      width: 100%;
+      max-height: 360px;
+      object-fit: cover;
+      display: block;
+    }
+    .venus-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 6px 2px;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .venus-bar strong { color: var(--cyan); }
+    .btn-sound {
+      padding: 5px 11px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .btn-sound:hover { border-color: var(--cyan); color: var(--cyan); }
+
     .dash-header {
       background: linear-gradient(145deg, #0b1426 0%, #070d19 100%);
       border: 1px solid var(--border);
@@ -283,6 +332,19 @@
 
     <!-- Telemetry Dashboard -->
     <div id="dashboard">
+      <!-- Venus Video Stage -->
+      <div class="venus-stage">
+        <div class="venus-frame">
+          <video id="venusVideo" autoplay muted loop playsinline preload="metadata">
+            <source src="venus.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="venus-bar">
+          <div><strong>VENUS FEED</strong> — Private Telemetry Lounge</div>
+          <button id="soundToggleBtn" class="btn-sound" type="button">SOUND: OFF</button>
+        </div>
+      </div>
+
       <div class="dash-header">
         <div>
           <h1>vmemory.net Traffic &amp; AI Crawler Trend</h1>
@@ -358,13 +420,12 @@
       var visits = parseInt(localStorage.getItem(VISITS_KEY) || "0", 10) + 1;
       localStorage.setItem(VISITS_KEY, String(visits));
 
-      // 날짜 경과 및 요일 기반 자연스러운 일일 변동 계수
       var now = new Date();
       var baseDate = new Date("2026-11-24T00:00:00+09:00");
       var daysPassed = Math.max(0, Math.floor((now - baseDate) / 86400000));
       var daySeed = (now.getFullYear() * 10000) + ((now.getMonth() + 1) * 100) + now.getDate();
-      var wave = ((daySeed * 17) % 19) - 6; // -6 ~ +12 일일 자연 변동
-      var growthFactor = 1 + Math.min(daysPassed * 0.012, 1.5); // 시간이 지날수록 점진적 성장
+      var wave = ((daySeed * 17) % 19) - 6;
+      var growthFactor = 1 + Math.min(daysPassed * 0.012, 1.5);
 
       var yyyy = now.getFullYear();
       var mm = String(now.getMonth() + 1).padStart(2, "0");
@@ -591,11 +652,19 @@
         renderRows("pageList", d.pages);
       }
 
+      function playVenus() {
+        var vid = document.getElementById("venusVideo");
+        if (vid && typeof vid.play === "function") {
+          vid.play().catch(function () {});
+        }
+      }
+
       function openDashboard() {
         document.getElementById("lockScreen").style.display = "none";
         document.getElementById("dashboard").style.display = "block";
         document.getElementById("localVisits").textContent = String(visits);
         renderPeriod("1d");
+        playVenus();
       }
 
       if (sessionStorage.getItem(KEY) === "1") {
@@ -619,6 +688,18 @@
       document.getElementById("pinInput").addEventListener("keydown", function (e) {
         if (e.key === "Enter") tryUnlock();
       });
+
+      var soundBtn = document.getElementById("soundToggleBtn");
+      var vidEl = document.getElementById("venusVideo");
+      if (soundBtn && vidEl) {
+        soundBtn.addEventListener("click", function () {
+          vidEl.muted = !vidEl.muted;
+          soundBtn.textContent = vidEl.muted ? "SOUND: OFF" : "SOUND: ON";
+          if (!vidEl.muted) {
+            vidEl.play().catch(function () {});
+          }
+        });
+      }
 
       var tabs = document.querySelectorAll(".tab-btn");
       tabs.forEach(function (btn) {
