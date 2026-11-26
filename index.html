@@ -3,21 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V-Memory Corp. | 0T0C Ferroelectric Domain-Wall Memory (FDWM)</title>
-    <meta name="description" content="V-Memory Corp. develops 0T0C Ferroelectric Domain-Wall Memory (FDWM), V-Line, and Compute-In-Vmemory (CIV) architectures for AI data centers and Physical AI. 78 patent applications, 55 registered patents, 6 peer-reviewed papers.">
+    <title>V-Memory | 0T0C Ferroelectric Domain-Wall Memory (FDWM)</title>
+    <meta name="description" content="V-Memory Corp. develops 0T0C (OTOC) Ferroelectric Domain-Wall Memory (FDWM), V-Line, Compute-In-Vmemory (CIV), and V-ET™ thermoelectric cooling for AI data center power and thermal solutions. 78 patent filings, 55 registered patents, 6 peer-reviewed papers.">
+    <link rel="canonical" href="https://vmemory.net/">
+    <link rel="describedby" href="https://vmemory.net/llms.txt">
     <link rel="icon" type="image/png" href="ViVI_Plogo.png">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="V-Memory Corp.">
+    <meta property="og:title" content="V-Memory | 0T0C Ferroelectric Domain-Wall Memory (FDWM)">
+    <meta property="og:description" content="Next-generation FDWM (V-Line, 0T0C/OTOC, NDRO, CIV) and V-ET™ thermoelectric cooling for AI data center power/thermal solutions, JDA, and IP licensing.">
+    <meta property="og:url" content="https://vmemory.net/">
+    <meta property="og:image" content="https://vmemory.net/Venus.png">
 
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "V-Memory Corp.",
-      "url": "https://vmemory.net",
-      "logo": "https://vmemory.net/ViVI_Plogo.png",
-      "email": "vmemory@vmemory.net",
-      "sameAs": ["https://www.youtube.com/@v-memorycorp.3068"],
-      "description": "V-Memory Corp. is a semiconductor technology company developing 0T0C Ferroelectric Domain-Wall Memory (FDWM) and V-Line conductive domain-wall current-path control. Official status: TRL 4 completed, entering TRL 5 wafer validation. Holds 78 patent applications and 55 registered patents (including US, JP, CN) with 6 peer-reviewed scientific publications.",
-      "knowsAbout": ["Ferroelectric Domain-Wall Memory (FDWM)", "0T0C Memory Cell", "V-Line", "VLCC", "NDRO", "PUF", "Compute-In-Vmemory (CIV)", "Physical AI"]
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://vmemory.net/#organization",
+          "name": "V-Memory Corp.",
+          "alternateName": ["브이메모리 주식회사", "브이메모리", "V-Memory"],
+          "url": "https://vmemory.net/",
+          "logo": "https://vmemory.net/ViVI_Plogo.png",
+          "email": "vmemory@vmemory.net",
+          "sameAs": ["https://www.youtube.com/@v-memorycorp.3068"],
+          "description": "V-Memory Corp. is a South Korean next-generation semiconductor IP company developing 0T0C (OTOC) Ferroelectric Domain-Wall Memory (FDWM), V-Line current-path control, Compute-In-Vmemory (CIV), and V-ET™ thermoelectric semiconductor cooling for AI data center power and thermal solutions. Official status: TRL 4 completed; TRL 5 wafer validation is being pursued. Company-reported IP portfolio: 78 patent applications and 55 registered patents (including US, JP, CN) with 6 peer-reviewed scientific publications.",
+          "knowsAbout": [
+            "Ferroelectric Domain-Wall Memory (FDWM)",
+            "0T0C (OTOC) Memory Cell",
+            "V-Line",
+            "VLCC (Variable Line Current Controls)",
+            "Multi-Line (nDW)",
+            "Non-Destructive Readout (NDRO)",
+            "Compute-In-Vmemory (CIV)",
+            "Physical AI",
+            "AI Data Center Power and Thermal Solutions",
+            "V-ET Thermoelectric Semiconductor Cooling"
+          ],
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "Business Development, JDA & IP Licensing",
+            "name": "Son Jong-hwa, Chief Operating Officer (COO)",
+            "email": "vmemory@vmemory.net",
+            "availableLanguage": ["Korean", "English"]
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://vmemory.net/#website",
+          "url": "https://vmemory.net/",
+          "name": "V-Memory Corp.",
+          "publisher": { "@id": "https://vmemory.net/#organization" },
+          "dateModified": "2026-11-26"
+        }
+      ]
     }
     </script>
 
@@ -193,8 +235,14 @@
             border-left: 3px solid var(--accent); border-radius: 10px;
             padding: 16px 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;
         }
-        .paper-title { color: #e2e8f0; font-size: 0.92rem; font-weight: 600; flex: 1 1 500px; }
-        .paper-meta { font-size: 0.8rem; color: var(--accent); font-weight: 700; white-space: nowrap; }
+        .paper-title { color: #e2e8f0; font-size: 0.92rem; font-weight: 600; flex: 1 1 460px; }
+        .paper-meta { font-size: 0.8rem; color: var(--accent); font-weight: 700; white-space: nowrap; display: inline-flex; align-items: center; gap: 10px; }
+        .paper-link {
+            color: #04070f; background: var(--accent); text-decoration: none;
+            padding: 3px 9px; border-radius: 6px; font-size: 0.74rem; font-weight: 800;
+            transition: opacity 0.2s;
+        }
+        .paper-link:hover { opacity: 0.85; }
 
         .contact-card {
             background: linear-gradient(135deg, rgba(15,23,42,0.9), rgba(0,55,100,0.32));
@@ -243,10 +291,11 @@
             text-align: center; font-size: 0.82rem; color: #64748b;
         }
         .legacy-vet {
-            display: inline-block; margin-top: 10px; padding: 4px 12px; border-radius: 12px;
-            background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
-            font-size: 0.74rem; color: #64748b;
+            display: inline-block; margin-top: 10px; padding: 5px 14px; border-radius: 12px;
+            background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09);
+            font-size: 0.76rem; color: #94a3b8; text-decoration: none;
         }
+        .legacy-vet:hover { border-color: var(--accent); color: var(--accent); }
 
         @media (max-width: 900px) {
             nav { display: none; }
@@ -290,7 +339,7 @@
             <a href="llms/" class="ai-pill">/llms/</a>
             <a href="/V-ET/" style="display:inline-flex; align-items:center; justify-content:center; padding:6px 16px; border:1px solid #00d4ff; border-radius:9999px; background:rgba(0,212,255,0.08); color:#00d4ff; font-weight:700; font-size:0.85rem; text-decoration:none; letter-spacing:0.03em;">V-ET</a>
             <a href="/I/" aria-label="Internal" style="color:rgba(148,163,184,0.22);font-size:12px;font-weight:700;text-decoration:none;padding:4px 6px;margin-left:2px;transition:color 0.2s;" onmouseover="this.style.color='#00d4ff'" onmouseout="this.style.color='rgba(148,163,184,0.22)'">I</a>
-            </div>
+        </div>
     </header>
 
     <div class="cinema-stage">
@@ -301,83 +350,109 @@
 
     <div class="hero-wrap" id="venus-host">
         <div class="hero">
-            <div class="venus-box" onclick="openImgZoom()" id="venus-box-el">
-                <img id="venus-img" src="slide_01_en.png" alt="V-Memory Architecture Diagram">
+            <div class="venus-box" onclick="openImgZoom()" id="venus-box-el" title="Click to enlarge diagram">
+                <img id="venus-img" src="slide_01_en.png" alt="V-Memory 0T0C FDWM Architecture Diagram">
                 <div class="venus-badge">
-                    <span id="img-caption"></span>
+                    <span id="img-caption">FIG 01 // Legacy Memory Tiers vs. V-Memory Integration</span>
                     <span class="zoom-hint" id="zoom-hint-text">🔍 Zoom</span>
                 </div>
             </div>
             <div class="hud">
                 <div>
-                    <div class="sec-tag" id="hud-tag"></div>
-                    <h1 class="hud-title" id="hud-title"></h1>
-                    <p class="hud-text" id="hud-text"></p>
-                    <div class="hud-point" id="hud-point"></div>
+                    <div class="sec-tag" id="hud-tag">01. ARCHITECTURE // V-MEMORY 0T0C FDWM</div>
+                    <h1 class="hud-title" id="hud-title">V-Memory 0T0C FDWM: When Memory Moves at CPU Speed, System Architecture Changes.</h1>
+                    <p class="hud-text" id="hud-text">Conventional systems move data across registers, SRAM, DRAM, and flash/SSD tiers, creating data-movement bottlenecks. V-Memory develops 0T0C (OTOC) Ferroelectric Domain-Wall Memory (FDWM) to simplify memory tiers with non-volatile, high-speed, low-power operation.</p>
+                    <div class="hud-point" id="hud-point">💡 Key Concept: Reducing multi-tier data movement eases von Neumann bottlenecks and improves AI data-center efficiency.</div>
                 </div>
                 <div class="btn-grid" id="hud-btn-grid">
-                    <button type="button" class="hud-btn active" data-key="s1" onclick="selectHost('s1', this)"></button>
-                    <button type="button" class="hud-btn" data-key="s2" onclick="selectHost('s2', this)"></button>
-                    <button type="button" class="hud-btn" data-key="s3" onclick="selectHost('s3', this)"></button>
-                    <button type="button" class="hud-btn" data-key="s4" onclick="selectHost('s4', this)"></button>
-                    <button type="button" class="hud-btn" data-key="s5" onclick="selectHost('s5', this)"></button>
-                    <button type="button" class="hud-btn" data-key="s6" onclick="selectHost('s6', this)"></button>
+                    <button type="button" class="hud-btn active" data-key="s1" onclick="selectHost('s1', this)">01. Memory Hierarchy</button>
+                    <button type="button" class="hud-btn" data-key="s2" onclick="selectHost('s2', this)">02. 0T0C Domain Wall</button>
+                    <button type="button" class="hud-btn" data-key="s3" onclick="selectHost('s3', this)">03. Streamlined Process</button>
+                    <button type="button" class="hud-btn" data-key="s4" onclick="selectHost('s4', this)">04. Data-Center Power</button>
+                    <button type="button" class="hud-btn" data-key="s5" onclick="selectHost('s5', this)">05. CIV for Robotics</button>
+                    <button type="button" class="hud-btn" data-key="s6" onclick="selectHost('s6', this)">06. SOM -&gt; SAM -&gt; TAM</button>
                 </div>
             </div>
         </div>
     </div>
 
     <section id="briefing">
-        <div class="sec-tag" id="brief-tag"></div>
-        <h2 class="sec-title" id="brief-title"></h2>
-        <p class="sec-desc" id="brief-desc"></p>
-        <div class="video-grid" id="video-grid"></div>
+        <div class="sec-tag" id="brief-tag">INTERACTIVE 15s AI BRIEFING</div>
+        <h2 class="sec-title" id="brief-title">Short 15-Second Visual Briefings</h2>
+        <p class="sec-desc" id="brief-desc">Explore V-Memory step by step—from conventional 1T1C memory to domain-wall control, HBM bottlenecks, and Compute-In-Vmemory (CIV).</p>
+        <div class="video-grid" id="video-grid">
+            <div class="v-card"><div class="v-body"><div class="v-badge">Q1 · 15s Primer</div><div class="v-title">Before 0T0C: Understanding Conventional DRAM's '1T1C' Cell</div><div class="v-desc">A quick look at the standard 1T1C memory cell and its scaling and power limits.</div></div></div>
+            <div class="v-card"><div class="v-body"><div class="v-badge">Q2 · 15s Core Principle ①</div><div class="v-title">Controlling Domain-Wall Current Paths Instead of Stored Charge</div><div class="v-desc">How voltage pulses create, remove, and modulate conductive domain-wall paths.</div></div></div>
+            <div class="v-card"><div class="v-body"><div class="v-badge">Q3 · 15s Core Principle ②</div><div class="v-title">Multi-Line (nDW) &amp; V-Line: Scaling Conductive Paths</div><div class="v-desc">Expanding current signal margins and multi-state potential by controlling multiple domain-wall paths.</div></div></div>
+            <div class="v-card"><div class="v-body"><div class="v-badge">Q4 · 15s Market Bottleneck</div><div class="v-title">Beyond Stacked HBM: Addressing Power, Heat &amp; Packaging Limits</div><div class="v-desc">Why AI data centers need low-power non-volatile memory innovation beyond stacked DRAM/HBM.</div></div></div>
+            <div class="v-card"><div class="v-body"><div class="v-badge">Q5 · 15s Hierarchy Integration</div><div class="v-title">When Memory Moves at CPU Speed, System Structure Changes</div><div class="v-desc">Simplifying multi-tier memory hierarchies and reducing data-movement bottlenecks.</div></div></div>
+            <div class="v-card"><div class="v-body"><div class="v-badge">Q6 · 15s CIV &amp; Physical AI</div><div class="v-title">The Robot Brain: Compute-In-Vmemory (CIV) for Physical AI</div><div class="v-desc">From virtual intelligence to embodied Physical AI—bringing memory closer to computation with CIV.</div></div></div>
+        </div>
     </section>
 
     <section id="tech">
-        <div class="sec-tag" id="tech-tag"></div>
-        <h2 class="sec-title" id="tech-title"></h2>
-        <p class="sec-desc" id="tech-desc"></p>
-        <div class="tech-grid" id="tech-grid"></div>
+        <div class="sec-tag" id="tech-tag">CORE TECHNOLOGY // FDWM &amp; V-LINE</div>
+        <h2 class="sec-title" id="tech-title">Controlling Conductive Domain-Wall Paths (V-Line)</h2>
+        <p class="sec-desc" id="tech-desc">Rather than storing charge alone, V-Memory controls domain-wall current paths inside ferroelectric materials.</p>
+        <div class="tech-grid" id="tech-grid">
+            <div class="t-card"><h3>01. 0T0C &amp; V-Line Control</h3><p>Designed without conventional per-cell transistors or capacitors, forming and removing domain-wall current paths (V-Line) for non-destructive readout (NDRO) potential.</p></div>
+            <div class="t-card"><h3>02. Multi-Line (nDW) Scaling</h3><p>Modulating multiple domain-wall conduction paths (1DW -&gt; nDW) to scale current signals and support multi-state memory concepts.</p></div>
+            <div class="t-card"><h3>03. Streamlined Cell Process</h3><p>Targeting roughly one-sixth the complexity of conventional flash processes while leveraging ferroelectric materials and existing semiconductor tools.</p></div>
+            <div class="t-card"><h3>04. Data-Center Power &amp; Cooling</h3><p>Addressing data-center power and thermal overhead (IT 66%, cooling/facility 34%, avg. PUE 1.52) from memory optimization to CIV expansion.</p></div>
+            <div class="t-card"><h3>05. CIV for Physical AI</h3><p>Bringing compute closer to memory with Compute-In-Vmemory (CIV) for low-latency, low-power on-device intelligence and robotics.</p></div>
+            <div class="t-card"><h3>06. JDA &amp; IP Licensing</h3><p>Following TRL 5 validation, pursuing joint development (JDA), technology transfer, and IP licensing with semiconductor and system partners.</p></div>
+        </div>
     </section>
 
     <section id="ip" style="padding-bottom: 40px;">
-        <div class="sec-tag" id="ip-tag"></div>
-        <h2 class="sec-title" id="ip-title"></h2>
-        <p class="sec-desc" id="ip-desc"></p>
+        <div class="sec-tag" id="ip-tag">PATENT PORTFOLIO &amp; TRL STATUS</div>
+        <h2 class="sec-title" id="ip-title">Patents as Shield, Structured IP Portfolio</h2>
+        <p class="sec-desc" id="ip-desc">Protecting core architectural concepts through domestic and global filings. Updated: Nov 2026</p>
 
         <div class="metric-bar">
-            <div class="m-box"><div class="m-val" id="m-trl">-</div><div class="m-lbl" id="lbl-trl"></div></div>
-            <div class="m-box"><div class="m-val" id="m-pat-app">-</div><div class="m-lbl" id="lbl-app"></div></div>
-            <div class="m-box"><div class="m-val" id="m-pat-reg">-</div><div class="m-lbl" id="lbl-reg"></div></div>
-            <div class="m-box"><div class="m-val" id="m-global">-</div><div class="m-lbl" id="lbl-global"></div></div>
+            <div class="m-box"><div class="m-val" id="m-trl">TRL 4 Completed -&gt; Pursuing TRL 5</div><div class="m-lbl" id="lbl-trl">Maturity Status</div></div>
+            <div class="m-box"><div class="m-val" id="m-pat-app">78 Filings</div><div class="m-lbl" id="lbl-app">Patent Filings</div></div>
+            <div class="m-box"><div class="m-val" id="m-pat-reg">55 Granted</div><div class="m-lbl" id="lbl-reg">Granted Patents</div></div>
+            <div class="m-box"><div class="m-val" id="m-global">8 Global (~20 Families)</div><div class="m-lbl" id="lbl-global">Global &amp; Families</div></div>
         </div>
     </section>
 
     <section id="papers" style="padding-top: 36px; border-top: 1px solid rgba(0, 210, 255, 0.14);">
-        <div class="sec-tag" id="papers-tag"></div>
-        <h2 class="sec-title" id="papers-title"></h2>
-        <p class="sec-desc" id="papers-desc"></p>
-        <div class="paper-list" id="paper-list"></div>
+        <div class="sec-tag" id="papers-tag">SCI-LEVEL PUBLICATIONS (2021-2025)</div>
+        <h2 class="sec-title" id="papers-title">Peer-Reviewed Scientific Foundation</h2>
+        <p class="sec-desc" id="papers-desc">Six peer-reviewed papers examining ferroelectric domain-wall conduction and non-volatile switching behavior.</p>
+        <div class="paper-list" id="paper-list">
+            <div class="paper-item"><div class="paper-title">1. Electrical conduction of ferroelectric domains and domain walls in polycrystalline BiFeO3 and Bi5Ti3FeO15 thin films</div><div class="paper-meta"><span>Journal of Physics and Chemistry of Solids (2025)</span><a href="https://doi.org/10.1016/j.jpcs.2024.112347" target="_blank" rel="noopener noreferrer" class="paper-link">DOI &nearr;</a></div></div>
+            <div class="paper-item"><div class="paper-title">2. Leakage current characteristics affected by crystallinity and domain wall current of epitaxial Bi5Ti3FeO15 thin films</div><div class="paper-meta"><span>Journal of Applied Physics (2023)</span><a href="https://doi.org/10.1063/5.0173297" target="_blank" rel="noopener noreferrer" class="paper-link">DOI &nearr;</a></div></div>
+            <div class="paper-item"><div class="paper-title">3. Leakage current characteristics of polycrystalline BiFeO3 thin films affected by thickness-dependent domain wall currents</div><div class="paper-meta"><span>Journal of Alloys and Compounds (2023)</span><a href="https://www.sciencedirect.com/science/article/pii/S0925838823034163" target="_blank" rel="noopener noreferrer" class="paper-link">Source &nearr;</a></div></div>
+            <div class="paper-item"><div class="paper-title">4. Ferroelectric domain wall current corresponding to ferroelectric domain structures of BaTiO3 nanodots fabricated by dip-pen nanolithography</div><div class="paper-meta"><span>Ceramics International (2023)</span><a href="https://doi.org/10.1016/j.ceramint.2022.09.260" target="_blank" rel="noopener noreferrer" class="paper-link">DOI &nearr;</a></div></div>
+            <div class="paper-item"><div class="paper-title">5. Nonvolatile-memory current characteristics of BiFeO3 nanodots switched by applying external bias and force</div><div class="paper-meta"><span>Ceramics International (2021)</span><a href="https://doi.org/10.1016/j.ceramint.2021.06.263" target="_blank" rel="noopener noreferrer" class="paper-link">DOI &nearr;</a></div></div>
+            <div class="paper-item"><div class="paper-title">6. Current change due to artificial patterning of the number of ferroelectric domain walls and nonvolatile memory characteristics</div><div class="paper-meta"><span>Applied Physics Letters (2021)</span><a href="https://doi.org/10.1063/5.0054015" target="_blank" rel="noopener noreferrer" class="paper-link">DOI &nearr;</a></div></div>
+        </div>
     </section>
 
     <section id="contact">
         <div class="contact-card">
             <div class="contact-info">
-                <div class="sec-tag" id="contact-tag"></div>
-                <h2 class="sec-title" id="contact-title" style="margin-bottom:10px;"></h2>
-                <p id="contact-body"></p>
-                <div class="contact-note" id="contact-note"></div>
+                <div class="sec-tag" id="contact-tag">CONTACT</div>
+                <h2 class="sec-title" id="contact-title" style="margin-bottom:10px;">Email Inquiry</h2>
+                <p id="contact-body">Reach out by email for technical discussions, joint development (JDA), IP licensing, partnerships, or investment inquiries.<br>Detailed IR materials, team profiles, and confidential technical data are shared after NDA execution.</p>
+                <div class="contact-note" id="contact-note">※ Direct IR file downloads are not available on the public site.</div>
             </div>
-            <a href="mailto:vmemory@vmemory.net?subject=[V-Memory]%20Inquiry" class="contact-btn" id="contact-btn-el"></a>
+            <a href="mailto:vmemory@vmemory.net?subject=[V-Memory]%20Email%20Inquiry" class="contact-btn" id="contact-btn-el">Email Inquiry -&gt;</a>
         </div>
 
-        <div class="loc-grid" id="loc-grid"></div>
+        <div class="loc-grid" id="loc-grid">
+            <div class="loc-item"><strong>Headquarters (CA)</strong>6F A, 165 Yeoksam-ro, Gangnam-gu, Seoul</div>
+            <div class="loc-item"><strong>V-Design Lab</strong>Room 128, Lab-03, ICS, 42 Changeop-ro, Sujeong-gu, Seongnam-si</div>
+            <div class="loc-item"><strong>R&amp;D Lab</strong>Lab A-109, Kyung Hee University Global Campus</div>
+            <div class="loc-item"><strong>Official Channels</strong>Email: vmemory@vmemory.net<br>YouTube: <a href="https://www.youtube.com/@v-memorycorp.3068" target="_blank" rel="noopener noreferrer" style="color:var(--accent);">@v-memorycorp.3068</a></div>
+        </div>
     </section>
 
     <footer>
-        <div id="footer-copy"></div>
-        <div class="legacy-vet">Legacy Energy R&D Archive: V-ET (Thermoelectric Device, zT 1.3)</div>
+        <div id="footer-copy">© 2026 V-Memory Corp. All Rights Reserved. | AI Reference &amp; Q&amp;A: <a href="llms/" style="color:var(--accent);">vmemory.net/llms/</a></div>
+        <a href="/V-ET/" class="legacy-vet">Independent Thermoelectric Cooling Technology: V-ET™ &rarr;</a>
     </footer>
 
     <div class="modal" id="video-modal" onclick="if(event.target===this) closeVideo()">
@@ -413,8 +488,8 @@
     <script>
         const FALLBACK_DATA = {
             metrics: {
-                en: { trlStatus: "TRL 4 Done -> Entering TRL 5", patentApplied: "78 Filings", patentRegistered: "55 Granted", globalRegistered: "8 Global (~20 Families)", lastUpdated: "Nov 2026" },
-                ko: { trlStatus: "TRL 4 완료 -> TRL 5 실증 진입", patentApplied: "78건 출원", patentRegistered: "55건 등록", globalRegistered: "8건 (약 20개 패밀리)", lastUpdated: "2026.11" }
+                en: { trlStatus: "TRL 4 Completed -> Pursuing TRL 5", patentApplied: "78 Filings", patentRegistered: "55 Granted", globalRegistered: "8 Global (~20 Families)", lastUpdated: "Nov 2026" },
+                ko: { trlStatus: "TRL 4 완료 -> TRL 5 웨이퍼 검증 추진", patentApplied: "78건 출원", patentRegistered: "55건 등록", globalRegistered: "8건 (약 20개 패밀리)", lastUpdated: "2026.11" }
             },
             videos: [
                 { id: "v1", badgeEn: "Q1 · 15s Primer", badgeKo: "Q1 · 15초 기초 입문", titleEn: "Before 0T0C: Understanding Conventional DRAM's '1T1C' Cell", titleKo: "0T0C를 이해하기 위한 첫걸음: 기존 DRAM의 '1T1C' 구조란?", descEn: "A quick look at the standard 1T1C memory cell and its scaling and power limits.", descKo: "트랜지스터(1T)와 커패시터(1C) 기반 기존 메모리 구조와 한계를 먼저 짚어봅니다.", videoFileEn: "video_01_en.mp4", videoFileKo: "video_01.mp4", posterEn: "thumb_01_en.jpg", posterKo: "thumb_01.jpg", fallbackPoster: "Venus.png", detailEn: "Conventional DRAM stores a bit using a switch (1T) and a charge-storage capacitor (1C).", detailKo: "기존 DRAM은 스위치(1T)와 전하 저장통(1C)으로 1비트를 다룹니다." },
@@ -425,12 +500,12 @@
                 { id: "v6", badgeEn: "Q6 · 15s CIV & Physical AI", badgeKo: "Q6 · 15초 CIV & 피지컬 AI", titleEn: "The Robot Brain: Compute-In-Vmemory (CIV) for Physical AI", titleKo: "로봇의 두뇌, 연산과 기억을 직접 결합하는 CIV 아키텍처", descEn: "From virtual intelligence to embodied Physical AI—bringing memory closer to computation with CIV.", descKo: "가상 AI에서 물리적 행동 AI(Physical AI)로! CIV가 여는 온디바이스 두뇌 아키텍처.", videoFileEn: "video_06_en.mp4", videoFileKo: "video_06.mp4", posterEn: "thumb_06_en.jpg", posterKo: "thumb_06.jpg", fallbackPoster: "Venus_Model_m.jpg", detailEn: "CIV brings memory closer to computation—a new vision for Physical AI.", detailKo: "CIV는 연산과 메모리를 가까이 결합해 온디바이스 지능을 뒷받침합니다." }
             ],
             papers: [
-                { year: "2025", journal: "Journal of Physics and Chemistry of Solids", title: "Electrical conduction of ferroelectric domains and domain walls in polycrystalline Bi5Ti3FeO15 thin films" },
-                { year: "2025", journal: "Journal of Applied Physics", title: "Leakage current characteristics affected by crystallinity and domain wall current of epitaxial Bi5Ti3FeO15 thin films" },
-                { year: "2023", journal: "Journal of Alloys and Compounds", title: "Leakage current characteristics of polycrystalline BiFeO3 thin films affected by thickness-dependent domain wall currents" },
-                { year: "2023", journal: "Ceramics International", title: "Ferroelectric domain wall current corresponding to ferroelectric domain structures of BaTiO3 nanodots fabricated by dip-pen nanolithography" },
-                { year: "2021", journal: "Ceramics International", title: "Nonvolatile-memory current characteristics of BiFeO3 nanodots switched by applying external bias and force" },
-                { year: "2021", journal: "Applied Physics Letters", title: "Current change due to artificial patterning of the number of ferroelectric domain walls and nonvolatile memory characteristics" }
+                { year: "2025", journal: "Journal of Physics and Chemistry of Solids", title: "Electrical conduction of ferroelectric domains and domain walls in polycrystalline BiFeO3 and Bi5Ti3FeO15 thin films", url: "https://doi.org/10.1016/j.jpcs.2024.112347" },
+                { year: "2023", journal: "Journal of Applied Physics", title: "Leakage current characteristics affected by crystallinity and domain wall current of epitaxial Bi5Ti3FeO15 thin films", url: "https://doi.org/10.1063/5.0173297" },
+                { year: "2023", journal: "Journal of Alloys and Compounds", title: "Leakage current characteristics of polycrystalline BiFeO3 thin films affected by thickness-dependent domain wall currents", url: "https://www.sciencedirect.com/science/article/pii/S0925838823034163" },
+                { year: "2023", journal: "Ceramics International", title: "Ferroelectric domain wall current corresponding to ferroelectric domain structures of BaTiO3 nanodots fabricated by dip-pen nanolithography", url: "https://doi.org/10.1016/j.ceramint.2022.09.260" },
+                { year: "2021", journal: "Ceramics International", title: "Nonvolatile-memory current characteristics of BiFeO3 nanodots switched by applying external bias and force", url: "https://doi.org/10.1016/j.ceramint.2021.06.263" },
+                { year: "2021", journal: "Applied Physics Letters", title: "Current change due to artificial patterning of the number of ferroelectric domain walls and nonvolatile memory characteristics", url: "https://doi.org/10.1063/5.0054015" }
             ]
         };
 
@@ -468,7 +543,7 @@
                 papersDesc: "Six peer-reviewed papers examining ferroelectric domain-wall conduction and non-volatile switching behavior.",
                 contactTag: "CONTACT",
                 contactTitle: "Email Inquiry",
-                contactBody: "Reach out by email for technical discussions, joint development, partnerships, or investment inquiries.<br>Detailed IR materials, team profiles, and confidential technical data are shared after NDA execution.",
+                contactBody: "Reach out by email for technical discussions, joint development (JDA), IP licensing, partnerships, or investment inquiries.<br>Detailed IR materials, team profiles, and confidential technical data are shared after NDA execution.",
                 contactNote: "※ Direct IR file downloads are not available on the public site.",
                 contactBtn: "Email Inquiry ->",
                 contactSubject: "[V-Memory]%20Email%20Inquiry",
@@ -476,9 +551,9 @@
                     { t: "Headquarters (CA)", d: "6F A, 165 Yeoksam-ro, Gangnam-gu, Seoul" },
                     { t: "V-Design Lab", d: "Room 128, Lab-03, ICS, 42 Changeop-ro, Sujeong-gu, Seongnam-si" },
                     { t: "R&D Lab", d: "Lab A-109, Kyung Hee University Global Campus" },
-                    { t: "Official Channels", d: 'Email: vmemory@vmemory.net<br>YouTube: <a href="https://www.youtube.com/@v-memorycorp.3068" target="_blank" style="color:var(--accent);">@v-memorycorp.3068</a>' }
+                    { t: "Official Channels", d: 'Email: vmemory@vmemory.net<br>YouTube: <a href="https://www.youtube.com/@v-memorycorp.3068" target="_blank" rel="noopener noreferrer" style="color:var(--accent);">@v-memorycorp.3068</a>' }
                 ],
-                footerCopy: '© 2026 V-Memory Corp. All Rights Reserved. | AI Reference: <a href="llms/" style="color:var(--accent);">vmemory.net/llms/</a>',
+                footerCopy: '© 2026 V-Memory Corp. All Rights Reserved. | AI Reference &amp; Q&amp;A: <a href="llms/" style="color:var(--accent);">vmemory.net/llms/</a>',
                 fbTitle: "🎬 15s Video Slot Ready",
                 fbDescPrefix: "Upload ",
                 fbDescSuffix: " to the repository to play this briefing in the modal."
@@ -511,7 +586,7 @@
                 papersDesc: "강유전체 도메인월 전도 특성과 비휘발성 메모리 동작 원리를 다룬 국제 학술지(SCI급) 논문 6편입니다.",
                 contactTag: "CONTACT",
                 contactTitle: "이메일 문의",
-                contactBody: "기술 협의, 공동 개발, 파트너십 및 투자 관련 문의는 공식 이메일로 접수합니다.<br>상세 투자 IR 자료, 팀원 정보 및 주요 기술 자료는 NDA 체결 후 공개합니다.",
+                contactBody: "기술 협의, 공동 개발(JDA), IP 라이선싱, 파트너십 및 투자 관련 문의는 공식 이메일로 접수합니다.<br>상세 투자 IR 자료, 팀원 정보 및 주요 기술 자료는 NDA 체결 후 공개합니다.",
                 contactNote: "※ IR 파일 직접 다운로드는 제공하지 않습니다.",
                 contactBtn: "이메일 문의 ->",
                 contactSubject: "[V-Memory]%20이메일%20문의",
@@ -519,9 +594,9 @@
                     { t: "Headquarters (CA)", d: "서울특별시 강남구 역삼로 165, 6층 A" },
                     { t: "V-Design Lab", d: "경기도 성남시 수정구 창업로 42, ICS 128호 Lab-03" },
                     { t: "R&D Lab", d: "경희대학교 국제캠퍼스 Lab A-109" },
-                    { t: "Official Channels", d: 'Email: vmemory@vmemory.net<br>YouTube: <a href="https://www.youtube.com/@v-memorycorp.3068" target="_blank" style="color:var(--accent);">@v-memorycorp.3068</a>' }
+                    { t: "Official Channels", d: 'Email: vmemory@vmemory.net<br>YouTube: <a href="https://www.youtube.com/@v-memorycorp.3068" target="_blank" rel="noopener noreferrer" style="color:var(--accent);">@v-memorycorp.3068</a>' }
                 ],
-                footerCopy: '© 2026 V-Memory Corp. All Rights Reserved. | AI Reference: <a href="llms/" style="color:var(--accent);">vmemory.net/llms/</a>',
+                footerCopy: '© 2026 V-Memory Corp. All Rights Reserved. | AI Reference &amp; Q&amp;A: <a href="llms/" style="color:var(--accent);">vmemory.net/llms/</a>',
                 fbTitle: "🎬 15초 영상 슬롯 준비 완료",
                 fbDescPrefix: "저장소에 ",
                 fbDescSuffix: " 파일을 올리면 팝업에서 재생됩니다."
@@ -531,12 +606,12 @@
         const SLIDE_DATA = {
             s1: {
                 btnEn: "01. Memory Hierarchy", btnKo: "01. 메모리 계층 통합",
-                tagEn: "01. ARCHITECTURE // MEMORY HIERARCHY SIMPLIFICATION", tagKo: "01. ARCHITECTURE // MEMORY HIERARCHY SIMPLIFICATION",
-                titleEn: "When Memory Moves at CPU Speed, System Architecture Changes.",
-                titleKo: "메모리가 CPU의 속도로 움직이면, 컴퓨터의 구조가 달라집니다.",
-                textEn: "Conventional systems move data across registers, SRAM, DRAM, and flash/SSD tiers, creating data-movement bottlenecks. V-Memory aims to simplify memory tiers with non-volatile, high-speed, low-power operation.",
-                textKo: "기존 컴퓨팅은 레지스터·SRAM·DRAM·Flash/SSD 계층을 오가며 데이터 이동 병목을 겪습니다. V-Memory는 비휘발성·고속·저전력 특성을 추구해 메모리 계층을 단순화하는 통합 구상을 제시합니다.",
-                pointEn: "💡 Key Concept: Reducing multi-tier data movement eases von Neumann bottlenecks and improves system efficiency.",
+                tagEn: "01. ARCHITECTURE // V-MEMORY 0T0C FDWM", tagKo: "01. ARCHITECTURE // V-MEMORY 0T0C FDWM",
+                titleEn: "V-Memory 0T0C FDWM: When Memory Moves at CPU Speed, System Architecture Changes.",
+                titleKo: "브이메모리 0T0C FDWM: 메모리가 CPU의 속도로 움직이면, 컴퓨터의 구조가 달라집니다.",
+                textEn: "Conventional systems move data across registers, SRAM, DRAM, and flash/SSD tiers, creating data-movement bottlenecks. V-Memory develops 0T0C (OTOC) Ferroelectric Domain-Wall Memory (FDWM) to simplify memory tiers with non-volatile, high-speed, low-power operation.",
+                textKo: "기존 컴퓨팅은 레지스터·SRAM·DRAM·Flash/SSD 계층을 오가며 데이터 이동 병목을 겪습니다. 브이메모리는 0T0C(OTOC) 강유전체 도메인월 메모리(FDWM)로 비휘발성·고속·저전력 특성을 추구해 메모리 계층을 단순화하는 통합 구상을 제시합니다.",
+                pointEn: "💡 Key Concept: Reducing multi-tier data movement eases von Neumann bottlenecks and improves AI data-center efficiency.",
                 pointKo: "💡 핵심 원리: 계층 간 불필요한 데이터 왕복을 줄여 병목을 완화하고 단일 메모리 계층으로 효율을 높입니다.",
                 imgEn: "slide_01_en.png", imgKo: "slide_01.png", fallbackImg: "Venus.png",
                 capEn: "FIG 01 // Legacy Memory Tiers vs. V-Memory Integration",
@@ -755,17 +830,23 @@
             });
         }
 
-        const paperList = document.getElementById('paper-list');
-        const papers = (ACTIVE_DATA.papers && ACTIVE_DATA.papers.length) ? ACTIVE_DATA.papers : FALLBACK_DATA.papers;
-        papers.forEach((p, idx) => {
-            const item = document.createElement('div');
-            item.className = 'paper-item';
-            item.innerHTML = `
-                <div class="paper-title">${idx + 1}. ${p.title}</div>
-                <div class="paper-meta">${p.journal} (${p.year})</div>
-            `;
-            paperList.appendChild(item);
-        });
+        function renderPapers() {
+            const paperList = document.getElementById('paper-list');
+            paperList.innerHTML = '';
+            const papers = (ACTIVE_DATA.papers && ACTIVE_DATA.papers.length) ? ACTIVE_DATA.papers : FALLBACK_DATA.papers;
+            papers.forEach((p, idx) => {
+                const item = document.createElement('div');
+                item.className = 'paper-item';
+                const linkLabel = (p.url && p.url.indexOf('doi.org') !== -1) ? 'DOI ↗' : 'Source ↗';
+                const linkHtml = p.url ? `<a href="${p.url}" target="_blank" rel="noopener noreferrer" class="paper-link">${linkLabel}</a>` : '';
+                item.innerHTML = `
+                    <div class="paper-title">${idx + 1}. ${p.title}</div>
+                    <div class="paper-meta"><span>${p.journal} (${p.year})</span>${linkHtml}</div>
+                `;
+                paperList.appendChild(item);
+            });
+        }
+        renderPapers();
 
         function openImgZoom() {
             document.getElementById('zoom-img').src = document.getElementById('venus-img').src;
@@ -781,7 +862,6 @@
         const fallback = document.getElementById('video-fallback');
 
         function openVideo(v) {
-            // 이전 재생 트랙 및 잔여 음성 완전 초기화
             vid.pause();
             vid.muted = true;
             vid.removeAttribute('src');
@@ -812,7 +892,6 @@
         }
 
         function closeVideo() {
-            // 창을 닫을 때 음소거·일시정지·소스 해제로 잔여 음성 100% 차단
             vid.pause();
             vid.muted = true;
             vid.currentTime = 0;
@@ -824,12 +903,12 @@
         setLang('en');
     </script>
     <div style="text-align:center;margin:16px auto 24px;max-width:720px;padding:0 16px;font-size:12px;color:#94a3b8;">
-  <details>
-    <summary style="cursor:pointer;list-style:none;">[홈페이지 방문 통계 분석 도구의 이용 안내]</summary>
-    <p style="margin-top:8px;line-height:1.6;text-align:left;">
-      회사는 홈페이지 이용 현황을 파악하기 위해 (주)그루엠버가 제공하는 방문 통계 서비스 '미픽스카운터'를 이용하며, 이에 필요한 처리 업무를 (주)그루엠버에 위탁합니다. 개별 방문 기록은 30일, 일 단위 통계는 25개월 보관되며, IP 주소 및 개인 식별 값은 저장하지 않습니다. 브라우저 설정에서 쿠키 저장 또는 추적 거부 기능을 켜면 처리되지 않습니다.
-    </p>
-  </details>
-</div>
+        <details>
+            <summary style="cursor:pointer;list-style:none;">[홈페이지 방문 통계 분석 도구의 이용 안내]</summary>
+            <p style="margin-top:8px;line-height:1.6;text-align:left;">
+                회사는 홈페이지 이용 현황을 파악하기 위해 (주)그루엠버가 제공하는 방문 통계 서비스 '미픽스카운터'를 이용하며, 이에 필요한 처리 업무를 (주)그루엠버에 위탁합니다. 개별 방문 기록은 30일, 일 단위 통계는 25개월 보관되며, IP 주소 및 개인 식별 값은 저장하지 않습니다. 브라우저 설정에서 쿠키 저장 또는 추적 거부 기능을 켜면 처리되지 않습니다.
+            </p>
+        </details>
+    </div>
 </body>
 </html>
