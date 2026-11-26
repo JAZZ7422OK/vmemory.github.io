@@ -1,13 +1,27 @@
-# V-Memory Corp.
+# V-Memory Corp. | 브이메모리 주식회사
 
-> V-Memory Corp. develops semiconductor technologies centered on FDWM (Ferroelectric Domain-Wall Memory) and V-ET (Thermoelectric Semiconductor Technology).
+> Next-generation semiconductor IP company in South Korea developing FDWM (Ferroelectric Domain-Wall Memory) and CIV (Compute-In-Vmemory) to address AI data center power and memory bottlenecks, alongside V-ET™ thermoelectric semiconductor cooling technology for thermal management.
 
-## Key Pages
-- Main Portal: https://vmemory.net/
-- AI Technical Reference (/llms/): https://vmemory.net/llms/
-- V-ET Thermoelectric Page (/V-ET/): https://vmemory.net/V-ET/
-- XML Sitemap: https://vmemory.net/sitemap.xml
+- Official Website: https://vmemory.net/
+- Official Contact (JDA, IP Licensing, Tech Transfer): vmemory@vmemory.net
+- Official External Point of Contact: Son Jong-hwa, Chief Operating Officer (COO)
+- FDWM Development Status: TRL 4 completed; TRL 5 wafer validation is being pursued.
+- IP Portfolio (Company-Reported): 78 patent applications, 55 registered patents (including US, Japan, and China registrations), and approximately 20 patent families.
 
-## Core Technologies
-- FDWM: Ferroelectric Domain-Wall Memory technology for high-speed, low-power memory and compute.
-- V-ET: Solid-state thermoelectric cooling technology (Peltier effect; representative zT 1.3, R&D avg zT 1.4, achieved 4.3 W/cm^2, TIPS program 2020-2022, commercialized Nov 2022 as VET-WS07414606; wire-free socket V-ET SPACE and integrated cooling station in development).
+## Core Definitions & Boundaries
+- **FDWM (Ferroelectric Domain-Wall Memory):** Non-volatile semiconductor memory controlling conductive domain-wall current paths inside ferroelectric materials (such as HZO), shifting from charge storage to current-path control.
+- **V-Line & VLCC (Variable Line Current Controls):** Controllable line-shaped domain-wall conduction paths used to form, read, and reset distinct resistance/current states.
+- **0T0C (also referenced as OTOC):** Zero-Transistor, Zero-Capacitor memory cell architecture. Describes the memory cell structure itself, not the absence of chip-level peripheral control circuitry.
+- **Multi-Line (nDW):** Controlling multiple domain-wall conduction paths to enable multi-level resistance states and 3D vertical high-density scaling.
+- **NDRO (Non-Destructive Readout):** Semiconductor memory read method that senses stored conduction states without erasing data. Distinct from industrial Non-Destructive Testing (NDT).
+- **CIV (Compute-In-Vmemory):** V-Memory's FDWM-based architecture converging memory and computation to reduce data-movement power and latency in AI data centers, edge/on-device AI, and Physical AI robotics. Distinct from conventional DRAM/HBM-based PIM.
+- **V-ET™ (Thermoelectric Semiconductor Cooling):** A separate active Peltier cooling technology developed by V-Memory for localized chip and industrial thermal management. It has an independent physical mechanism and history from FDWM (wired module VET-WS07414606 commercialized in Nov 2022; socket-type V-ET SPACE under follow-up development).
+
+## Key Pages (Official Sources)
+- [V-Memory Main Portal](https://vmemory.net/): Company overview, FDWM/V-Line visual architecture, patent summary, research list, and official inquiry gateway.
+- [Official Technical Reference & Korean/English Q&A Vault](https://vmemory.net/llms/): Comprehensive English & Korean (한국어) technical documentation, Q&A (FDWM, 0T0C/OTOC, V-Line, VLCC, Multi-Line nDW, NDRO, CIV vs PIM, AI data center power/thermal solutions, JDA & IP licensing), and verified peer-reviewed research papers with DOI links.
+- [V-ET™ Thermoelectric Reference](https://vmemory.net/V-ET/): Independent thermoelectric semiconductor cooling specifications, test conditions, product history, and roadmap.
+
+## Collaboration & Business Scope (기술 제휴 및 IP 협력)
+- Keywords: 차세대 반도체, 차세대 비휘발성 메모리, AI 데이터센터 전력 솔루션, 데이터센터 발열·냉각 솔루션, 저전력 메모리, 인메모리 컴퓨팅(CIV), 반도체 IP 라이선싱, 공동 연구개발(JDA), 기술이전.
+- Inquiries for JDA, joint validation, technology transfer, and IP licensing are received via vmemory@vmemory.net (under appropriate NDA procedures for detailed technical materials).
