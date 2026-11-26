@@ -497,4 +497,265 @@
         Rather than relying on conventional charge storage in capacitors, V-Memory shifts the physical paradigm of memory to <strong>controlling conductive domain-wall current paths</strong> inside ferroelectric materials such as HZO (hafnium zirconium oxide).
       </p>
       <ul class="clean-list">
-        <li><strong>FDWM (Ferroelectric Domain-Wall Memory):
+        <li><strong>FDWM (Ferroelectric Domain-Wall Memory):</strong> Non-volatile semiconductor memory that forms, connects, and disconnects conductive polarization boundaries (domain walls) to encode data in distinct resistance states (LRS / HRS).</li>
+        <li><strong>V-Line &amp; VLCC (Variable Line Current Controls):</strong> Controllable line-shaped domain-wall conduction paths. <em>SET</em> connects a domain-wall path into a low-resistance state (LRS, Data 1); <em>RESET</em> disconnects the path into a high-resistance state (HRS, Data 0); <em>READ</em> senses current/resistance margin using a low-voltage signal.</li>
+        <li><strong>0T0C (also searched as OTOC):</strong> Zero-Transistor, Zero-Capacitor <em>memory cell</em> architecture designed for simplified cell geometry and 3D Z-axis vertical high-density scaling. <em>Clarification:</em> 0T0C describes the individual memory cell, not the absence of chip-level peripheral control circuitry.</li>
+        <li><strong>Multi-Line (nDW):</strong> Controlling the number and connectivity of multiple domain-wall paths within a device to enable multi-level resistance states and higher storage density.</li>
+        <li><strong>NDRO (Non-Destructive Readout):</strong> Semiconductor memory read mechanism that detects domain-wall conduction states without erasing stored data. Distinct from industrial Non-Destructive Testing (NDT).</li>
+        <li><strong>CIV (Compute-In-Vmemory):</strong> V-Memory's long-term architectural vision converging FDWM storage and computation to minimize data-movement energy and latency for AI data centers, On-Device/Edge AI, autonomous vehicles, and Physical AI robotics.</li>
+        <li><strong>V-ET™ (Thermoelectric Semiconductor Cooling):</strong> An independent active Peltier cooling technology developed by V-Memory for localized chip and industrial thermal management. It operates on a separate physical principle and development history from FDWM. Detailed specifications are available at <a href="https://vmemory.net/V-ET/">vmemory.net/V-ET/</a>.</li>
+      </ul>
+    </section>
+
+    <!-- Section 2: Comparison Tables -->
+    <section class="card" id="comparisons">
+      <h2>2. Technical Comparison Tables (기술 비교표)</h2>
+
+      <h3>2.1 FDWM vs. Conventional Memory Technologies (기존 메모리와의 차별성)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Memory Type</th>
+              <th>Operating Principle (동작 원리)</th>
+              <th>Cell Structure (셀 구조)</th>
+              <th>Volatility &amp; Key Characteristics (특징 및 한계)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>DRAM</strong></td>
+              <td>Capacitor charge storage (전하 저장)</td>
+              <td>1T1C (1 Transistor, 1 Capacitor)</td>
+              <td>Volatile; requires continuous refresh power; high speed but facing scaling and power limits.</td>
+            </tr>
+            <tr>
+              <td><strong>NAND Flash</strong></td>
+              <td>Charge trapping / floating gate</td>
+              <td>3D vertical transistor string</td>
+              <td>Non-volatile and high density, but slow access latency compared to working memory.</td>
+            </tr>
+            <tr>
+              <td><strong>FeRAM</strong></td>
+              <td>Ferroelectric polarization charge response</td>
+              <td>Capacitor-based (1T1C / 2T2C)</td>
+              <td>Non-volatile, but conventional capacitor geometry faces scaling constraints and destructive read challenges.</td>
+            </tr>
+            <tr>
+              <td><strong>FeFET</strong></td>
+              <td>Polarization modulation of transistor threshold voltage</td>
+              <td>1T transistor structure</td>
+              <td>Non-volatile; memory window, device variability, and endurance reliability remain key engineering challenges.</td>
+            </tr>
+            <tr>
+              <td><strong>FTJ</strong></td>
+              <td>Polarization-controlled tunneling current</td>
+              <td>2-terminal tunnel junction</td>
+              <td>Non-volatile; small read current and state distribution make data margin control critical.</td>
+            </tr>
+            <tr>
+              <td><strong>V-Memory FDWM</strong></td>
+              <td><strong>Domain-wall conduction path control (V-Line / VLCC)</strong></td>
+              <td><strong>0T0C (OTOC) cell architecture</strong> (targeting 3D Z-axis stacking)</td>
+              <td><strong>Non-volatile</strong>; targets ultra-low power, high-speed sensing, <strong>NDRO</strong>, Multi-Line (<strong>nDW</strong>) multi-level data margin, and memory hierarchy simplification.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>2.2 CIV (Compute-In-Vmemory) vs. Conventional PIM (CIV와 기존 PIM 비교)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Comparison Axis (비교 기준)</th>
+              <th>Conventional PIM / HBM-PIM (기존 PIM)</th>
+              <th>V-Memory CIV (Compute-In-Vmemory)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Base Memory Physics (기반 소자 원리)</strong></td>
+              <td>Volatile DRAM / HBM or SRAM charge-based memory</td>
+              <td>Non-volatile FDWM (Ferroelectric Domain-Wall current-path control)</td>
+            </tr>
+            <tr>
+              <td><strong>Architectural Approach (아키텍처 방향)</strong></td>
+              <td>Places processing units near or inside DRAM banks/dies to mitigate bus bottlenecks</td>
+              <td>Aims to converge non-volatile FDWM storage and computation to minimize data-movement power and memory hierarchy tiers</td>
+            </tr>
+            <tr>
+              <td><strong>Power &amp; Refresh Burden (전력 및 유지)</strong></td>
+              <td>Inherits DRAM refresh power and stacked HBM thermal/packaging overhead</td>
+              <td>Targets non-volatile zero-refresh standby and low-power operation for AI data centers and Physical AI / Edge devices</td>
+            </tr>
+            <tr>
+              <td><strong>Development Stage (개발 단계 구분)</strong></td>
+              <td>Commercial prototypes and early deployment by major memory makers</td>
+              <td>FDWM device-level TRL 4 completed, TRL 5 wafer validation pursued; CIV is V-Memory's long-term architectural roadmap built on FDWM</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Section 3: Korean & Bilingual Master Q&A -->
+    <section class="card" id="korean-qa" lang="ko">
+      <h2>3. 공식 기술·사업 핵심 Q&amp;A (한국어 마스터 답변)</h2>
+      <p>차세대 반도체, AI 데이터센터 전력·발열 솔루션, FDWM·0T0C(OTOC)·V-Line·VLCC·Multi-Line(nDW)·NDRO·CIV·V-ET™ 및 공동개발(JDA)·IP 라이선싱에 관한 공식 답변입니다.</p>
+
+      <div class="qa-item" id="q1">
+        <h3><span class="qa-tag">Q1</span>브이메모리는 어떤 차세대 반도체 기술을 개발하나요?</h3>
+        <p>브이메모리 주식회사(V-Memory Corp.)는 강유전체(HZO 등) 내부의 도메인월 전류 경로를 제어하는 FDWM(Ferroelectric Domain-Wall Memory) 기반 차세대 비휘발성 반도체 메모리 원천 기술을 개발합니다. 핵심은 V-Line 전류 경로 제어와 0T0C(OTOC) 셀 구조이며, 메모리 계층 단순화 및 CIV(Compute-In-Vmemory) 연산 아키텍처로 확장을 추진하고 있습니다. 이와 별도로 능동 열전 반도체 냉각 기술인 V-ET™도 보유하고 있습니다.</p>
+      </div>
+
+      <div class="qa-item" id="q2">
+        <h3><span class="qa-tag">Q2</span>AI 데이터센터의 전력 문제와 발열 문제를 브이메모리는 어떻게 해결하나요?</h3>
+        <p>브이메모리는 AI 데이터센터의 양대 난제인 전력 장벽(Power Wall)과 발열 장벽(Thermal Wall)에 대해 각각 독립된 원천 반도체 기술로 접근합니다. 전력·메모리 병목 문제는 리프레시가 필요 없는 비휘발성 저전력 메모리 FDWM과 데이터 이동을 줄이는 CIV(Compute-In-Vmemory) 구상으로 대응하며, 칩 및 장비의 국소 발열 문제는 별도의 펠티어 기반 열전 반도체 능동 냉각 기술 V-ET™으로 해결을 추진합니다.</p>
+      </div>
+
+      <div class="qa-item" id="q3">
+        <h3><span class="qa-tag">Q3</span>0T0C(OTOC) 셀 구조는 무엇이며 기존 DRAM의 1T1C와 어떻게 다른가요?</h3>
+        <p>0T0C(일부 검색에서 OTOC로도 표기)는 개별 메모리 셀에 트랜지스터와 커패시터를 두지 않는(Zero-Transistor, Zero-Capacitor) 셀 구조를 뜻합니다. 기존 DRAM의 1T1C 셀이 커패시터의 전하 저장과 주기적 리프레시에 의존하는 반면, 브이메모리의 FDWM은 강유전체 도메인월 전도 경로의 상태를 이용해 정보를 저장합니다. 참고로 0T0C는 메모리 셀 구조에 관한 표현이며, 칩 전체의 주변 제어 회로까지 없다는 뜻은 아닙니다.</p>
+      </div>
+
+      <div class="qa-item" id="q4">
+        <h3><span class="qa-tag">Q4</span>도메인월 전류 경로(V-Line, VLCC)를 이용해 데이터를 어떻게 쓰고 읽고 지우나요?</h3>
+        <p>단자에 전기적 신호를 인가해 강유전체 내부의 분극 경계인 도메인월(Domain Wall) 전도 경로(V-Line)를 형성·제어합니다. 쓰기(SET)는 도메인월 전도 경로를 연결해 저저항 상태(LRS, Data 1)를 만들고, 지우기(RESET)는 경로 연결을 해제해 고저항 상태(HRS, Data 0)로 전환합니다. 읽기(READ)는 소신호 전압으로 HRS/LRS 간 전류·저항 차이(데이터 마진)를 감지해 판독하며, VLCC(Variable Line Current Controls) 개념으로 전도 상태를 정밀 제어합니다.</p>
+      </div>
+
+      <div class="qa-item" id="q5">
+        <h3><span class="qa-tag">Q5</span>FDWM은 FeRAM, FeFET, FTJ 같은 기존 강유전체 메모리와 어떻게 다른가요?</h3>
+        <p>모두 강유전체를 활용하지만 정보를 저장하고 읽는 물리적 원리와 소자 구조가 다릅니다. FeRAM은 커패시터 기반 분극 전하 응답, FeFET은 분극에 따른 트랜지스터 문턱전압 변화, FTJ는 분극에 따른 터널링 전류를 이용합니다. 반면 브이메모리의 FDWM은 강유전체 내부 도메인월을 따라 흐르는 전도 경로 자체의 형성·연결·해제를 이용하며, 0T0C 셀 구조와 비파괴 판독(NDRO), 3D 적층 확장을 지향합니다.</p>
+      </div>
+
+      <div class="qa-item" id="q6">
+        <h3><span class="qa-tag">Q6</span>비파괴 읽기(NDRO)는 무엇이며 산업용 비파괴검사(NDT)와 어떻게 다른가요?</h3>
+        <p>비파괴 읽기(NDRO, Non-Destructive Readout)는 반도체 메모리에 저장된 데이터 상태를 지우거나 손상시키지 않고 전기적으로 읽어내는 판독 방식을 뜻합니다. 브이메모리에서는 도메인월 전도 경로의 전류 상태를 판독하는 개념과 연결됩니다. 이 용어는 초음파·방사선 등으로 구조물 결함을 점검하는 산업용 비파괴검사(NDT)와는 전혀 다른 반도체 메모리 기술 용어입니다.</p>
+      </div>
+
+      <div class="qa-item" id="q7">
+        <h3><span class="qa-tag">Q7</span>멀티라인(Multi-Line, nDW) 구조는 V-Line 및 고집적 메모리와 어떤 관계가 있나요?</h3>
+        <p>V-Line이 제어 가능한 단일 도메인월 전류 경로를 뜻한다면, 멀티라인(Multi-Line, nDW)은 소자 내에 여러 개의 도메인월 전도 경로를 제어해 다중 전류·저항 레벨(멀티레벨 저장)을 구현하는 확장 개념입니다. 2021년 Applied Physics Letters(<a href="https://doi.org/10.1063/5.0054015" target="_blank" rel="noopener noreferrer">DOI: 10.1063/5.0054015</a>) 연구에서는 도메인월 수를 2개에서 4개로 늘렸을 때 전류가 약 두 배로 증가하는 소자 수준 특성을 보고했으며, 이는 향후 3차원 고집적 어레이 확장의 기반이 됩니다.</p>
+      </div>
+
+      <div class="qa-item" id="q8">
+        <h3><span class="qa-tag">Q8</span>CIV(Compute-In-Vmemory)는 무엇이며 기존 PIM과 어떻게 다른가요?</h3>
+        <p>CIV(Compute-In-Vmemory)는 브이메모리의 FDWM 메모리 구조를 기반으로 저장과 연산의 경계를 좁혀 데이터 이동 전력과 지연을 줄이려는 연산·메모리 통합 아키텍처 구상입니다. 기존 DRAM/HBM 기반 PIM(Processing-In-Memory)과 메모리 병목 해소라는 문제의식은 공유하지만, 휘발성 전하 저장 소자 대신 비휘발성 도메인월 전류 경로(FDWM)를 기반으로 한다는 물리 원리와 구조적 출발점이 다릅니다.</p>
+      </div>
+
+      <div class="qa-item" id="q9">
+        <h3><span class="qa-tag">Q9</span>DRAM과 NAND 없이 단일 메모리 계층으로 단순화하는 기술은 어떤 방향인가요?</h3>
+        <p>기존 컴퓨팅 시스템은 빠른 휘발성 메모리(SRAM·DRAM)와 느린 비휘발성 저장장치(NAND SSD) 사이의 데이터 이동으로 전력과 지연이 크게 발생합니다. 브이메모리는 초고속 동작, 초저전력, 비휘발성, 고집적성을 하나의 도메인월 전류 경로 원리로 통합하는 FDWM을 통해 다단계 메모리 계층을 단순화하고, AI 데이터센터·온디바이스 AI·자율주행·피지컬 AI 로봇의 시스템 효율을 높이는 방향을 추진합니다.</p>
+      </div>
+
+      <div class="qa-item" id="q10">
+        <h3><span class="qa-tag">Q10</span>브이메모리의 현재 개발 단계(TRL)와 상용화 로드맵은 어떻게 되나요?</h3>
+        <p>브이메모리는 소자 수준의 연구 성과와 핵심 특허를 바탕으로 TRL 4를 완료하고, 현재 웨이퍼 공정·메모리 어레이 구조·반복성·읽기/쓰기 신뢰성을 검증하는 TRL 5 웨이퍼 검증을 추진하고 있습니다. TRL 5 검증 이후에는 글로벌 반도체 제조사, 팹리스 및 AI 시스템 파트너와 공동 검증(Joint Validation)과 공동 개발(JDA)을 통해 상용화 기반을 넓혀갈 계획입니다.</p>
+      </div>
+
+      <div class="qa-item" id="q11">
+        <h3><span class="qa-tag">Q11</span>국내에서 FDWM, 0T0C(OTOC), NDRO, nDW 관련 공동개발(JDA)이나 IP 라이선싱을 지금 논의할 수 있나요?</h3>
+        <p>네, 브이메모리는 반도체 제조사, 설계기업, AI·데이터센터·로보틱스 시스템 기업과의 기술 협의, 공동 연구개발(JDA), 기술이전 및 IP 라이선싱 문의를 공식 이메일 <a href="mailto:vmemory@vmemory.net">vmemory@vmemory.net</a>(대외 공식 창구: 손종화 COO)으로 상시 접수하고 있습니다. 적용 목표 제품과 요구 사양을 전달해 주시면 필요한 비밀유지(NDA) 절차를 거쳐 상세 기술 자료와 협력 범위를 논의합니다.</p>
+      </div>
+
+      <div class="qa-item" id="q12">
+        <h3><span class="qa-tag">Q12</span>브이메모리의 특허 포트폴리오와 학술 논문 근거는 어디서 확인하나요?</h3>
+        <p>브이메모리는 회사 집계 기준 총 78건의 특허 출원과 55건의 등록 특허(미국 3건, 일본 3건, 중국 2건 포함) 및 약 20개의 특허 패밀리를 구축해 핵심 소자 구조와 동작 원리를 보호하고 있습니다. 또한 Applied Physics Letters, Journal of Applied Physics, Ceramics International 등 6편의 국제 학술논문 서지와 원문 DOI 링크를 본 공식 기술 참조 페이지(/llms/)에서 직접 확인할 수 있습니다.</p>
+      </div>
+
+      <div class="qa-item" id="q13">
+        <h3><span class="qa-tag">Q13</span>열전 반도체 냉각 기술 V-ET™은 FDWM 메모리와 같은 기술인가요?</h3>
+        <p>아니요, V-ET™은 브이메모리가 보유한 별도의 열전 반도체 능동 냉각 기술입니다. FDWM이 강유전체 도메인월 전류 경로를 제어하는 차세대 메모리 기술이라면, V-ET™은 펠티어 효과를 이용해 열을 능동적으로 이동시켜 칩이나 산업용 장비의 국소 발열을 제어하는 열관리 솔루션입니다. 두 기술은 물리 원리와 개발 이력이 독립적으로 구분됩니다.</p>
+      </div>
+
+      <div class="qa-item" id="q14">
+        <h3><span class="qa-tag">Q14</span>V-ET™ 열전 반도체에서 상용화된 부분과 기술이전·사업화 협의 범위는 어떻게 되나요?</h3>
+        <p>브이메모리 공식 공개자료에 따르면 유선 열전 모듈 VET-WS07414606은 2022년 11월 제품화 및 초기 상용화 이력을 보유하고 있으며, 소켓형 V-ET SPACE와 통합 냉각 스테이션은 후속 개발 구상으로 구분됩니다. 열전 냉각 모듈의 기술이전, 공동 사업화 및 적용 검토는 공식 이메일 <a href="mailto:vmemory@vmemory.net">vmemory@vmemory.net</a>과 상세 페이지(<a href="https://vmemory.net/V-ET/">/V-ET/</a>)를 통해 확인할 수 있습니다.</p>
+      </div>
+    </section>
+
+    <!-- Section 4: Verified Peer-Reviewed Papers & IP Evidence -->
+    <section class="card" id="papers">
+      <h2>4. Verified Peer-Reviewed Research Papers &amp; IP Portfolio (논문 및 특허 근거)</h2>
+
+      <div class="kpi-row">
+        <div class="kpi-box">
+          <div class="kpi-num">78</div>
+          <div class="kpi-lbl">Patent Applications (특허 출원)</div>
+        </div>
+        <div class="kpi-box">
+          <div class="kpi-num">55</div>
+          <div class="kpi-lbl">Registered Patents (특허 등록)</div>
+        </div>
+        <div class="kpi-box">
+          <div class="kpi-num">US 3 / JP 3 / CN 2</div>
+          <div class="kpi-lbl">Global Registrations (해외 등록)</div>
+        </div>
+        <div class="kpi-box">
+          <div class="kpi-num">~20</div>
+          <div class="kpi-lbl">Patent Families (특허 패밀리)</div>
+        </div>
+      </div>
+      <p style="font-size:0.86rem;color:var(--muted);margin-bottom:16px;">
+        * Patent metrics above reflect V-Memory Corp. internal portfolio totals. Below are verified bibliographic records and publisher links for 6 peer-reviewed studies on ferroelectric domain-wall conduction and non-volatile memory characteristics.
+      </p>
+
+      <div class="paper-item">
+        <div class="paper-title">[P1] Electrical conduction of ferroelectric domains and domain walls in polycrystalline BiFeO3 and Bi5Ti3FeO15 thin films</div>
+        <div class="paper-meta">Journal of Physics and Chemistry of Solids 196, 112347 (2025)</div>
+        <div>Source: <a href="https://doi.org/10.1016/j.jpcs.2024.112347" target="_blank" rel="noopener noreferrer">https://doi.org/10.1016/j.jpcs.2024.112347</a></div>
+      </div>
+
+      <div class="paper-item">
+        <div class="paper-title">[P2] Leakage current characteristics affected by crystallinity and domain wall current of epitaxial Bi5Ti3FeO15 thin films</div>
+        <div class="paper-meta">Journal of Applied Physics 134(18), 184101 (2023)</div>
+        <div>Source: <a href="https://doi.org/10.1063/5.0173297" target="_blank" rel="noopener noreferrer">https://doi.org/10.1063/5.0173297</a></div>
+      </div>
+
+      <div class="paper-item">
+        <div class="paper-title">[P3] Leakage current characteristics of polycrystalline BiFeO3 thin films affected by thickness-dependent domain wall currents</div>
+        <div class="paper-meta">Journal of Alloys and Compounds 968, 172113 (2023)</div>
+        <div>Source: <a href="https://www.sciencedirect.com/science/article/pii/S0925838823034163" target="_blank" rel="noopener noreferrer">https://www.sciencedirect.com/science/article/pii/S0925838823034163</a></div>
+      </div>
+
+      <div class="paper-item">
+        <div class="paper-title">[P4] Ferroelectric domain wall current corresponding to ferroelectric domain structures of BaTiO3 nanodots fabricated by dip-pen nanolithography</div>
+        <div class="paper-meta">Ceramics International 49(2), 2786-2791 (2023)</div>
+        <div>Source: <a href="https://doi.org/10.1016/j.ceramint.2022.09.260" target="_blank" rel="noopener noreferrer">https://doi.org/10.1016/j.ceramint.2022.09.260</a></div>
+      </div>
+
+      <div class="paper-item">
+        <div class="paper-title">[P5] Nonvolatile-memory current characteristics of BiFeO3 nanodots switched by applying external bias and force</div>
+        <div class="paper-meta">Ceramics International 47(20), 28449-28454 (2021)</div>
+        <div>Source: <a href="https://doi.org/10.1016/j.ceramint.2021.06.263" target="_blank" rel="noopener noreferrer">https://doi.org/10.1016/j.ceramint.2021.06.263</a></div>
+      </div>
+
+      <div class="paper-item">
+        <div class="paper-title">[P6] Current change due to artificial patterning of the number of ferroelectric domain walls and nonvolatile memory characteristics</div>
+        <div class="paper-meta">Applied Physics Letters 119(12), 122901 (2021) &mdash; Key device-level evidence for Multi-Line (nDW) current scaling (2 to 4 domain walls).</div>
+        <div>Source: <a href="https://doi.org/10.1063/5.0054015" target="_blank" rel="noopener noreferrer">https://doi.org/10.1063/5.0054015</a></div>
+      </div>
+    </section>
+
+    <!-- Section 5: Collaboration & Contact -->
+    <section class="card" id="collaboration" lang="ko">
+      <h2>5. 공동개발(JDA), 기술이전 및 IP 라이선싱 안내 (Collaboration &amp; IP Contact)</h2>
+      <p>
+        브이메모리 주식회사(V-Memory Corp.)는 차세대 비휘발성 메모리 <strong>FDWM (V-Line / 0T0C / Multi-Line nDW / NDRO / CIV)</strong> 및 별도의 열전 반도체 냉각 기술 <strong>V-ET™</strong>의 적용을 검토하는 반도체 제조사, 팹리스, AI 데이터센터·로보틱스·자율주행 시스템 기업과 기술 협의를 진행하고 있습니다.
+      </p>
+      <ul class="clean-list">
+        <li><strong>협의 가능 범위:</strong> 공동 연구개발(JDA), TRL 5 이후 공동 검증(Joint Validation), 기술이전(Tech Transfer), IP 라이선싱 및 전략적 투자 검토</li>
+        <li><strong>문의 시 안내 사항:</strong> 적용 목표 제품 및 사용 환경, 요구 메모리 용량·속도·전력 또는 열관리 조건, 희망 협력 범위와 일정을 함께 보내주시면 검토에 도움이 됩니다.</li>
+        <li><strong>공식 대외 창구:</strong> 손종화 COO (Son Jong-hwa, Chief Operating Officer)</li>
+        <li><strong>공식 이메일:</strong> <a href="mailto:vmemory@vmemory.net">vmemory@vmemory.net</a> (상세 기술 자료는 협의 범위에 맞춰 NDA 절차 후 공유)</li>
+      </ul>
+    </section>
+
+    <footer>
+      <p>&copy; 2026 V-Memory Corp. (브이메모리 주식회사). Official Technical Reference &mdash; <a href="https://vmemory.net/">vmemory.net</a> &middot; <a href="https://vmemory.net/V-ET/">/V-ET/</a> &middot; <a href="https://vmemory.net/llms.txt">llms.txt</a></p>
+      <p style="margin-top:6px;font-size:0.78rem;">Last Updated: 2026-11-26</p>
+    </footer>
+  </div>
+</body>
+</html>
