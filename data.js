@@ -1,7 +1,7 @@
 const VMEMORY_DATA = {
     metrics: {
         en: {
-            trlStatus: "TRL 4 Done -> Entering TRL 5",
+            trlStatus: "TRL 4 Completed -> Pursuing TRL 5",
             patentApplied: "78 Filings",
             patentRegistered: "55 Granted",
             globalRegistered: "8 Global (~20 Families)",
@@ -9,7 +9,7 @@ const VMEMORY_DATA = {
             lastUpdated: "Nov 2026"
         },
         ko: {
-            trlStatus: "TRL 4 완료 -> TRL 5 실증 진입",
+            trlStatus: "TRL 4 완료 -> TRL 5 웨이퍼 검증 추진",
             patentApplied: "78건 출원",
             patentRegistered: "55건 등록",
             globalRegistered: "8건 (약 20개 패밀리)",
@@ -118,11 +118,41 @@ const VMEMORY_DATA = {
     ],
 
     papers: [
-        { year: "2025", journal: "Journal of Physics and Chemistry of Solids", title: "Electrical conduction of ferroelectric domains and domain walls in polycrystalline Bi5Ti3FeO15 thin films" },
-        { year: "2025", journal: "Journal of Applied Physics", title: "Leakage current characteristics affected by crystallinity and domain wall current of epitaxial Bi5Ti3FeO15 thin films" },
-        { year: "2023", journal: "Journal of Alloys and Compounds", title: "Leakage current characteristics of polycrystalline BiFeO3 thin films affected by thickness-dependent domain wall currents" },
-        { year: "2023", journal: "Ceramics International", title: "Ferroelectric domain wall current corresponding to ferroelectric domain structures of BaTiO3 nanodots fabricated by dip-pen nanolithography" },
-        { year: "2021", journal: "Ceramics International", title: "Nonvolatile-memory current characteristics of BiFeO3 nanodots switched by applying external bias and force" },
-        { year: "2021", journal: "Applied Physics Letters", title: "Current change due to artificial patterning of the number of ferroelectric domain walls and nonvolatile memory characteristics" }
+        {
+            year: "2025",
+            journal: "Journal of Physics and Chemistry of Solids",
+            title: "Electrical conduction of ferroelectric domains and domain walls in polycrystalline BiFeO3 and Bi5Ti3FeO15 thin films",
+            url: "https://doi.org/10.1016/j.jpcs.2024.112347"
+        },
+        {
+            year: "2023",
+            journal: "Journal of Applied Physics",
+            title: "Leakage current characteristics affected by crystallinity and domain wall current of epitaxial Bi5Ti3FeO15 thin films",
+            url: "https://doi.org/10.1063/5.0173297"
+        },
+        {
+            year: "2023",
+            journal: "Journal of Alloys and Compounds",
+            title: "Leakage current characteristics of polycrystalline BiFeO3 thin films affected by thickness-dependent domain wall currents",
+            url: "https://www.sciencedirect.com/science/article/pii/S0925838823034163"
+        },
+        {
+            year: "2023",
+            journal: "Ceramics International",
+            title: "Ferroelectric domain wall current corresponding to ferroelectric domain structures of BaTiO3 nanodots fabricated by dip-pen nanolithography",
+            url: "https://doi.org/10.1016/j.ceramint.2022.09.260"
+        },
+        {
+            year: "2021",
+            journal: "Ceramics International",
+            title: "Nonvolatile-memory current characteristics of BiFeO3 nanodots switched by applying external bias and force",
+            url: "https://doi.org/10.1016/j.ceramint.2021.06.263"
+        },
+        {
+            year: "2021",
+            journal: "Applied Physics Letters",
+            title: "Current change due to artificial patterning of the number of ferroelectric domain walls and nonvolatile memory characteristics",
+            url: "https://doi.org/10.1063/5.0054015"
+        }
     ]
 };
